@@ -10,7 +10,7 @@ let changeLogin= document.getElementById('formBox');
 
 loginButton.addEventListener("click",function(){
     if(emailVis.value==EMAIL && passwordVis.value==PASSWORD){ 
-        alert("login exitoso");
+        window.location.href="./indexCampusData.html";
     }else{
         alert("login fallado");
         
