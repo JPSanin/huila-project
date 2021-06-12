@@ -7,12 +7,12 @@
     <title>Formulario</title>
 </head>
 <body>
-    <div>
+    <div id = "dataFormFormat">
         <h1>
             Encuesta sobre el programa de alternancia en sedes educativas del departamento de Huila
         </h1>
 
-        <form>
+        <form id = "dataForm">
             <h3>Modalidad en que se encuentra la sede educativa</h3>
             <p><input type = "radio">Alternancia</p>
             <p><input type = "radio">Presencialidad Completa</p>
@@ -27,11 +27,21 @@
             <p><input type = "radio">No</p>
 
             <h3>Cantidad de días en la semana de presencialidad (Responder numéricamente)</h3>
-            <p><input type = "text"></p>
+            <p><input type = "number"></p>
 
-            <h3>???</h3>
+            <h3>Cantidad de días en la semana de presencialidad (Responder numéricamente)</h3>
             <p><input type = "date"></p>
         </form>
     </div>
+
+    <div style="overflow:auto;">
+        <div style="float:right;">
+          
+          <a href = "indexFormFillPage2.html"><button type="button" id="nextBtn">Continuar</button></a>
+        </div>
+      </div>
+
+    <script src="../src/login/loginForm.js"></script>
+
 </body>
 </html>
