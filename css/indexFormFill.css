@@ -1,0 +1,26 @@
+:root{
+    --green:#459A7D;
+    --light_green:#6BC5A6;
+    --white:white;
+    --black: black;
+    --tipography: 'Poppins', sans-serif;
+    --gray: #E8EBF2;
+    --orange: #F2B138;
+    --orangeTwo: #c2830d;
+}
+
+body{
+    margin:0;
+    font-family: var(--tipography);
+}
+
+#whiteQuestion
+{
+    background-color: var(--white)
+}
+
+#grayQuestion
+{
+    background-color: var(--gray)
+}
+
