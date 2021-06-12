@@ -80,6 +80,16 @@
       background-color: var(--white);
   }
 
+  .firstClasif{
+    background-color: var(--white);
+    width: 200px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
   .clasif{
       background-color: var(--white);
       width: 200px;
@@ -87,6 +97,15 @@
       display: flex;
       align-items: center;
       margin-bottom: 30px;
+  }
+
+  .selectedClasif{
+    background-color: var(--gray);
+    width: 200px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
   }
 
   #campusData{
@@ -99,9 +118,15 @@
       margin-bottom: 30px;
   }
 
+
   .clasif:hover{
       background-color: var(--green);
       color:var(--white);
+  }
+
+  .firstClasif:hover{
+    background-color: var(--green);
+    color:var(--white);
   }
 
   .links{

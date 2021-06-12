@@ -10,13 +10,11 @@ let changeLogin= document.getElementById('visBox');
 
 loginButton.addEventListener("click",function(){
     if(daneForm.value==DANE && passwordForm.value==PASSWORD){ 
-        alert("login exitoso");
+        window.location.href="../indexesForm/indexFormFill.html";
     }else{
         alert("login fallado");
         
     }
-    console.log(daneForm.value);
-    console.log(passwordForm.value);
 });
 
 changeLogin.addEventListener("click",function(){

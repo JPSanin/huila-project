@@ -10,13 +10,11 @@ let changeLogin= document.getElementById('formBox');
 
 loginButton.addEventListener("click",function(){
     if(emailVis.value==EMAIL && passwordVis.value==PASSWORD){ 
-        window.location.href="./indexCampusData.html";
+        window.location.href="../indexesVisualization/indexCampusData.html";
     }else{
         alert("login fallado");
         
     }
-    console.log(emailVis.value);
-    console.log(passwordVis.value);
 });
 
 changeLogin.addEventListener("click",function(){
