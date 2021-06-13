@@ -26,6 +26,22 @@ body{
     align-items: center;
 }
 
+#numInput
+{
+    border-color: var(--green);
+    border-radius: 5px;
+    background: none;
+    box-decoration-break: none;
+}
+
+#dropdownList
+{
+    background: none;
+    border-style: none;
+    border-radius: 5px;
+    box-decoration-break: none;
+}
+
 .img1{
     margin: 10px;
 }
