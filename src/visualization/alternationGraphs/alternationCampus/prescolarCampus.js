@@ -56,7 +56,8 @@ const configPreescolarCampus = {
     },
   };
 
-let prescolarCampuseGraph = new Chart(preescolarCampus, configPreescolarCampus);
+let preescolarCampusGraph = new Chart(preescolarCampus, configPreescolarCampus);
+
 prescolarCampuseGraph.canvas.parentNode.style.height = '300px';
 prescolarCampuseGraph.canvas.parentNode.style.width = '300px';
 
