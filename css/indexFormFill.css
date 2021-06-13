@@ -212,11 +212,34 @@ body{
     background-color: var(--darkerGray);
 }
 
+#nextBtn2:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#nextBtn3:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#nextBtn4:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#submitBtn:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
 #prevBtn:hover
 {
     color: var(--white);
     background-color: var(--darkerGray);
-}
 }
 
 #formTitle
