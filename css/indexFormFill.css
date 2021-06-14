@@ -1,0 +1,250 @@
+:root{
+    --green:#459A7D;
+    --light_green:#6BC5A6;
+    --white:white;
+    --black: black;
+    --tipography: 'Poppins', sans-serif;
+    --gray: #E8EBF2;
+    --darkGray : #F2F1F1;
+    --darkerGray : #A5A6A7;
+    --orange: #F2B138;
+    --orangeTwo: #c2830d;
+}
+
+body{
+    margin:0;
+    font-family: var(--tipography);
+    background-color: var(--gray);
+}
+
+.container{
+    width: 100%;
+    height: 96px;
+    background-color: var(--green);
+    display:flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.numInput
+{
+    border-color: var(--green);
+    border-radius: 5px;
+    background: none;
+    box-decoration-break: none;
+}
+
+#dropdownList
+{
+    background: none;
+    border-style: none;
+    border-radius: 5px;
+    box-decoration-break: none;
+}
+
+.img1{
+    margin: 10px;
+}
+
+.img2{
+   margin: 10px;
+}
+
+.img3{
+   margin: 10px;
+   margin-right: 30px;
+}
+
+.img4
+{
+    margin-left: 30px;
+    margin: 10px;
+}
+
+.all{
+    width: 100%;
+    height: 100vh;
+    display:flex;
+    flex-direction: row;
+}
+
+.navLeft{
+      width: 200px;
+      background-color: var(--white);
+}
+
+#campusData{
+    background-color: var(--gray);
+      width: 200px;
+      height: 53px;
+      display: flex;
+      align-items: center;
+      margin-top: 50px;
+      margin-bottom: 30px;
+  }
+
+
+  .clasif:hover{
+      background-color: var(--green);
+      color:var(--white);
+  }
+
+  .links{
+    font-family: var(--tipography);
+    font-size: 14px;
+    font-weight: bolder;
+    text-decoration: none;
+    margin-left: 20px;
+    color: inherit;
+  }
+
+  .all__graphics{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin:0;
+    border-radius: 10px;
+
+}
+
+#whiteQuestion
+{
+    background-color: var(--white);
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+#grayQuestion
+{
+    background-color: var(--darkGray);
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+#prevBtn
+{
+    border: none;
+    color: var(--green);
+    background-color: var(--white);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#nextBtn
+{
+    border: none;
+    color: var(--white);
+    background-color: var(--green);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px;
+}
+#nextBtn2
+{
+    border: none;
+    color: var(--white);
+    background-color: var(--green);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px;
+}
+#nextBtn3
+{
+    border: none;
+    color: var(--white);
+    background-color: var(--green);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px;
+}
+#nextBtn4
+{
+    border: none;
+    color: var(--white);
+    background-color: var(--green);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#submitBtn
+{
+    border: none;
+    color: var(--white);
+    background-color: var(--green);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px;
+}
+
+#nextBtn:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#nextBtn2:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#nextBtn3:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#nextBtn4:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#submitBtn:hover
+{
+    
+    background-color: var(--darkerGray);
+}
+
+#prevBtn:hover
+{
+    color: var(--white);
+    background-color: var(--darkerGray);
+}
+
+#formTitle
+{
+    text-align: center;
+    color: var(--white);
+    background-color: var(--darkerGray);
+}

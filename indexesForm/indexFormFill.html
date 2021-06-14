@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/indexFormFill.css">
+    <title>Formulario</title>
+</head>
+<body>
+
+    <div class="container">
+        <img class="img4" src="../images/logo.png" alt="">
+        <img class="img3" src="../images/profile.png" alt="">
+        <img class="img2" src="../images/bell.png" alt="">
+        <img class="img1" src="../images/search.png" alt="">
+    </div>
+
+    <div id = "dataFormFormat">
+        <h1 id = "formTitle">
+            Encuesta sobre el programa de alternancia en sedes educativas del departamento de Huila
+        </h1>
+
+        <form id = "dataForm">
+        <div id = "whiteQuestion">
+            <h3>Modalidad en que se encuentra la sede educativa</h3>
+            <!--<p><input type = "radio">Alternancia</p>
+            <p><input type = "radio">Presencialidad Completa</p>
+            <p><input type = "radio">Remoto</p>-->
+
+            <select id = "dropdownList" id = "quest1">
+                <p><option>Alternancia</option></p>
+                <p><option>Presencialidad Completa</option></p>
+                <p><option>Remoto</option></p>
+            </select>
+        </div>
+
+        <div id = "grayQuestion">
+            <h3>La sede educativa, ¿cuenta con Diagnóstico de Bioseguridad?</h3>
+           <!-- <p><input type = "radio">Sí</p>
+            <p><input type = "radio">No</p>-->
+
+            <select id = "dropdownList" id = "quest2">
+                <p><option>Sí</option></p>
+                <p><option>No</option></p>
+            </select>
+        </div>
+
+        <div id = "whiteQuestion">
+            <h3>¿Revisó y ajustó los protocolos de bioseguridad de acuerdo a la resolución 1721 de 2020?</h3>
+            <!--<p><input type = "radio">Sí</p>
+            <p><input type = "radio">No</p>-->
+
+            <select id = "dropdownList" id = "quest3">
+                <p><option>Sí</option></p>
+                <p><option>No</option></p>
+            </select>
+        </div>
+
+        <div id = "grayQuestion">
+            <h3>Cantidad de días en la semana de presencialidad (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "numInput"></p>
+        </div>
+
+        <div id = "whiteQuestion">  
+            <h3>Fecha estimada de inicio</h3>
+            <p><input type = "date" id = "calendarInput"></p>
+        </div>
+        </form>
+    </div>
+
+    <div style="overflow:auto;">
+        <div style="float:right;">
+          
+          <button type="button" id="nextBtn">Continuar</button>
+        </div>
+      </div>
+
+    <script src="../src/form/formData.js"></script>
+
+</body>
+</html>
