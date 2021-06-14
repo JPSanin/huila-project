@@ -8,6 +8,12 @@
     <title>Retorna</title>
     <link rel="stylesheet" href="../css/indexCampusData.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!--AJAX, TO GET DATABASE-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!--Papa parse, to interpret database-->
+    <script src="libs/papaparse.min.js"></script>
+    <!--CHARTS.JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>
 
 </head>
 
@@ -154,6 +160,29 @@
             </div>
 
             <div class="graphics">
+            
+               <canvas id="docFisicosDN"></canvas>
+               <p id = "sampleFisico1"></p>
+
+               <canvas id="docFisicosDIE"></canvas>
+               <p id = "sampleFisico2"></p>
+
+               <canvas id="docDigitalesDN"></canvas>
+               <p id = "sampleDigital1"></p>
+
+               <canvas id="docDigitalesDIE"></canvas> 
+               <p id = "sampleDigital2"></p>  
+
+               <canvas id="estrategiasVirtualesDN"></canvas>
+               <p id = "sampleVirtual1"></p>
+
+               <canvas id="estrategiasVirtualesDIE"></canvas>
+               <p id = "sampleVirtual2"></p>
+
+               <canvas id="metodosAlternosDIE"></canvas>
+               <p id = "sampleMetodosAlterno3"></p>
+    
+                <!---
                 <h5 class="miga">DATOS DE LA SEDE / DEPTO. HUILA / MUNICIPIO PITALITO / IS MONTESITOS / SEDE LA ODINA
                 </h5>
 
@@ -175,7 +204,7 @@
                     </div>
 
                 </div>
-
+                -->
                 
             </div>
 
@@ -183,6 +212,13 @@
     </div>
 
     <script src="../src/visualization/selectsSwitch.js"></script>
+    <script src="../src/visualization/methods/docFisicos1.js"></script>
+    <script src="../src/visualization/methods/docDigitales1.js"></script>
+    <script src="../src/visualization/methods/estrategiasVirtuales1.js"></script>
+    <script src="../src/visualization/methods/docFisicos2.js"></script>
+    <script src="../src/visualization/methods/docDigitales2.js"></script>
+    <script src="../src/visualization/methods/estrategiasVirtuales2.js"></script>
+    <script src="../src/visualization/methods/metodosAlternos.js"></script>
 </body>
 
 </html>
