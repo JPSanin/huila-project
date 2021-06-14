@@ -8,6 +8,12 @@
     <title>Retorna</title>
     <link rel="stylesheet" href="../css/indexCampusData.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+     <!--AJAX, TO GET DATABASE-->
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+     <!--Papa parse, to interpret database-->
+     <script src="libs/papaparse.min.js"></script>
+     <!--CHARTS.JS-->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>
 
 </head>
 
@@ -154,9 +160,34 @@
             </div>
 
             <div class="graphics">
+                <!--FIRST CHART / HORIZONTAL BAR CHART-->
+                <canvas id = "graph1"></canvas>
+                <p id = "sampleGraph1"></p>
+                <!--SECOND CHART / VERTICAL BAR CHART-->
+                <canvas id = "graph2"></canvas>
+                <p id = "sampleGraph2"></p>
+                <!--THIRD CHART / VERTICAL BAR CHART-->
+                <canvas id = "graph3"></canvas>
+                <p id = "sampleGraph3"></p>
+                 <!--FOURTH CHART / STACKED BAR CHART-->
+                 <canvas id = "graph4"></canvas>
+                 <p id = "sampleGraph4"></p>
+                <!--FIFTH CHART / DOUGHNUT CHART-->
+                 <canvas id = "graph5"></canvas>
+                 <p id = "sampleGraph5"></p>
+                <!--SIXTH CHART / STACKED BAR CHART-->
+                <canvas id = "graph6"></canvas>
+                <p id = "sampleGraph6"></p>
+                <!--SEVENTH CHART / DOUGHNUT CHART-->
+                <canvas id = "graph7"></canvas>
+                <p id = "sampleGraph7"></p>
+                <!--EIGTH CHART / STACKED BAR CHART-->
+                <canvas id = "graph8"></canvas>
+                <p id = "sampleGraph8"></p>
+
+                <!---
                 <h5 class="miga">DATOS DE LA SEDE / DEPTO. HUILA / MUNICIPIO PITALITO / IS MONTESITOS / SEDE LA ODINA
                 </h5>
-
                 <div class="all__graphics">
                     <div class="double__box">
                         <div class="container__graphics">
@@ -173,9 +204,8 @@
                             <h3 class="titles">DIAGNÓSTICOS Y PROTOCOLOS DE BIOSEGURIDAD EN EL DEPARTAMENTO</h3>
                         </div>
                     </div>
-
                 </div>
-
+                -->
                 
             </div>
 
@@ -183,6 +213,14 @@
     </div>
 
     <script src="../src/visualization/selectsSwitch.js"></script>
+    <script src = "../src/visualization/graphResource1.js"></script>
+    <script src = "../src/visualization/graphResource2.js"></script>
+    <script src = "../src/visualization/graphResource3.js"></script>
+    <script src = "../src/visualization/graphResource4.js"></script>
+    <script src = "../src/visualization/graphResource5.js"></script>
+    <script src = "../src/visualization/graphResource6.js"></script>
+    <script src = "../src/visualization/graphResource7.js"></script>
+    <script src = "../src/visualization/graphResource8.js"></script>
 </body>
 
 </html>
