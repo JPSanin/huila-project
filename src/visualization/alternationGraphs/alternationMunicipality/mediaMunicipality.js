@@ -1,11 +1,11 @@
-let mediaMunicipility= document.getElementById("mediaMunicipility");
+let mediaMunicipality= document.getElementById("mediaMunicipality");
 
 //const DATA_COUNT = 7;
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
 
-const dataMediaMunicipility = {
+const dataMediaMunicipality = {
   labels: ['Montesitos', 'EL Carmen', 'La Merced'],
   datasets: [
     {
@@ -23,9 +23,9 @@ const dataMediaMunicipility = {
   ]
 };
 
-const configMediaMunicipility = {
+const configMediaMunicipality = {
     type: 'bar',
-    data: dataMediaMunicipility,
+    data: dataMediaMunicipality,
     options: {
       responsive: true,
       plugins: {
@@ -40,6 +40,5 @@ const configMediaMunicipility = {
     },
   };
 
-let mediaMunicipilityGraph = new Chart(mediaMunicipility, configMediaMunicipility);
-
+  let mediaMunicipalityGraph = new Chart(mediaMunicipality, configMediaMunicipality);
 

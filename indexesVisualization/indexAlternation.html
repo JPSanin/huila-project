@@ -8,7 +8,12 @@
     <title>Retorna</title>
     <link rel="stylesheet" href="../css/indexCampusData.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
+    <!--AJAX-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!--Papa parse-->
+    <script src="libs/papaparse.min.js"></script>
+    <!--CHARTS.JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -160,6 +165,38 @@
                 <canvas id= "docentesCampus"></canvas>
                 <canvas id= "grupoPreCampus"></canvas>
                 <canvas id= "grupoPriCampus"></canvas>
+
+                <!--for IE index-->
+                <canvas id= "preescolarIE"></canvas>
+                <canvas id= "primariaIE"></canvas>
+                <canvas id= "secundariaIE"></canvas>
+                <canvas id= "mediaIE"></canvas>
+                <canvas id= "grupoPreIE"></canvas>
+                <canvas id= "grupoPriIE"></canvas>
+                <canvas id= "grupoSecIE"></canvas>
+                <canvas id= "grupoMedIE"></canvas>
+                <canvas id= "docentesIE"></canvas>
+
+                <!--for Mun & Dep index-->
+                <canvas id= "preescolarMunicipality"></canvas>
+                <canvas id= "primariaMunicipality"></canvas>
+                <canvas id= "secundariaMunicipality"></canvas>
+                <canvas id= "mediaMunicipality"></canvas>
+                <canvas id= "grupoPreMunicipality"></canvas>
+                <canvas id= "grupoPriMunicipality"></canvas>
+                <canvas id= "grupoSecMunicipality"></canvas>
+                <canvas id= "grupoMedMunicipality"></canvas>
+                <canvas id= "docentesMunicipality"></canvas>
+
+                <canvas id= "preescolarDepartment"></canvas>
+                <canvas id= "primariaDepartment"></canvas>
+                <canvas id= "secundariaDepartment"></canvas>
+                <canvas id= "mediaDepartment"></canvas>
+                <canvas id= "grupoPreDepartment"></canvas>
+                <canvas id= "grupoPriDepartment"></canvas>
+                <canvas id= "grupoSecDepartment"></canvas>
+                <canvas id= "grupoMedDepartment"></canvas>
+                <canvas id= "docentesDepartment"></canvas>
                 
                 <!--
                 <h5 class="miga">DATOS DE LA SEDE / DEPTO. HUILA / MUNICIPIO PITALITO / IS MONTESITOS / SEDE LA ODINA
@@ -198,6 +235,39 @@
     <script src="../src/visualization/alternationGraphs/alternationCampus/docentesCampus.js"></script>
     <script src="../src/visualization/alternationGraphs/alternationCampus/grupoPreCampus.js"></script>
     <script src="../src/visualization/alternationGraphs/alternationCampus/grupoPriCampus.js"></script>
+
+    <!--alternation IE graphs classes scripts-->
+    <script src="../src/visualization/alternationGraphs/alternationIE/preescolarIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/primariaIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/secundariaIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/mediaIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/docentesIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/grupoPreIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/grupoPriIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/grupoSecIE.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationIE/grupoMedIE.js"></script>
+
+        <!--alternation Municipality graphs classes scripts-->
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/preescolarMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/primariaMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/secundariaMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/mediaMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/docentesMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/grupoPreMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/grupoPriMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/grupoSecMunicipality.js"></script>
+        <script src="../src/visualization/alternationGraphs/alternationMunicipality/grupoMedMunicipality.js"></script>
+
+            <!--alternation Department graphs classes scripts-->
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/preescolarDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/primariaDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/secundariaDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/mediaDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/docentesDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoPreDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoPriDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoSecDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoMedDepartment.js"></script>
 </body>
 
 </html>
