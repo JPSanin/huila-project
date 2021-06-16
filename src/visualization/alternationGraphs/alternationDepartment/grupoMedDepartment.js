@@ -4,20 +4,24 @@ let grupoMedDepartment= document.getElementById("grupoMedDepartment");
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
+
 const dataGrupoMedDepartment = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Decimo', 'Once',],
   datasets: [
     {
-      label: 'Decimo',
-      data: [7, 0, 1],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,0,255,0.5)',
+      label: 'Agrado',
+      data: [7, 6],
+      backgroundColor: '#003F63',
     },
     {
-      label: 'Once',
-      data: [6, 0, 1],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,255,0,0.5)',
+      label: 'Baraya',
+      data: [0, 0],
+      backgroundColor: '#008892',
+    },
+    {
+      label: 'Isnos',
+      data: [1, 1],
+      backgroundColor: '#FF6766',
     },
   ]
 };
@@ -40,5 +44,8 @@ const configGrupoMedDepartment = {
   };
 
 let grupoMedDepartmentGraph = new Chart(grupoMedDepartment, configGrupoMedDepartment);
+
+grupoMedDepartmentGraph.canvas.parentNode.style.height = '200px';
+grupoMedDepartmentGraph.canvas.parentNode.style.width = '500px';
 
 

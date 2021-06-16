@@ -4,32 +4,24 @@ let grupoSecDepartment= document.getElementById("grupoSecDepartment");
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
+
 const dataGrupoSecDepartment = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno'],
   datasets: [
     {
-      label: 'Sexto',
-      data: [7, 3, 3],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,0,255,0.5)',
+      label: 'Agrado',
+      data: [7, 8, 8, 8],
+      backgroundColor: '#003F63',
     },
     {
-      label: 'Septimo',
-      data: [8, 0, 5],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,255,0,0.5)',
+      label: 'Baraya',
+      data: [3, 0, 0, 0],
+      backgroundColor: '#008892',
     },
     {
-      label: 'Octavo',
-      data: [8, 0, 0],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(255,0,0,0.5)',
-    },
-    {
-      label: 'Noveno',
-      data: [8, 0, 0],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(255,255,0,0.5)',
+      label: 'Isnos',
+      data: [3, 5, 0, 0],
+      backgroundColor: '#FF6766',
     },
   ]
 };
@@ -52,5 +44,8 @@ const configGrupoSecDepartment = {
   };
 
 let grupoSecDepartmentGraph = new Chart(grupoSecDepartment, configGrupoSecDepartment);
+
+grupoSecDepartmentGraph.canvas.parentNode.style.height = '200px';
+grupoSecDepartmentGraph.canvas.parentNode.style.width = '500px';
 
 

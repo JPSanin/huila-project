@@ -4,32 +4,24 @@ let secundariaDepartment= document.getElementById("secundariaDepartment");
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
+
 const dataSecundariaDepartment = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno'],
   datasets: [
     {
-      label: 'Sexto',
-      data: [147, 40, 44],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,0,255,0.5)',
+      label: 'Agrado',
+      data: [147, 164, 154, 142],
+      backgroundColor: '#003F63',
     },
     {
-      label: 'Septimo',
-      data: [164, 0, 65],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,255,0,0.5)',
+      label: 'Baraya',
+      data: [40, 0, 0, 0],
+      backgroundColor: '#008892',
     },
     {
-      label: 'Octavo',
-      data: [154, 0, 0],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(255,0,0,0.5)',
-    },
-    {
-      label: 'Noveno',
-      data: [142, 0, 0],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(255,255,0,0.5)',
+      label: 'Isnos',
+      data: [44, 65, 0, 0],
+      backgroundColor: '#FF6766',
     },
   ]
 };
@@ -53,4 +45,6 @@ const configSecundariaDepartment = {
 
 let secundariaDepartmentGraph = new Chart(secundariaDepartment, configSecundariaDepartment);
 
+secundariaDepartmentGraph.canvas.parentNode.style.height = '200px';
+secundariaDepartmentGraph.canvas.parentNode.style.width = '500px';
 

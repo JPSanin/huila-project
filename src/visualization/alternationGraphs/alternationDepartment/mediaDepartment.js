@@ -4,20 +4,24 @@ let mediaDepartment= document.getElementById("mediaDepartment");
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
+
 const dataMediaDepartment = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Decimo', 'Once'],
   datasets: [
     {
-      label: 'Decimo',
-      data: [146, 0, 8],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,0,255,0.5)',
+      label: 'Agrado',
+      data: [146, 132],
+      backgroundColor: '#003F63',
     },
     {
-      label: 'Once',
-      data: [132, 0, 8],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,255,0,0.5)',
+      label: 'Baraya',
+      data: [0, 0],
+      backgroundColor: '#008892',
+    },
+    {
+      label: 'Isnos',
+      data: [8, 8],
+      backgroundColor: '#FF6766',
     },
   ]
 };
@@ -40,5 +44,8 @@ const configMediaDepartment = {
   };
 
 let mediaDepartmentGraph = new Chart(mediaDepartment, configMediaDepartment);
+
+mediaDepartmentGraph.canvas.parentNode.style.height = '200px';
+mediaDepartmentGraph.canvas.parentNode.style.width = '500px';
 
 

@@ -4,14 +4,14 @@ let preescolarDepartment= document.getElementById("preescolarDepartment");
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
+
 const dataPreescolarDepartment = {
   labels: ['Agrado', 'Baraya', 'Isnos'],
   datasets: [
     {
       label: 'Preescolar',
       data: [122, 81, 8],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,0,255,0.5)',
+      backgroundColor: ['#003F63', '#008892', '#FF6766'],
     },
   ]
 };
@@ -34,5 +34,8 @@ const configPreescolarDepartment = {
   };
 
 let preescolarDepartmentGraph = new Chart(preescolarDepartment, configPreescolarDepartment);
+
+preescolarDepartmentGraph.canvas.parentNode.style.height = '200px';
+preescolarDepartmentGraph.canvas.parentNode.style.width = '500px';
 
 

@@ -6,25 +6,22 @@ let docentesDepartment= document.getElementById("docentesDepartment");
 //const labels = Utils.months({count: 7});
 
 const dataDocentesDepartment = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Preescolar', 'Primaria', 'Secundaria y Media'],
   datasets: [
     {
-      label: 'Preescolar',
-      data: [23, 7, 1],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,0,255,0.5)',
+      label: 'Agrado',
+      data: [23, 67, 56],
+      backgroundColor: '#003F63',
     },
     {
-      label: 'Primaria',
-      data: [67, 44, 60],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,255,0,0.5)',
+      label: 'Baraya',
+      data: [7, 44, 12],
+      backgroundColor: '#008892',
     },
     {
-      label: 'Secundaria y Media',
-      data: [56, 12, 28],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(255,0,0,0.5)',
+      label: 'Isnos',
+      data: [1, 60, 28],
+      backgroundColor: '#FF6766',
     },
   ]
 };
@@ -47,5 +44,8 @@ const configDocentesDepartment = {
   };
 
 let docentesDepartmentGraph = new Chart(docentesDepartment, configDocentesDepartment);
+
+docentesDepartmentGraph.canvas.parentNode.style.height = '200px';
+docentesDepartmentGraph.canvas.parentNode.style.width = '500px';
 
 

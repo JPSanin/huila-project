@@ -4,38 +4,24 @@ let primariaDepartment= document.getElementById("primariaDepartment");
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
+
 const dataPrimariaDepartment = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
   datasets: [
     {
-      label: 'Primero',
-      data: [145, 57, 97],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,0,255,0.5)',
+      label: 'Agrado',
+      data: [145, 108, 79, 79, 78],
+      backgroundColor: '#003F63',
     },
     {
-      label: 'Segundo',
-      data: [108, 40, 117],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,255,0,0.5)',
+      label: 'Baraya',
+      data: [57, 40, 40 ,134, 118],
+      backgroundColor: '#008892',
     },
     {
-      label: 'Tercero',
-      data: [79, 40, 110],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(255,0,0,0.5)',
-    },
-    {
-      label: 'Cuarto',
-      data: [79, 134, 32],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(255,255,0,0.5)',
-    },
-    {
-      label: 'Quinto',
-      data: [78, 118, 41],
-      borderColor: 'Blue',
-      backgroundColor: 'rgba(0,255,255,0.5)',
+      label: 'Isnos',
+      data: [97, 117, 110, 32, 41],
+      backgroundColor: '#FF6766',
     },
   ]
 };
@@ -58,5 +44,8 @@ const configPrimariaDepartment = {
   };
 
 let primariaDepartmentGraph = new Chart(primariaDepartment, configPrimariaDepartment);
+
+primariaDepartmentGraph.canvas.parentNode.style.height = '200px';
+primariaDepartmentGraph.canvas.parentNode.style.width = '500px';
 
 
