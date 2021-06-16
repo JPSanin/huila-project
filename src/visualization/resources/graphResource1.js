@@ -42,4 +42,4 @@ const dataGraph1 = {
     let graph1Visible = new Chart(graph1, configGraph1);
     sampleGraph1.innerHTML="Muestra "+ sample1; 
     graph1Visible.canvas.parentNode.style.height = '300px';
-    graph1Visible.canvas.parentNode.style.width = '600px';
+    graph1Visible.canvas.parentNode.style.width = '700px';

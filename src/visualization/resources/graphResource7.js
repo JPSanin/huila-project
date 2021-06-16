@@ -34,3 +34,5 @@ const dataGraph7 = {
 
     let graph7Visible = new Chart(graph7, configGraph7);
     sampleGraph7.innerHTML="Muestra "+ sample7; 
+    graph7Visible.canvas.parentNode.style.height = '250px';
+    graph7Visible.canvas.parentNode.style.width = '350px';
