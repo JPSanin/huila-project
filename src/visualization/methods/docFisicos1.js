@@ -34,5 +34,5 @@ const configDN2 = {
 
 let docFisicosDNVer= new Chart(docFisicosDN,configDN2);
 sampleFisico1.innerHTML="Muestra "+ sampleFisicoDN; 
-docFisicosDNVer.canvas.parentNode.style.height = '199px';
-docFisicosDNVer.canvas.parentNode.style.width = '400px';
+docFisicosDNVer.canvas.parentNode.style.height = '350px';
+docFisicosDNVer.canvas.parentNode.style.width = '700px';

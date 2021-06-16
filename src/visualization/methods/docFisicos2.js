@@ -33,5 +33,5 @@ const configDIE2 = {
 
 let docFisicosDIEVer= new Chart(docFisicosDIE,configDIE2);
 sampleFisico2.innerHTML="Muestra "+ sampleFisicoDIE; 
-docFisicosDIEVer.canvas.parentNode.style.height = '199px';
-docFisicosDIEVer.canvas.parentNode.style.width = '400px';
+docFisicosDIEVer.canvas.parentNode.style.height = '350px';
+docFisicosDIEVer.canvas.parentNode.style.width = '700px';

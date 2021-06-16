@@ -33,5 +33,5 @@ const configDIE3 = {
 
 let estrategiasVirtualesDIEVer= new Chart(estrategiasVirtualesDIE,configDIE3);
 sampleVirtual2.innerHTML="Muestra "+ sampleVirtualesDIE; 
-estrategiasVirtualesDIEVer.canvas.parentNode.style.height = '199px';
-estrategiasVirtualesDIEVer.canvas.parentNode.style.width = '400px'
+estrategiasVirtualesDIEVer.canvas.parentNode.style.height = '350px';
+estrategiasVirtualesDIEVer.canvas.parentNode.style.width = '700px'

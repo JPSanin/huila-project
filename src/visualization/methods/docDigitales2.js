@@ -35,6 +35,6 @@ const configDIE1 = {
 
 let docDigitalesDIEVer= new Chart(docDigitalesDIE,configDIE1);
 sampleDigital2.innerHTML="Muestra "+ sampleDigitalesDIE; 
-docDigitalesDIEVer.canvas.parentNode.style.height = '199px';
-docDigitalesDIEVer.canvas.parentNode.style.width = '400px';
+docDigitalesDIEVer.canvas.parentNode.style.height = '350px';
+docDigitalesDIEVer.canvas.parentNode.style.width = '700px';
 

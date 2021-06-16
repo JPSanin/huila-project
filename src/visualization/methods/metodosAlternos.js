@@ -45,5 +45,5 @@ const configDIE4 = {
 
 let metodosAlternosDIEVer= new Chart(metodosAlternosDIE,configDIE4);
 sampleMetodosAlterno3.innerHTML="Muestra "+ sampleMetodosAlternosDIE; 
-metodosAlternosDIEVer.canvas.parentNode.style.height = '199px';
-metodosAlternosDIEVer.canvas.parentNode.style.width = '400px';
+metodosAlternosDIEVer.canvas.parentNode.style.height = '350px';
+metodosAlternosDIEVer.canvas.parentNode.style.width = '700px';

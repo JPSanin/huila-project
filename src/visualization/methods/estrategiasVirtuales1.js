@@ -34,5 +34,5 @@ const configDN3 = {
 
 let estrategiasVirtualesDNVer= new Chart(estrategiasVirtualesDN,configDN3);
 sampleVirtual1.innerHTML="Muestra "+ sampleVirtualesDN; 
-estrategiasVirtualesDNVer.canvas.parentNode.style.height = '199px';
-estrategiasVirtualesDNVer.canvas.parentNode.style.width = '400px';
+estrategiasVirtualesDNVer.canvas.parentNode.style.height = '350px';
+estrategiasVirtualesDNVer.canvas.parentNode.style.width = '700px';

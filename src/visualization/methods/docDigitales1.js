@@ -33,6 +33,6 @@ const configDN1 = {
 
 let docDigitalesDNVer= new Chart(docDigitalesDN,configDN1);
 sampleDigital1.innerHTML="Muestra "+ sampleDigitalDN; 
-docDigitalesDNVer.canvas.parentNode.style.height = '199px';
-docDigitalesDNVer.canvas.parentNode.style.width = '400px';
+docDigitalesDNVer.canvas.parentNode.style.height = '350px';
+docDigitalesDNVer.canvas.parentNode.style.width = '700px';
 
