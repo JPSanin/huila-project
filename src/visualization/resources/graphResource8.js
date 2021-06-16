@@ -43,3 +43,5 @@ const dataGraph8 = {
 
     let graph8Visible = new Chart(graph8, configGraph8);
     sampleGraph8.innerHTML="Muestra "+ sample8; 
+    graph8Visible.canvas.parentNode.style.height = '300px';
+    graph8Visible.canvas.parentNode.style.width = '700px';

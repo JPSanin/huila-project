@@ -34,3 +34,5 @@ const dataGraph5 = {
 
     let graph5Visible = new Chart(graph5, configGraph5);
     sampleGraph5.innerHTML="Muestra "+ sample5; 
+    graph5Visible.canvas.parentNode.style.height = '250px';
+    graph5Visible.canvas.parentNode.style.width = '350px';

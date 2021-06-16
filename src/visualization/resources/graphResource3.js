@@ -41,4 +41,4 @@ const dataGraph3 = {
     let graph3Visible = new Chart(graph3, configGraph3);
     sampleGraph3.innerHTML="Muestra "+ sample3; 
     graph3Visible.canvas.parentNode.style.height = '300px';
-    graph3Visible.canvas.parentNode.style.width = '600px';
+    graph3Visible.canvas.parentNode.style.width = '700px';

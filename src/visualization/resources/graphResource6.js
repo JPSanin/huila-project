@@ -43,3 +43,5 @@ const dataGraph6 = {
 
     let graph6Visible = new Chart(graph6, configGraph6);
     sampleGraph6.innerHTML="Muestra "+ sample6; 
+    graph6Visible.canvas.parentNode.style.height = '300px';
+    graph6Visible.canvas.parentNode.style.width = '700px';
