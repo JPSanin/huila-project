@@ -3,6 +3,10 @@
 let municipalitySelect = document.getElementById("municipalitySelect");
 let institutionSelect = document.getElementById("institutionSelect");
 let campusSelect = document.getElementById("campusSelect");
+let miga = document.querySelector(".miga");
+let migaInitialText = miga.innerHTML;
+let migaInstitutionText = "";
+let migaCampusText = "";
 
 municipalitySelect.addEventListener("click", function () {
 
@@ -12,18 +16,27 @@ municipalitySelect.addEventListener("click", function () {
             removeInstitutionOptions();
             createAgradoOptions();
             institutionSelect.disabled = false;
+            removeCampusOptions();
+            campusSelect.disabled = true;
+
             break;
 
         case "BARAYA":
             removeInstitutionOptions();
             createBarayaOptions();
             institutionSelect.disabled = false;
+            removeCampusOptions();
+            campusSelect.disabled = true;
+
             break;
 
         case "ISNOS":
             removeInstitutionOptions();
             createIsnosOptions();
             institutionSelect.disabled = false;
+            removeCampusOptions();
+            campusSelect.disabled = true;
+
             break;
 
         case "MUNICIPIO":
@@ -34,21 +47,29 @@ municipalitySelect.addEventListener("click", function () {
             break;
     }
 
+    if(municipalitySelect.value=="MUNICIPIO"){
+        miga.innerHTML = migaInitialText;
+        migaInstitutionText = miga.innerHTML;
+    }else{
+        miga.innerHTML = migaInitialText + " / "+municipalitySelect.options[municipalitySelect.selectedIndex].text;
+        migaInstitutionText = miga.innerHTML;
+    }
+
 });
 
 function createAgradoOptions() {
     let montesitos = document.createElement("option");
-    montesitos.text = "IE MONTESITOS";
+    montesitos.text = "IE Montesitos";
     montesitos.value = "IE MONTESITOS";
     montesitos.id = "ieMontesitosOption";
 
     let carmen = document.createElement("option");
-    carmen.text = "IE EL CARMEN";
+    carmen.text = "IE El Carmen";
     carmen.value = "IE EL CARMEN";
     carmen.id = "ieElCarmenOption";
 
     let merced = document.createElement("option");
-    merced.text = "IE LA MERCED";
+    merced.text = "IE La Merced";
     merced.value = "IE LA MERCED";
     merced.id = "ieLaMercedOption";
 
@@ -60,17 +81,17 @@ function createAgradoOptions() {
 
 function createBarayaOptions() {
     let joaquin = document.createElement("option");
-    joaquin.text = "IE JOAQUÍN GARCÍA BORRERO";
+    joaquin.text = "IE Joaquín García Borrero";
     joaquin.value = "IE JOAQUIN GARCIA BORRERO";
     joaquin.id = "ieJoaquinGarciaBorreroOption";
 
     let union = document.createElement("option");
-    union.text = "CE LA UNIÓN";
-    union.value = "CE LA UNIÓN";
+    union.text = "CE La Unión";
+    union.value = "CE LA UNION";
     union.id = "ceLaUnionOption";
 
     let troja = document.createElement("option");
-    troja.text = "IE LA TROJA";
+    troja.text = "IE La Troja";
     troja.value = "IE LA TROJA";
     troja.id = "ieLaTrojaOption";
 
@@ -82,17 +103,17 @@ function createBarayaOptions() {
 
 function createIsnosOptions() {
     let bordones = document.createElement("option");
-    bordones.text = "IE BORDONES";
+    bordones.text = "IE Bordones";
     bordones.value = "IE BORDONES";
     bordones.id = "ieBordonesOption";
 
     let belen = document.createElement("option");
-    belen.text = "IE BELEN";
+    belen.text = "IE Belen";
     belen.value = "IE BELEN";
     belen.id = "ieBelenOption";
 
     let mondeyal = document.createElement("option");
-    mondeyal.text = "IE MONDEYAL";
+    mondeyal.text = "IE Mondeyal";
     mondeyal.value = "IE MONDEYAL";
     mondeyal.id = "ieMondeyalOption";
 
@@ -109,7 +130,6 @@ function removeInstitutionOptions() {
 }
 
 institutionSelect.addEventListener("click", function () {
-
     switch (institutionSelect.value) {
 
         case "IE MONTESITOS":
@@ -136,7 +156,13 @@ institutionSelect.addEventListener("click", function () {
             campusSelect.disabled = false;
             break;
 
-        case "LA TROJA":
+        case "CE LA UNIÓN":
+            removeCampusOptions();
+            createUnionOptions();
+            campusSelect.disabled = false;
+            break;
+
+        case "IE LA TROJA":
             removeCampusOptions();
             createTrojaOptions();
             campusSelect.disabled = false;
@@ -165,26 +191,34 @@ institutionSelect.addEventListener("click", function () {
             break;
     }
 
+    if(institutionSelect.value=="INSTITUCIÓN"){
+        miga.innerHTML = migaInstitutionText;
+        migaCampusText = miga.innerHTML;
+    }else{
+        miga.innerHTML = migaInstitutionText + " / "+institutionSelect.options[institutionSelect.selectedIndex].text;
+        migaCampusText = miga.innerHTML;
+    }
+
 });
 
 function createMontesitosOptions() {
     let odina = document.createElement("option");
-    odina.text = "LA ODINA";
+    odina.text = "La Odina";
     odina.value = "LA ODINA";
     odina.id = "laOdinaOption";
 
     let sabaneta = document.createElement("option");
-    sabaneta.text = "SABANETA";
+    sabaneta.text = "Sabaneta";
     sabaneta.value = "SABANETA";
     sabaneta.id = "sabanetaOption";
 
     let orquideas = document.createElement("option");
-    orquideas.text = "LAS ORQUÍDEAS";
-    orquideas.value = "LAS ORQUÍDEAS";
+    orquideas.text = "Las Orquídeas";
+    orquideas.value = "LAS ORQUIDEAS";
     orquideas.id = "lasOrquideasOption";
 
     let sanAntonio = document.createElement("option");
-    sanAntonio.text = "SAN ANTONIO";
+    sanAntonio.text = "San Antonio";
     sanAntonio.value = "SAN ANTONIO";
     sanAntonio.id = "sanAntonioOption";
 
@@ -197,22 +231,22 @@ function createMontesitosOptions() {
 
 function createCarmenOptions() {
     let maria = document.createElement("option");
-    maria.text = "LA MARIA";
+    maria.text = "La María";
     maria.value = "LA MARIA";
     maria.id = "laMariaOption";
 
     let horizonte = document.createElement("option");
-    horizonte.text = "EL HORIZONTE";
+    horizonte.text = "El Horizonte";
     horizonte.value = "EL HORIZONTE";
     horizonte.id = "elHorizonteOption";
 
     let pedernal = document.createElement("option");
-    pedernal.text = "EL PEDERNAL";
+    pedernal.text = "El Pedernal";
     pedernal.value = "EL PEDERNAL";
     pedernal.id = "elPedernalOption";
 
     let astillero = document.createElement("option");
-    astillero.text = "EL ASTILLERO";
+    astillero.text = "El Astillero";
     astillero.value = "EL ASTILLERO";
     astillero.id = "elAstilleroOption";
 
@@ -226,17 +260,17 @@ function createCarmenOptions() {
 function createMercedOptions() {
 
     let merced = document.createElement("option");
-    merced.text = "IE LA MERCED";
-    merced.value = "IE LA MERCED";
-    merced.id = "ieLaMercedOption";
+    merced.text = "La Merced";
+    merced.value = "LA MERCED";
+    merced.id = "LaMercedOption";
 
     let honda = document.createElement("option");
-    honda.text = "LA HONDA";
+    honda.text = "La Honda";
     honda.value = "LA HONDA";
     honda.id = "laHondaOption";
 
     let rosario = document.createElement("option");
-    rosario.text = "ROSARIO";
+    rosario.text = "Rosario";
     rosario.value = "ROSARIO";
     rosario.id = "rosarioOption";
 
@@ -249,17 +283,17 @@ function createMercedOptions() {
 function createJoaquinOptions() {
 
     let pino = document.createElement("option");
-    pino.text = "EL PINO";
+    pino.text = "El Pino";
     pino.value = "EL PINO";
     pino.id = "elPinoOption";
 
     let cerroNegro = document.createElement("option");
-    cerroNegro.text = "CERRO NEGRO";
+    cerroNegro.text = "Cerro Negro";
     cerroNegro.value = "CERRO NEGRO";
     cerroNegro.id = "cerroNegroOption";
 
     let elCañon = document.createElement("option");
-    elCañon.text = "EL CAÑON";
+    elCañon.text = "El Cañon";
     elCañon.value = "EL CAÑON";
     elCañon.id = "elCañonOption";
 
@@ -271,22 +305,22 @@ function createJoaquinOptions() {
 
 function createUnionOptions() {
     let laSiria = document.createElement("option");
-    laSiria.text = "LA SIRIA";
+    laSiria.text = "La Siria";
     laSiria.value = "LA SIRIA";
     laSiria.id = "laSiriaOption";
 
     let filoSeco = document.createElement("option");
-    filoSeco.text = "FILO SECO";
+    filoSeco.text = "Filo Seco";
     filoSeco.value = "FILO SECO";
     filoSeco.id = "filoSecoOption";
 
     let bejucal = document.createElement("option");
-    bejucal.text = "BEJUCAL";
+    bejucal.text = "Bejucal";
     bejucal.value = "BEJUCAL";
     bejucal.id = "bejucalOption";
 
     let perlas = document.createElement("option");
-    perlas.text = "LAS PERLAS";
+    perlas.text = "Las Perlas";
     perlas.value = "LAS PERLAS";
     perlas.id = "lasPerlasOption";
 
@@ -299,22 +333,22 @@ function createUnionOptions() {
 
 function createTrojaOptions() {
     let laTroja = document.createElement("option");
-    laTroja.text = "LA TROJA";
+    laTroja.text = "La Troja";
     laTroja.value = "LA TROJA";
     laTroja.id = "laTrojaOption";
 
     let manzanares = document.createElement("option");
-    manzanares.text = "MANZANARES";
+    manzanares.text = "Manzanares";
     manzanares.value = "MANZANARES";
     manzanares.id = "manzanaresOption";
 
     let altamira = document.createElement("option");
-    altamira.text = "ALTAMIRA";
+    altamira.text = "Altamira";
     altamira.value = "ALTAMIRA";
     altamira.id = "altamiraOption";
 
     let miramar = document.createElement("option");
-    miramar.text = "MIRAMAR";
+    miramar.text = "Miramar";
     miramar.value = "MIRAMAR";
     miramar.id = "miramarOption";
 
@@ -327,22 +361,22 @@ function createTrojaOptions() {
 
 function createBordonesOptions() {
     let bajoBrisas = document.createElement("option");
-    bajoBrisas.text = "BAJO BRISAS";
-    bajoBrisas.value ="BAJO BRISAS";
+    bajoBrisas.text = "Bajo Brisas";
+    bajoBrisas.value = "BAJO BRISAS";
     bajoBrisas.id = "bajoBrisasOption";
 
     let lasDelicias = document.createElement("option");
-    lasDelicias.text = "LAS DELICIAS";
+    lasDelicias.text = "Las Delicias";
     lasDelicias.value = "LAS DELICIAS";
     lasDelicias.id = "lasDeliciasOption";
 
     let jerusalen = document.createElement("option");
-    jerusalen.text = "JERUSALEN";
+    jerusalen.text = "Jerusalén";
     jerusalen.value = "JERUSALEN";
     jerusalen.id = "jerusalenOption";
 
     let laRivera = document.createElement("option");
-    laRivera.text = "LA RIVERA";
+    laRivera.text = "La Rivera";
     laRivera.value = "LA RIVERA";
     laRivera.id = "laRiveraOption";
 
@@ -355,22 +389,22 @@ function createBordonesOptions() {
 
 function createBelenOptions() {
     let campoAlegre = document.createElement("option");
-    campoAlegre.text = "CAMPO ALEGRE";
-    campoAlegre.value ="CAMPO ALEGRE";
+    campoAlegre.text = "Campo Alegre";
+    campoAlegre.value = "CAMPO ALEGRE";
     campoAlegre.id = "campoAlegreOption";
 
     let marqueza = document.createElement("option");
-    marqueza.text = "MARQUEZA";
+    marqueza.text = "Marqueza";
     marqueza.value = "MARQUEZA";
     marqueza.id = "marquezaOption";
 
     let bellaVista = document.createElement("option");
-    bellaVista.text = "BELLA VISTA"
+    bellaVista.text = "Bella Vista"
     bellaVista.value = "BELLA VISTA"
     bellaVista.id = "bellaVistaOption";
 
     let sanLorenzo = document.createElement("option");
-    sanLorenzo.text = "SAN LORENZO";
+    sanLorenzo.text = "San Lorenzo";
     sanLorenzo.value = "SAN LORENZO";
     sanLorenzo.id = "sanLorenzoOption";
 
@@ -383,22 +417,22 @@ function createBelenOptions() {
 
 function createMondeyalOptions() {
     let mondeyal = document.createElement("option");
-    mondeyal.text = "ALTO MONDEYAL";
-    mondeyal.value ="ALTO MONDEYAL";
+    mondeyal.text = "Alto Mondeyal";
+    mondeyal.value = "ALTO MONDEYAL";
     mondeyal.id = "altoMondeyalOption";
 
     let bajoMagdalena = document.createElement("option");
-    bajoMagdalena.text = "BAJO MAGDALENA";
+    bajoMagdalena.text = "Bajo Magdalena";
     bajoMagdalena.value = "BAJO MAGDALENA";
     bajoMagdalena.id = "bajoMagdalenaOption";
 
     let cambulos = document.createElement("option");
-    cambulos.text = "CÁMBULOS"
+    cambulos.text = "Cámbulos"
     cambulos.value = "CÁMBULOS"
     cambulos.id = "cambulosOption";
 
     let cienagaChiquita = document.createElement("option");
-    cienagaChiquita.text = "CIÉNAGA CHIQUITA";
+    cienagaChiquita.text = "Ciénaga Chiquita";
     cienagaChiquita.value = "CIÉNAGA CHIQUITA";
     cienagaChiquita.id = "cienagaChiquitaOption";
 
@@ -409,9 +443,17 @@ function createMondeyalOptions() {
     campusSelect.add(cienagaChiquita);
 }
 
-
 function removeCampusOptions() {
     for (let i = campusSelect.length - 1; i >= 1; i--) {
         campusSelect.remove(i);
     }
 }
+
+campusSelect.addEventListener("click", function () {
+   if(campusSelect.value=="SEDE"){
+       miga.innerHTML=migaCampusText;
+   }else{
+       miga.innerHTML=migaCampusText+ " / "+campusSelect.options[campusSelect.selectedIndex].text;
+   }
+
+});
