@@ -532,6 +532,7 @@ municipalitySelectGenMethods.addEventListener("change", function () {
     if (municipalitySelectGenMethods.value == "MUNICIPIO") {
         destroyGraphs();
         initializeGraphs();
+        showGraphs();
     } else {
         destroyGraphs();
         createMunicipalityGraphs(municipalitySelectGenMethods.value);
@@ -1094,6 +1095,7 @@ institutionSelectGenMethods.addEventListener("change", function () {
     if (institutionSelectGenMethods.value == "INSTITUCIÓN") {
         destroyGraphs();
         createMunicipalityGraphs(municipalitySelectGenMethods.value);
+        showGraphs();
     } else {
         destroyGraphs();
         createInstitutionGraphs(institutionSelectGenMethods.value);
@@ -1726,11 +1728,330 @@ function institutionGraph7(info, institution) {
 
 
 
+campusSelectGenMethods.addEventListener("change", function () {
+    if (campusSelectGenMethods.value == "SEDE") {
+        destroyGraphs();
+        createInstitutionGraphs(institutionSelectGenMethods.value);
+        showGraphs();
+    } else {
+        destroyGraphs();
+        hideGraphs();
+        createCampusGraphs(campusSelectGenMethods.value);
+    }
+});
+
+function createCampusGraphs(campus) {
+    let rawData = "";
+
+    $.ajax(dataBase).done(function (result) {
+        rawData = result;
+        let data = Papa.parse(rawData, configData);
+         campusGraph1(data, campus);
+        campusGraph2(data, campus);
+        campusGraph3(data, campus);
+        campusGraph4(data, campus);
+    });
+
+}
+
+function campusGraph1(info, campus) {
+
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 2; index < 36; index++) {
+
+        const element = info.data[index];
+
+        if (element[3] == campus) {
+            showData[0] += parseInt(element[63]);
+            showData[1] += parseInt(element[64]);
+            showData[2] += parseInt(element[65]);
+            showData[3] += parseInt(element[66]);
+        }
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ["Preescolar", "Primaria", "Secundaria", "Media"],
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                borderColor: 'blue',
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por documentos físicos en la sede por nivel'
+                }
+            }
+        },
+    };
+
+    docFisicosNivelDisplay = new Chart(docFisicosNivel, config);
+    sampleFisicosNivel.innerHTML = "Total Muestra: " + sample;
+    docFisicosNivelDisplay.canvas.parentNode.style.height = '350px';
+    docFisicosNivelDisplay.canvas.parentNode.style.width = '700px';
+}
+
+function campusGraph2(info, campus) {
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 2; index < 36; index++) {
+
+        const element = info.data[index];
+
+        if (element[3] == campus) {
+            showData[0] += parseInt(element[71]);
+            showData[1] += parseInt(element[72]);
+            showData[2] += parseInt(element[73]);
+            showData[3] += parseInt(element[74]);
+        }
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ["Preescolar", "Primaria", "Secundaria", "Media"],
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                borderColor: 'blue',
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por documentos digitales en la sede por nivel'
+                }
+            }
+        },
+    };
+
+    docDigitalesNivelDisplay = new Chart(docDigitalesNivel, config);
+    sampledocDigitalesNivel.innerHTML = "Total Muestra: " + sample;
+    docDigitalesNivelDisplay.canvas.parentNode.style.height = '350px';
+    docDigitalesNivelDisplay.canvas.parentNode.style.width = '700px';
+}
+
+
+function campusGraph3(info, campus) {
+   
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 2; index < 36; index++) {
+
+        const element = info.data[index];
+
+        if (element[3] == campus) {
+            showData[0] += parseInt(element[75]);
+            showData[1] += parseInt(element[76]);
+            showData[2] += parseInt(element[77]);
+            showData[3] += parseInt(element[78]);
+        }
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ["Preescolar", "Primaria", "Secundaria", "Media"],
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                borderColor: 'blue',
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por otras estrategias virtuales en la sede por nivel'
+                }
+            }
+        },
+    };
+
+    otraEstrategiaDisplayNivel = new Chart(otraEstrategiaNivel, config);
+    sampleOtraEstrategiaNivel.innerHTML = "Total Muestra: " + sample;
+    otraEstrategiaDisplayNivel.canvas.parentNode.style.height = '350px';
+    otraEstrategiaDisplayNivel.canvas.parentNode.style.width = '700px';
+}
+
+
+function campusGraph4(info, campus) {
+
+    
+    let showData1 = [];
+    let showData2 = [];
+    let showData3 = [];
+    let showData4 = [];
+
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[3] == campus) {
+        showData1.push(element[67]);
+        showData2.push(element[68]);
+        showData3.push(element[69]);
+        showData4.push(element[70]);
+
+        showData1.push(element[79]);
+        showData2.push(element[80]);
+        showData3.push(element[81]);
+        showData4.push(element[82]);
+
+        showData1.push(element[83]);
+        showData2.push(element[84]);
+        showData3.push(element[85]);
+        showData4.push(element[86]);
+
+        showData1.push(element[87]);
+        showData2.push(element[88]);
+        showData3.push(element[89]);
+        showData4.push(element[90]);
+        }
+    }
 
 
 
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+   
+    sample += showData4.reduce(function (a, b) {
+            return parseInt(a) + parseInt(b);
+    }, 0);
+
+       const data = {
+            labels: ["Visitas Domicilarias", "Programas Radiales", "Television", "Telefonia"],
+            datasets: [{
+                    label: 'Prescolar',
+                    data: showData1,
+                    borderColor: '#FF6766',
+                    backgroundColor: '#FF6766',
+                },
+                {
+                    label: 'Primaria',
+                    data: showData2,
+                    borderColor: '#008892',
+                    backgroundColor: '#008892',
+                },
+                {
+                    label: 'Secundaria',
+                    data: showData3,
+                    borderColor: '#003F63',
+                    backgroundColor: '#003F63',
+                },
+                {
+                    label: 'Media',
+                    data: showData4,
+                    borderColor: '#FDC967',
+                    backgroundColor: '#FDC967',
+                },
+            ]
+        };
+    
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Estudiantes acompañados por metodos alternos en la sede por niveles'
+                    }
+                }
+            },
+        };
+
+   
+
+   
+
+    metodosAlternosDisplay = new Chart(metodosAlternos, config);
+    sampleMetodosAlternos.innerHTML = "Total Muestra: " + sample;
+    metodosAlternosDisplay.canvas.parentNode.style.height = '350px';
+    metodosAlternosDisplay.canvas.parentNode.style.width = '700px';
+}
 
 
+
+function hideGraphs(){
+
+document.getElementById("container__docFisicos1").style.display= "none";
+document.getElementById("container__docDigitales").style.display= "none";
+document.getElementById("container__otraEstrategia").style.display= "none";
+
+}
+
+function showGraphs(){
+document.getElementById("container__docFisicos1").style.display= "flex";
+document.getElementById("container__docDigitales").style.display= "flex";
+document.getElementById("container__otraEstrategia").style.display= "flex";
+}
 
 function destroyGraphs() {
     docsFisicosDisplay.destroy();
