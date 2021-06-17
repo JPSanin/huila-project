@@ -8,7 +8,7 @@ let migaInitialText = miga.innerHTML;
 let migaInstitutionText = "";
 let migaCampusText = "";
 
-municipalitySelect.addEventListener("click", function () {
+municipalitySelect.addEventListener("change", function () {
 
     switch (municipalitySelect.value) {
 
@@ -129,7 +129,7 @@ function removeInstitutionOptions() {
     }
 }
 
-institutionSelect.addEventListener("click", function () {
+institutionSelect.addEventListener("change", function () {
     switch (institutionSelect.value) {
 
         case "IE MONTESITOS":
@@ -449,7 +449,7 @@ function removeCampusOptions() {
     }
 }
 
-campusSelect.addEventListener("click", function () {
+campusSelect.addEventListener("change", function () {
    if(campusSelect.value=="SEDE"){
        miga.innerHTML=migaCampusText;
    }else{

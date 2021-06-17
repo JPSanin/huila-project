@@ -227,7 +227,7 @@ function initialStateGraph3(info) {
                 },
                 title: {
                     display: true,
-                    text: 'Estudiantes acompañados por documentos físicos en el departamento por municipios'
+                    text: 'Estudiantes acompañados por documentos digitales en el departamento por municipios'
                 }
             }
         },
@@ -283,7 +283,7 @@ function initialStateGraph4(info) {
                 },
                 title: {
                     display: true,
-                    text: 'Estudiantes acompañados por documentos físicos en el departamento por nivel'
+                    text: 'Estudiantes acompañados por documentos digitales en el departamento por nivel'
                 }
             }
         },
@@ -347,7 +347,7 @@ function initialStateGraph5(info) {
                 },
                 title: {
                     display: true,
-                    text: 'Estudiantes acompañados por documentos físicos en el departamento por municipios'
+                    text: 'Estudiantes acompañados por otras estrategias virtuales en el departamento por municipios'
                 }
             }
         },
@@ -403,7 +403,7 @@ function initialStateGraph6(info) {
                 },
                 title: {
                     display: true,
-                    text: 'Estudiantes acompañados por documentos físicos en el departamento por nivel'
+                    text: 'Estudiantes acompañados por otras estrategias virtuales en el departamento por nivel'
                 }
             }
         },
@@ -528,6 +528,584 @@ function initialStateGraph7(info) {
     metodosAlternosDisplay.canvas.parentNode.style.width = '700px';
 }
 
-municipalitySelectGenMethods.addEventListener("click", function () {
+municipalitySelectGenMethods.addEventListener("change", function () {
+    if (municipalitySelectGenMethods.value == "MUNICIPIO") {
+        destroyGraphs();
+        initializeGraphs();
+    } else {
+        destroyGraphs();
+        createMunicipalityGraphs(municipalitySelectGenMethods.value);
+    }
+
 
 });
+
+function createMunicipalityGraphs(municipality) {
+    let rawData = "";
+
+    $.ajax(dataBase).done(function (result) {
+        rawData = result;
+        let data = Papa.parse(rawData, configData);
+        municipalityGraph1(data, municipality);
+        municipalityGraph2(data, municipality);
+        municipalityGraph3(data, municipality);
+        municipalityGraph4(data, municipality);
+        municipalityGraph5(data, municipality);
+        municipalityGraph6(data,municipality);
+       municipalityGraph7(data,municipality);
+    });
+
+}
+
+function municipalityGraph1(info, municipality) {
+    let filteredData = [];
+    let labelNames = []
+    let showData = [0];
+
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
+
+
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
+
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+            showData.push(0);
+        }
+        if (element[1] == labelNames[showData.length - 1]) {
+            for (let j = 63; j < 67; j++) {
+                showData[showData.length - 1] += parseInt(element[j]);
+            }
+        }
+
+
+    }
+
+
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: labelNames,
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por documentos físicos en el municipio por instituciones educativas'
+                }
+            }
+        },
+    };
+    docsFisicosDisplay = new Chart(docFisicos1, config);
+    sampleFisicos1.innerHTML = "Total Muestra: " + sample;
+    docsFisicosDisplay.canvas.parentNode.style.height = '350px';
+    docsFisicosDisplay.canvas.parentNode.style.width = '700px';
+}
+
+function municipalityGraph2(info, municipality) {
+
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 2; index < 36; index++) {
+
+        const element = info.data[index];
+
+        if (element[0] == municipality) {
+            showData[0] += parseInt(element[63]);
+            showData[1] += parseInt(element[64]);
+            showData[2] += parseInt(element[65]);
+            showData[3] += parseInt(element[66]);
+        }
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ["Preescolar", "Primaria", "Secundaria", "Media"],
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                borderColor: 'blue',
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por documentos físicos en el municipio por nivel'
+                }
+            }
+        },
+    };
+
+    docFisicosNivelDisplay = new Chart(docFisicosNivel, config);
+    sampleFisicosNivel.innerHTML = "Total Muestra: " + sample;
+    docFisicosNivelDisplay.canvas.parentNode.style.height = '350px';
+    docFisicosNivelDisplay.canvas.parentNode.style.width = '700px';
+}
+
+
+function municipalityGraph3(info, municipality) {
+    let filteredData = [];
+    let labelNames = []
+    let showData = [0];
+
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
+
+
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
+
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+            showData.push(0);
+        }
+        if (element[1] == labelNames[showData.length - 1]) {
+            for (let j = 71; j < 75; j++) {
+                showData[showData.length - 1] += parseInt(element[j]);
+            }
+        }
+    }
+
+
+
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: labelNames,
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por documentos digitales en el municipio por instituciones educativas'
+                }
+            }
+        },
+    };
+    docDigitalesDisplay = new Chart(docDigitales, config);
+    sampledocDigitales.innerHTML = "Total Muestra: " + sample;
+    docDigitalesDisplay.canvas.parentNode.style.height = '350px';
+    docDigitalesDisplay.canvas.parentNode.style.width = '700px';
+}
+
+
+function municipalityGraph4(info, municipality) {
+
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 2; index < 36; index++) {
+
+        const element = info.data[index];
+
+        if (element[0] == municipality) {
+            showData[0] += parseInt(element[71]);
+            showData[1] += parseInt(element[72]);
+            showData[2] += parseInt(element[73]);
+            showData[3] += parseInt(element[74]);
+        }
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ["Preescolar", "Primaria", "Secundaria", "Media"],
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                borderColor: 'blue',
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por documentos digitales en el municipio por nivel'
+                }
+            }
+        },
+    };
+
+    docDigitalesNivelDisplay = new Chart(docDigitalesNivel, config);
+    sampledocDigitalesNivel.innerHTML = "Total Muestra: " + sample;
+    docDigitalesNivelDisplay.canvas.parentNode.style.height = '350px';
+    docDigitalesNivelDisplay.canvas.parentNode.style.width = '700px';
+}
+
+function municipalityGraph5(info, municipality) {
+    let filteredData = [];
+    let labelNames = []
+    let showData = [0];
+
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
+
+
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
+
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+            showData.push(0);
+        }
+        if (element[1] == labelNames[showData.length - 1]) {
+            for (let j = 75; j < 79; j++) {
+                showData[showData.length - 1] += parseInt(element[j]);
+            }
+        }
+    }
+
+
+
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: labelNames,
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por otras estrategias virtuales en el municipio por instituciones educativas'
+                }
+            }
+        },
+    };
+    otraEstrategiaDisplay = new Chart(otraEstrategia, config);
+    sampleOtraEstrategia.innerHTML = "Total Muestra: " + sample;
+    otraEstrategiaDisplay.canvas.parentNode.style.height = '350px';
+    otraEstrategiaDisplay.canvas.parentNode.style.width = '700px';
+}
+
+function municipalityGraph6(info, municipality) {
+
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 2; index < 36; index++) {
+
+        const element = info.data[index];
+
+        if (element[0] == municipality) {
+            showData[0] += parseInt(element[75]);
+            showData[1] += parseInt(element[76]);
+            showData[2] += parseInt(element[77]);
+            showData[3] += parseInt(element[78]);
+        }
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ["Preescolar", "Primaria", "Secundaria", "Media"],
+        datasets: [
+
+            {
+                label: 'Estudiantes',
+                data: showData,
+                borderColor: 'blue',
+                backgroundColor: colors,
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por otras estrategias virtuales en el municipio por nivel'
+                }
+            }
+        },
+    };
+
+    otraEstrategiaDisplayNivel = new Chart(otraEstrategiaNivel, config);
+    sampleOtraEstrategiaNivel.innerHTML = "Total Muestra: " + sample;
+    otraEstrategiaDisplayNivel.canvas.parentNode.style.height = '350px';
+    otraEstrategiaDisplayNivel.canvas.parentNode.style.width = '700px';
+}
+
+
+function municipalityGraph7(info, municipality) {
+
+    let filteredData=[];
+    let labelNames=[];
+
+    let showData1 = [0, 0, 0, 0];
+    let showData2 = [0, 0, 0, 0];
+    let showData3 = [0, 0, 0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
+
+
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
+
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] == labelNames[0]) {    
+            for (let j = 67; j < 71; j++) {
+                showData1[0] += parseInt(element[j])
+            }
+            for (let j = 79; j < 83; j++) {
+                showData1[1] += parseInt(element[j])
+            }
+            for (let j = 83; j < 87; j++) {
+                showData1[2] += parseInt(element[j])
+            }
+            for (let j = 87; j < 91; j++) {
+                showData1[3] += parseInt(element[j])
+            }
+        }
+        if (element[1] == labelNames[1]) {    
+            for (let j = 67; j < 71; j++) {
+                showData2[0] += parseInt(element[j])
+            }
+            for (let j = 79; j < 83; j++) {
+                showData2[1] += parseInt(element[j])
+            }
+            for (let j = 83; j < 87; j++) {
+                showData2[2] += parseInt(element[j])
+            }
+            for (let j = 87; j < 91; j++) {
+                showData2[3] += parseInt(element[j])
+            }
+        }
+
+        if (element[1] == labelNames[2]) {    
+            for (let j = 67; j < 71; j++) {
+                showData3[0] += parseInt(element[j])
+            }
+            for (let j = 79; j < 83; j++) {
+                showData3[1] += parseInt(element[j])
+            }
+            for (let j = 83; j < 87; j++) {
+                showData3[2] += parseInt(element[j])
+            }
+            for (let j = 87; j < 91; j++) {
+                showData3[3] += parseInt(element[j])
+            }
+        }
+
+    }
+
+
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ["Visitas Domicilarias", "Programas Radiales", "Television", "Telefonia"],
+        datasets: [{
+                label: labelNames[0],
+                data: showData1,
+                borderColor: '#FF6766',
+                backgroundColor: '#FF6766',
+            },
+            {
+                label: labelNames[1],
+                data: showData2,
+                borderColor: '#008892',
+                backgroundColor: '#008892',
+            },
+            {
+                label: labelNames[2],
+                data: showData3,
+                borderColor: '#003F63',
+                backgroundColor: '#003F63',
+            }
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Estudiantes acompañados por metodos alternos en el municipio por instituciones educativas'
+                }
+            }
+        },
+    };
+
+    metodosAlternosDisplay = new Chart(metodosAlternos, config);
+    sampleMetodosAlternos.innerHTML = "Total Muestra: " + sample;
+    metodosAlternosDisplay.canvas.parentNode.style.height = '350px';
+    metodosAlternosDisplay.canvas.parentNode.style.width = '700px';
+}
+
+
+
+
+
+
+
+
+
+function destroyGraphs() {
+    docsFisicosDisplay.destroy();
+    docFisicosNivelDisplay.destroy();
+    docDigitalesDisplay.destroy();
+    docDigitalesNivelDisplay.destroy();
+    otraEstrategiaDisplay.destroy();
+    otraEstrategiaDisplayNivel.destroy();
+    metodosAlternosDisplay.destroy();
+}
