@@ -24,6 +24,7 @@ const configCapacityGroups = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,

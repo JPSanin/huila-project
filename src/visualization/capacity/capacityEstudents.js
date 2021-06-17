@@ -24,6 +24,7 @@ const configCapacityEstudents = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,
