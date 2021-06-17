@@ -35,7 +35,7 @@ const configPreescolarDepartment = {
 
 let preescolarDepartmentGraph = new Chart(preescolarDepartment, configPreescolarDepartment);
 
-preescolarDepartmentGraph.canvas.parentNode.style.height = '200px';
-preescolarDepartmentGraph.canvas.parentNode.style.width = '500px';
+preescolarDepartmentGraph.canvas.parentNode.style.height = '300px';
+preescolarDepartmentGraph.canvas.parentNode.style.width = '700px';
 
 

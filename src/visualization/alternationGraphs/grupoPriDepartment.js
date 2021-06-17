@@ -1,11 +1,11 @@
-let primariaDepartment= document.getElementById("primariaDepartment");
+let grupoPriDepartment= document.getElementById("grupoPriDepartment");
 
 //const DATA_COUNT = 7;
 //const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
 //const labels = Utils.months({count: 7});
 
-const dataPrimariaDepartment = {
+const dataGrupoPriDepartment = {
   labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
   datasets: [
     {
@@ -15,7 +15,7 @@ const dataPrimariaDepartment = {
     },
     {
       label: 'Baraya',
-      data: [57, 40, 40 ,134, 118],
+      data: [57, 40, 40, 134, 118],
       backgroundColor: '#008892',
     },
     {
@@ -26,9 +26,9 @@ const dataPrimariaDepartment = {
   ]
 };
 
-const configPrimariaDepartment = {
+const configGrupoPriDepartment = {
     type: 'bar',
-    data: dataPrimariaDepartment,
+    data: dataGrupoPriDepartment,
     options: {
       responsive: true,
       plugins: {
@@ -37,15 +37,15 @@ const configPrimariaDepartment = {
         },
         title: {
           display: true,
-          text: 'Número de estudiantes de primaria en alternancia por departamento'
+          text: 'Número de grupos de primaria en alternancia por departamento'
         }
       }
     },
   };
 
-let primariaDepartmentGraph = new Chart(primariaDepartment, configPrimariaDepartment);
+let grupoPriDepartmentGraph = new Chart(grupoPriDepartment, configGrupoPriDepartment);
 
-primariaDepartmentGraph.canvas.parentNode.style.height = '200px';
-primariaDepartmentGraph.canvas.parentNode.style.width = '500px';
+grupoPriDepartmentGraph.canvas.parentNode.style.height = '300px';
+grupoPriDepartmentGraph.canvas.parentNode.style.width = '700px';
 
 

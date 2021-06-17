@@ -35,7 +35,7 @@ const configGrupoPreDepartment = {
 
 let grupoPreDepartmentGraph = new Chart(grupoPreDepartment, configGrupoPreDepartment);
 
-grupoPreDepartmentGraph.canvas.parentNode.style.height = '200px';
-grupoPreDepartmentGraph.canvas.parentNode.style.width = '500px';
+grupoPreDepartmentGraph.canvas.parentNode.style.height = '300px';
+grupoPreDepartmentGraph.canvas.parentNode.style.width = '700px';
 
 

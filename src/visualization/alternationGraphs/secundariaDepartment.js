@@ -45,6 +45,6 @@ const configSecundariaDepartment = {
 
 let secundariaDepartmentGraph = new Chart(secundariaDepartment, configSecundariaDepartment);
 
-secundariaDepartmentGraph.canvas.parentNode.style.height = '200px';
-secundariaDepartmentGraph.canvas.parentNode.style.width = '500px';
+secundariaDepartmentGraph.canvas.parentNode.style.height = '300px';
+secundariaDepartmentGraph.canvas.parentNode.style.width = '700px';
 

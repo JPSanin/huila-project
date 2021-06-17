@@ -45,7 +45,7 @@ const configGrupoSecDepartment = {
 
 let grupoSecDepartmentGraph = new Chart(grupoSecDepartment, configGrupoSecDepartment);
 
-grupoSecDepartmentGraph.canvas.parentNode.style.height = '200px';
-grupoSecDepartmentGraph.canvas.parentNode.style.width = '500px';
+grupoSecDepartmentGraph.canvas.parentNode.style.height = '300px';
+grupoSecDepartmentGraph.canvas.parentNode.style.width = '700px';
 
 

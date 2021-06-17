@@ -45,7 +45,7 @@ const configDocentesDepartment = {
 
 let docentesDepartmentGraph = new Chart(docentesDepartment, configDocentesDepartment);
 
-docentesDepartmentGraph.canvas.parentNode.style.height = '200px';
-docentesDepartmentGraph.canvas.parentNode.style.width = '500px';
+docentesDepartmentGraph.canvas.parentNode.style.height = '300px';
+docentesDepartmentGraph.canvas.parentNode.style.width = '700px';
 
 

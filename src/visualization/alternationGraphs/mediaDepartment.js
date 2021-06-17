@@ -45,7 +45,7 @@ const configMediaDepartment = {
 
 let mediaDepartmentGraph = new Chart(mediaDepartment, configMediaDepartment);
 
-mediaDepartmentGraph.canvas.parentNode.style.height = '200px';
-mediaDepartmentGraph.canvas.parentNode.style.width = '500px';
+mediaDepartmentGraph.canvas.parentNode.style.height = '300px';
+mediaDepartmentGraph.canvas.parentNode.style.width = '700px';
 
 

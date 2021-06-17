@@ -178,9 +178,10 @@
   }
 
   .miga{
-    font-size: 12px;
+    font-size: 15px;
     font-family: var(--tipography);
-    margin-left: 20px;
+    font-weight: bolder;
+    margin-left: 25px;
     margin-bottom: 0px;
     color: var(--black);
   }

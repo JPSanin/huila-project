@@ -45,7 +45,7 @@ const configGrupoMedDepartment = {
 
 let grupoMedDepartmentGraph = new Chart(grupoMedDepartment, configGrupoMedDepartment);
 
-grupoMedDepartmentGraph.canvas.parentNode.style.height = '200px';
-grupoMedDepartmentGraph.canvas.parentNode.style.width = '500px';
+grupoMedDepartmentGraph.canvas.parentNode.style.height = '300px';
+grupoMedDepartmentGraph.canvas.parentNode.style.width = '700px';
 
 

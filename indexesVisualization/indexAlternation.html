@@ -13,7 +13,9 @@
     <!--Papa parse-->
     <script src="libs/papaparse.min.js"></script>
     <!--CHARTS.JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"
+        integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg=="
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -22,7 +24,7 @@
         <img class="img3" src="../images/profile.png" alt="">
         <img class="img2" src="../images/bell.png" alt="">
         <img class="img1" src="../images/search.png" alt="">
-        <img class="logoImage"src="../images/logo.png" alt="">
+        <img class="logoImage" src="../images/logo.png" alt="">
     </div>
 
     <div class="nav">
@@ -33,8 +35,8 @@
             <option id="huilaOption" value="HUILA" selected> Huila</option>
         </select>
 
-        <select class="selects" name="Municipio" id="municipalitySelect" >
-            <option id="municipalityOption" value="MUNICIPIO"selected>MUNICIPIO</option>
+        <select class="selects" name="Municipio" id="municipalitySelect">
+            <option id="municipalityOption" value="MUNICIPIO" selected>MUNICIPIO</option>
             <option id="agradoOption" value="AGRADO">Agrado</option>
             <option id="barayaOption" value="BARAYA">Baraya</option>
             <option id="isnosOption" value="ISNOS">Isnos</option>
@@ -55,7 +57,7 @@
 
         <div class="all">
             <div class="navLeft">
-                <div class="firstClasif" >
+                <div class="firstClasif">
                     <a class="links" href="./indexCampusData.html"> Datos de la Sede</a>
                 </div>
                 <div class="clasif">
@@ -73,43 +75,74 @@
             </div>
 
             <div class="graphics">
-                <h5 class="miga">Datos de Alternancia / Huila</h5>
-
-                <!--Department index-->
-                <canvas id= "preescolarDepartment"></canvas>
-                <canvas id= "primariaDepartment"></canvas>
-                <canvas id= "secundariaDepartment"></canvas>
-                <canvas id= "mediaDepartment"></canvas>
-                <canvas id= "grupoPreDepartment"></canvas>
-                <canvas id= "grupoPriDepartment"></canvas>
-                <canvas id= "grupoSecDepartment"></canvas>
-                <canvas id= "grupoMedDepartment"></canvas>
-                <canvas id= "docentesDepartment"></canvas>
-                
-                <!--
-                <h5 class="miga">DATOS DE LA SEDE / DEPTO. HUILA / MUNICIPIO PITALITO / IS MONTESITOS / SEDE LA ODINA
-                </h5>
+                <div class=container__miga>
+                    <h5 class="miga">Datos de Alternancia / Huila</h5>
+                </div>
 
                 <div class="all__graphics">
-                    <div class="double__box">
-                        <div class="container__graphics">
-                            <h3 class="titles">MODALIDAD DE TODAS LAS SEDES EN EL DEPARTAMENTO</h3>
-                            
-                        </div>
-                        <div class="container__graphics">
-                            <h3 class="titles">CANTIDAD DE DÍAS ASISTIENDO A LAS SEDES PARA AQUELLOS QUE ESTÁN EN MODALIDAD
-                                PRESENCIAL O DE ALTERNANCIA</h3>
-                        </div>
-                    </div>
-                    <div class="single__box">
-                        <div class="container__graphics">
-                            <h3 class="titles">DIAGNÓSTICOS Y PROTOCOLOS DE BIOSEGURIDAD EN EL DEPARTAMENTO</h3>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="preescolarDepartment"></canvas>
+                            <p id="preescolarDepartmentSample">Muestra: 0</p>
                         </div>
                     </div>
 
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="primariaDepartment"></canvas>
+                            <p id="primariaDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="secundariaDepartment"></canvas>
+                            <p id="secundariaDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="mediaDepartment"></canvas>
+                            <p id="mediaDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="grupoPreDepartment"></canvas>
+                            <p id="grupoPreDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="grupoPriDepartment"></canvas>
+                            <p id="grupoPriDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="grupoSecDepartment"></canvas>
+                            <p id="grupoSecDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="grupoMedDepartment"></canvas>
+                            <p id="grupoMedDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="docentesDepartment"></canvas>
+                            <p id="docentesDepartmentSample">Muestra: 0</p>
+                        </div>
+                    </div>
                 </div>
-                -->
-                
+
             </div>
 
         </div>
@@ -118,15 +151,15 @@
     <script src="../src/visualization/selectsSwitch.js"></script>
 
     <!--alternation Department graphs classes scripts, these would be the ones that change with filters-->
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/preescolarDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/primariaDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/secundariaDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/mediaDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/docentesDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoPreDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoPriDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoSecDepartment.js"></script>
-    <script src="../src/visualization/alternationGraphs/alternationDepartment/grupoMedDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/preescolarDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/primariaDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/secundariaDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/mediaDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/docentesDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/grupoPreDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/grupoPriDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/grupoSecDepartment.js"></script>
+    <script src="../src/visualization/alternationGraphs/grupoMedDepartment.js"></script>
 </body>
 
 </html>
