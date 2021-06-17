@@ -31,5 +31,5 @@ const dataCampusDataProtocol = {
 
   let campusDataProtocolGraph = new Chart(campusDataProtocol, configCampusDataProtocol);
 
-  campusDataProtocolGraph.canvas.parentNode.style.height = '300px';
-  campusDataProtocolGraph.canvas.parentNode.style.width = '700px';
+  campusDataProtocolGraph.canvas.parentNode.style.height = '400px';
+  campusDataProtocolGraph.canvas.parentNode.style.width = '400px';

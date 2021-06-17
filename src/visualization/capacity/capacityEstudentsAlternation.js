@@ -29,5 +29,5 @@ const dataCapacityEstudentsAlternation = {
 
   let capacityEstudentsAlternationGraph = new Chart(capacityEstudentsAlternation, configCapacityEstudentsAlternation);
 
-  capacityEstudentsAlternationGraph.canvas.parentNode.style.height = '300px';
-  capacityEstudentsAlternationGraph.canvas.parentNode.style.width = '700px';
+  capacityEstudentsAlternationGraph.canvas.parentNode.style.height = '250px';
+  capacityEstudentsAlternationGraph.canvas.parentNode.style.width = '350px';

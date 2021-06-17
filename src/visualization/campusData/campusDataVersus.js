@@ -33,5 +33,5 @@ const dataCampusDataVersus = {
 
   let campusDataVersusGraph = new Chart(campusDataVersus, configCampusDataVersus);
 
-  campusDataVersusGraph.canvas.parentNode.style.height = '300px';
-  campusDataVersusGraph.canvas.parentNode.style.width = '700px';
+  campusDataVersusGraph.canvas.parentNode.style.height = '400px';
+  campusDataVersusGraph.canvas.parentNode.style.width = '400px';

@@ -29,5 +29,5 @@ const dataCampusDataAttendance = {
 
   let campusDataAttendanceGraph = new Chart(campusDataAttendance, configCampusDataAttendance);
 
-  campusDataAttendanceGraph.canvas.parentNode.style.height = '300px';
-  campusDataAttendanceGraph.canvas.parentNode.style.width = '700px';
+  campusDataAttendanceGraph.canvas.parentNode.style.height = '400px';
+  campusDataAttendanceGraph.canvas.parentNode.style.width = '400px';

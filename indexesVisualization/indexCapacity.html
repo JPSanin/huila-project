@@ -8,13 +8,13 @@
     <title>Retorna</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-        <!--AJAX-->
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-        <!--Papa parse-->
-        <script src="libs/papaparse.min.js"></script>
-        <!--CHARTS.JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js" 
-        integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg==" 
+    <!--AJAX-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!--Papa parse-->
+    <script src="../libs/papaparse.min.js"></script>
+    <!--CHARTS.JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"
+        integrity="sha512-VMsZqo0ar06BMtg0tPsdgRADvl0kDHpTbugCBBrL55KmucH6hP9zWdLIWY//OTfMnzz6xWQRxQqsUFefwHuHyg=="
         crossorigin="anonymous"></script>
 </head>
 
@@ -24,7 +24,7 @@
         <img class="img3" src="../images/profile.png" alt="">
         <img class="img2" src="../images/bell.png" alt="">
         <img class="img1" src="../images/search.png" alt="">
-        <img class="logoImage"src="../images/logo.png" alt="">
+        <img class="logoImage" src="../images/logo.png" alt="">
     </div>
 
     <div class="nav">
@@ -35,8 +35,8 @@
             <option id="huilaOption" value="HUILA" selected> Huila</option>
         </select>
 
-        <select class="selects" name="Municipio" id="municipalitySelect" >
-            <option id="municipalityOption" value="MUNICIPIO"selected>MUNICIPIO</option>
+        <select class="selects" name="Municipio" id="municipalitySelect">
+            <option id="municipalityOption" value="MUNICIPIO" selected>MUNICIPIO</option>
             <option id="agradoOption" value="AGRADO">Agrado</option>
             <option id="barayaOption" value="BARAYA">Baraya</option>
             <option id="isnosOption" value="ISNOS">Isnos</option>
@@ -68,7 +68,7 @@
 
         <div class="all">
             <div class="navLeft">
-                <div class="firstClasif" >
+                <div class="firstClasif">
                     <a class="links" href="./indexCampusData.html"> Datos de la Sede</a>
                 </div>
                 <div class="selectedClasif">
@@ -86,46 +86,66 @@
             </div>
 
             <div class="graphics">
-                <h5 class="miga"> Aforo / Huila </h5>
-
-                <canvas id="capacityEstudents"></canvas>
-                <p id="capacityEstudentsSample">Muestra: 0</p>
-
-                <canvas id="capacityEstudentsModality"></canvas>
-                <p id="capacityEstudentsModalitySample">Muestra: 0</p>
-
-                <canvas id="capacityEstudentsAlternation"></canvas>
-                <p id="capacityEstudentsAlternationSample">Muestra: 0</p>
-
-                <canvas id="capacityGroups"></canvas>
-                <p id="capacityGroupsSample">Muestra: 0</p>
-
-                <canvas id="capacityAttendance1"></canvas>
-                <p id="capacityAttendance1Sample">Muestra: 0</p>
-
-                <canvas id="capacityAttendance2"></canvas>
-                <p id="capacityAttendence2Sample">Muestra: 0</p>
-
-                <div class="all__graphics">
-                    <div class="double__box">
-                        <div class="container__graphics">
-                            <h3 class="titles">MODALIDAD DE TODAS LAS SEDES EN EL DEPARTAMENTO</h3>
-                            
-                        </div>
-                        <div class="container__graphics">
-                            <h3 class="titles">CANTIDAD DE DÍAS ASISTIENDO A LAS SEDES PARA AQUELLOS QUE ESTÁN EN MODALIDAD
-                                PRESENCIAL O DE ALTERNANCIA</h3>
-                        </div>
-                    </div>
-                    <div class="single__box">
-                        <div class="container__graphics">
-                            <h3 class="titles">DIAGNÓSTICOS Y PROTOCOLOS DE BIOSEGURIDAD EN EL DEPARTAMENTO</h3>
-                        </div>
-                    </div>
-
+                <div class=container__miga>
+                    <h5 class="miga"> Aforo / Huila </h5>
                 </div>
 
+                <div class="all__graphics">
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="capacityEstudents"></canvas>
+                            <p id="capacityEstudentsSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="capacityEstudentsModality"></canvas>
+                            <p id="capacityEstudentsModalitySample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grapDonas">
+                        <div class="grap">
+
+                            <canvas id="capacityEstudentsAlternation"></canvas>
+                            <p id="capacityEstudentsAlternationSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+
+                            <canvas id="capacityGroups"></canvas>
+                            <p id="capacityGroupsSample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+
+                           
+                <canvas id="capacityAttendance1"></canvas>
+                <p id="capacityAttendance1Sample">Muestra: 0</p>
+                        </div>
+                    </div>
+
+                    <div class="container__grap">
+                        <div class="grap">
+                            <canvas id="capacityAttendance2"></canvas>
+                            <p id="capacityAttendence2Sample">Muestra: 0</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
                 
+
+
             </div>
 
         </div>

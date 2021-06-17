@@ -29,5 +29,5 @@ const dataCampusDataModality = {
 
   let campusDataModalityGraph = new Chart(campusDataModality, configCampusDataModality);
 
-  campusDataModalityGraph.canvas.parentNode.style.height = '300px';
-  campusDataModalityGraph.canvas.parentNode.style.width = '700px';
+  campusDataModalityGraph.canvas.parentNode.style.height = '400px';
+  campusDataModalityGraph.canvas.parentNode.style.width = '400px';
