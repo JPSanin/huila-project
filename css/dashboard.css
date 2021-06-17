@@ -1,15 +1,25 @@
 :root {
     --green:#459A7D;
     --white:white;
+    
     --black: black;
     --tipography: 'Poppins', sans-serif;
     --gray: #E8EBF2;
     --orange: #F2B138;
     --orangeTwo: #c2830d;
+    --aqua: #008892;
   }
 
   body{
       margin:0;
+  }
+
+  p{
+    
+    font-family: var(--tipography);
+    font-size: 15px;
+    font-weight: lighter;
+    color: var(--aqua);
   }
 
  .container{
