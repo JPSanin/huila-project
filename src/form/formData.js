@@ -12,6 +12,7 @@ function formulario1(){
  
    if(numQuestions.value != "" && calendarQuestion.value != "")
     {
+           
            //guardar la informacion en una variable
            var quest1 = $(".quest1 option:selected").html();
            var quest2 = $(".quest2 option:selected").html();
@@ -219,120 +220,49 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
  }
 
  function exito(){
-    $(".dataForm5").hide();
-            $("#nextBtn").hide();
-            $(".exito").show();
-    console.log(Frp[0]+'numero cero');
-    document.getElementById("tablassss").innerHTML = "<p>"+indice+"-"+elemento+"</p>";
-    /*var cadena = '';
-    Frp.forEach(function(elemento, indice, array) {
-        console.log(elemento, indice);
-        document.getElementById("tablassss").innerHTML = "<p>"+indice+"-"+elemento+"</p>";
-        //var cadena = ;
-    })*/
-    /*for (x=0;x<Frp.length;x++){
-     console.log(Frp[x] + "--");
-        var cadena += "<p>"+Frp[x][0]+"</p>"; 
-    }
-    */
+// Datos Json que se exportarán
+      const jsonData = [
+        {
+          pregunta:'1',
+          respuesta:Frp[0]     
+        },
+        {
+          pregunta:'2',
+          respuesta:Frp[1]     
+        },
+        {
+          pregunta:'3',
+          respuesta:Frp[2]     
+        },
+      ]
+      //Encabezado de la columna
+      let str = '<tr> <td> pregunta </td> <td> respuesta </td></tr>';
+      // Recorrido de bucle, agregar etiqueta tr a cada fila, agregar etiqueta td a cada celda
+      for(let i = 0 ; i < jsonData.length ; i++ ){
+        str+='<tr>';
+        for(let item in jsonData[i]){
+            // Agrega \ t para evitar que la tabla muestre notación científica u otros formatos
+            str+=`<td>${ jsonData[i][item] + '\t'}</td>`;     
+        }
+        str+='</tr>';
+      }
+      // Nombre de la hoja de trabajo
+      let worksheet = 'Sheet1'
+      let uri = 'data:application/vnd.ms-excel;base64,';
+ 
+      // Datos de plantilla de formulario descargados
+      let template = `<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:x="urn:schemas-microsoft-com:office:excel" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+      <head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>
+        <x:Name>${worksheet}</x:Name>
+        <x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet>
+        </x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
+        </head><body><table>${str}</table></body></html>`;
+      // Descargar plantilla
+      window.location.href = uri + base64(template)
 
-    //$("#tablassss").html(cadena);
+
  }
-
-/*      
-try
-{
-
-    nextButton3.addEventListener("click", function()
-    {
-
-        if(document.getElementById("num7").value != "" && document.getElementById("num8").value != ""
-        && document.getElementById("num9").value != "" && document.getElementById("num9").value != ""
-        && document.getElementById("num10").value != "" && document.getElementById("num11").value != ""
-        && document.getElementById("num12").value != "" && document.getElementById("num13").value != ""
-        && document.getElementById("num14").value != "" && document.getElementById("num15").value != ""
-        && document.getElementById("num16").value != "" && document.getElementById("num17").value != ""
-        && document.getElementById("num18").value != "" && document.getElementById("num19").value != ""
-        && document.getElementById("num20").value != "" && document.getElementById("num21").value != ""
-        && document.getElementById("num22").value != "" && document.getElementById("num23").value != ""
-        && document.getElementById("num24").value != "" && document.getElementById("num25").value != ""
-        && document.getElementById("num26").value != "" && document.getElementById("num27").value != ""
-        && document.getElementById("num28").value != "" && document.getElementById("num29").value != ""
-        && document.getElementById("num30").value != "" && document.getElementById("num31").value != ""
-        && document.getElementById("num32").value != "" && document.getElementById("num33").value != "")
-        {
-            window.location.href="../indexesForm/indexFormFillPage4.html";
-        }
-    
-        else
-        {  
-            alert("Por favor responda todas las preguntas");
-        }
-    })
-}
-catch(error)
-{
-    console.log("no next button in this page");
-}*/
-/*
-try
-{
-    nextButton4.addEventListener("click", function()
-    {
-        if(document.getElementById("num34").value != "" && document.getElementById("num35").value != ""
-        && document.getElementById("num36").value != "" && document.getElementById("num37").value != ""
-        && document.getElementById("num38").value != "" && document.getElementById("num39").value != ""
-        && document.getElementById("num40").value != "" && document.getElementById("num41").value != ""
-        && document.getElementById("num42").value != "" && document.getElementById("num43").value != ""
-        && document.getElementById("num44").value != "" && document.getElementById("num45").value != ""
-        && document.getElementById("num46").value != "" && document.getElementById("num47").value != ""
-        && document.getElementById("num48").value != "" && document.getElementById("num49").value != "")
-        {
-            window.location.href="../indexesForm/indexFormFillPage5.html";
-        }
-    
-        else
-        {  
-            alert("Por favor responda todas las preguntas");
-        }
-    })
-}
-catch(error)
-{
-    console.log("no next button in this page");
-}*/
-/*
-try
-{
-    submitButton.addEventListener("click", function()
-    {
-        if(document.getElementById("num50").value != "" && document.getElementById("num51").value != ""
-        && document.getElementById("num52").value != "" && document.getElementById("num53").value != ""
-        && document.getElementById("num54").value != "" && document.getElementById("num55").value != ""
-        && document.getElementById("num56").value != "" && document.getElementById("num57").value != ""
-        && document.getElementById("num58").value != "" && document.getElementById("num59").value != ""
-        && document.getElementById("num60").value != "" && document.getElementById("num61").value != ""
-        && document.getElementById("num62").value != "" && document.getElementById("num63").value != ""
-        && document.getElementById("num64").value != "" && document.getElementById("num65").value != ""
-        && document.getElementById("num66").value != "" && document.getElementById("num67").value != ""
-        && document.getElementById("num68").value != "" && document.getElementById("num69").value != ""
-        && document.getElementById("num70").value != "" && document.getElementById("num71").value != ""
-        && document.getElementById("num72").value != "" && document.getElementById("num73").value != ""
-        && document.getElementById("num74").value != "" && document.getElementById("num75").value != ""
-        && document.getElementById("num76").value != "" && document.getElementById("num77").value != "")
-        {
-            alert("Respuestas enviadas con éxito");
-            window.location.href="../indexesLogin/indexForm.html";
-        }
-    
-        else
-        {  
-            alert("Por favor responda todas las preguntas");
-        }
-    })
-}
-
-catch(error)
-{
-    console.log("no submit button in this page");
-}*/
+// Codificación base64 de salida
+    function base64 (s) { return window.btoa(unescape(encodeURIComponent(s))) }
