@@ -8,20 +8,20 @@ const dataDIE4 = {
     {
       label: 'Agrado',
       data: [16,0,0,110],
-      borderColor: 'blue',
-      backgroundColor:  ['#008892', '#003F63', '#FF6766','#FDC967', '#C5C789', '#83B8D7'],
+      borderColor: '#FF6766',
+      backgroundColor:  '#FF6766',
     },
     {
       label: 'Baraya',
       data: [0,11,0,113],
-      borderColor: 'blue',
-      backgroundColor:  ['#008892', '#003F63', '#FF6766','#FDC967', '#C5C789', '#83B8D7'],
+      borderColor: '#008892',
+      backgroundColor:  '#008892',
     },
     {
       label: 'Isnos',
       data: [14,0,0,309],
-      borderColor: 'blue',
-      backgroundColor:  ['#008892', '#003F63', '#FF6766','#FDC967', '#C5C789', '#83B8D7'],
+      borderColor: '#003F63',
+      backgroundColor:  '#003F63', 
     }
   ]
 };
@@ -37,7 +37,7 @@ const configDIE4 = {
         },
         title: {
           display: true,
-          text: 'Estudiantes acompañados por metodos alternos en el municipio de Agrado por IE'
+          text: 'Estudiantes acompañados por metodos alternos en el departamento por municipios'
         }
       }
     },
