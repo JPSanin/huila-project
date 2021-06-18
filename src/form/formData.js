@@ -275,7 +275,7 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
 
 
               if(pe1+pe2+pe3+pe4!=peripres){
-                alert("la suma de todos los periféricos prestados no es igual al total")
+                alert("la suma de todos los periféricos prestados no es igual al total")}
 
               if((pe1+pe2+pe3+pe4)!=peripres){
                 alert("la suma de todos los perifericos prestados no es igual al total")
@@ -309,10 +309,9 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
     
         else
         {  
-            alert("Por favor responda todas las preguntas");
+            alert("Por favor responda todas las preguntas")
         }
 }
-
 /*
 
 */
@@ -485,4 +484,4 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
     function base64 (s) { 
     return window.btoa(unescape(encodeURIComponent(s)));
         }
-      }
+      
