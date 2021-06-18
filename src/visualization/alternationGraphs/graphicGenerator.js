@@ -67,9 +67,7 @@ function initializeGraphs() {
 
 
 function initialStateGraph1(info) {
-    /**
-     * Toman los datos
-     */
+    
     let showData = [0, 0, 0];
 
     for (let index = 0; index < info.data.length; index++) {
@@ -96,8 +94,6 @@ function initialStateGraph1(info) {
         return parseInt(a) + parseInt(b);
     }, 0);
 
-
-
 // Se crea el grrafico
 const data = {
     labels: ['Agrado', 'Baraya', 'Isnos'],
@@ -118,10 +114,11 @@ const data = {
         plugins: {
           legend: {
             position: 'top',
+            display: false,
           },
           title: {
             display: true,
-            text: 'Número de estudiantes de preescolar en alternancia por departamento'
+            text: 'Número de estudiantes de preescolar en alternancia del departamento por municipio'
           }
         }
       },
@@ -136,32 +133,53 @@ const data = {
 
 function initialStateGraph2(info){
 
-  //Falta traer la info
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0, 0, 0];
+  let showData2 = [0, 0, 0, 0 ,0];
+  let showData3 = [0, 0, 0, 0 ,0];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
       if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+          showData1[0] += parseInt(element[21]);
+          showData1[1] += parseInt(element[22]);
+          showData1[2] += parseInt(element[23]);
+          showData1[3] += parseInt(element[24]);
+          showData1[4] += parseInt(element[25]);
 
       }
       if (element[0] == "BARAYA") {
 
-          showData[1] += parseInt(element[20]);
+        showData2[0] += parseInt(element[21]);
+        showData2[1] += parseInt(element[22]);
+        showData2[2] += parseInt(element[23]);
+        showData2[3] += parseInt(element[24]);
+        showData2[4] += parseInt(element[25]);
 
       }
       if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
+        showData3[0] += parseInt(element[21]);
+        showData3[1] += parseInt(element[22]);
+        showData3[2] += parseInt(element[23]);
+        showData3[3] += parseInt(element[24]);
+        showData3[4] += parseInt(element[25]);
 
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
+}, 0);
+
+sample+=showData2.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
+
+
+sample+=showData3.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
 }, 0);
 
 const data = {
@@ -169,17 +187,17 @@ const data = {
   datasets: [
     {
       label: 'Agrado',
-      data: [145, 108, 79, 79, 78],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
       label: 'Baraya',
-      data: [57, 40, 40 ,134, 118],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
       label: 'Isnos',
-      data: [97, 117, 110, 32, 41],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -196,13 +214,13 @@ const config = {
         },
         title: {
           display: true,
-          text: 'Número de estudiantes de primaria en alternancia por departamento'
+          text: 'Número de estudiantes de primaria en alternancia del departamento por municipio'
         }
       }
     },
   };
 
-let alternationdisplayGraph2 = new Chart(alternationgraph2, config);
+alternationdisplayGraph2 = new Chart(alternationgraph2, config);
 alternationsampleGraph2.innerHTML = "Total Muestra: " + sample;
 alternationdisplayGraph2.canvas.parentNode.style.height = '300px';
 alternationdisplayGraph2.canvas.parentNode.style.width = '700px';
@@ -211,32 +229,50 @@ alternationdisplayGraph2.canvas.parentNode.style.width = '700px';
 
 function initialStateGraph3(info){
 
-  //Falta traer la info
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0, 0];
+  let showData2 = [0, 0, 0, 0 ];
+  let showData3 = [0, 0, 0, 0 ];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
       if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+          showData1[0] += parseInt(element[26]);
+          showData1[1] += parseInt(element[27]);
+          showData1[2] += parseInt(element[28]);
+          showData1[3] += parseInt(element[29]);
 
       }
       if (element[0] == "BARAYA") {
 
-          showData[1] += parseInt(element[20]);
+        showData2[0] += parseInt(element[26]);
+        showData2[1] += parseInt(element[27]);
+        showData2[2] += parseInt(element[28]);
+        showData2[3] += parseInt(element[29]);
 
       }
       if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
+        showData3[0] += parseInt(element[26]);
+        showData3[1] += parseInt(element[27]);
+        showData3[2] += parseInt(element[28]);
+        showData3[3] += parseInt(element[29]);
 
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
+}, 0);
+
+sample+=showData2.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
+
+
+sample+=showData3.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
 }, 0);
 
 const data = {
@@ -244,17 +280,17 @@ const data = {
   datasets: [
     {
       label: 'Agrado',
-      data: [147, 164, 154, 142],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
       label: 'Baraya',
-      data: [40, 0, 0, 0],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
       label: 'Isnos',
-      data: [44, 65, 0, 0],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -285,30 +321,44 @@ alternationdisplayGraph3.canvas.parentNode.style.width = '700px';
 }
 
 function initialStateGraph4(info){
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0];
+  let showData2 = [0, 0];
+  let showData3 = [0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
       if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+          showData1[0] += parseInt(element[30]);
+          showData1[1] += parseInt(element[31]);
+        
 
       }
       if (element[0] == "BARAYA") {
 
-          showData[1] += parseInt(element[20]);
+        showData2[0] += parseInt(element[30]);
+        showData2[1] += parseInt(element[31]);
 
       }
       if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
+        showData3[0] += parseInt(element[30]);
+        showData3[1] += parseInt(element[31]);
 
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
+}, 0);
+
+sample+=showData2.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
+
+
+sample+=showData3.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
 }, 0);
 
 const data = {
@@ -316,17 +366,17 @@ const data = {
   datasets: [
     {
       label: 'Agrado',
-      data: [146, 132],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
       label: 'Baraya',
-      data: [0, 0],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
       label: 'Isnos',
-      data: [8, 8],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -365,17 +415,17 @@ function initialStateGraph5(info){
       const element = info.data[index];
       if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+          showData[0] += parseInt(element[35]);
 
       }
       if (element[0] == "BARAYA") {
 
-          showData[1] += parseInt(element[20]);
+          showData[1] += parseInt(element[35]);
 
       }
       if (element[0] == "ISNOS") {
 
-          showData[2] += parseInt(element[20]);
+          showData[2] += parseInt(element[35]);
 
       }
   }
@@ -389,7 +439,7 @@ const data = {
   datasets: [
     {
       label: 'Preescolar',
-      data: [8, 7, 1],
+      data: showData,
       backgroundColor: ['#003F63', '#008892', '#FF6766'],
     },
   ]
@@ -403,10 +453,11 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,
-          text: 'Número de grupos de preescolar en alternancia por departamento'
+          text: 'Número de grupos de preescolar en alternancia del departamento por municipio'
         }
       }
     },
@@ -421,31 +472,53 @@ alternationdisplayGraph5.canvas.parentNode.style.width = '700px';
 function initialStateGraph6(info) {
 
   //Falta traer la info
-
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0, 0, 0];
+  let showData2 = [0, 0, 0, 0 ,0];
+  let showData3 = [0, 0, 0, 0 ,0];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
       if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+          showData1[0] += parseInt(element[36]);
+          showData1[1] += parseInt(element[37]);
+          showData1[2] += parseInt(element[38]);
+          showData1[3] += parseInt(element[39]);
+          showData1[4] += parseInt(element[40]);
 
       }
       if (element[0] == "BARAYA") {
 
-          showData[1] += parseInt(element[20]);
+        showData2[0] += parseInt(element[36]);
+        showData2[1] += parseInt(element[37]);
+        showData2[2] += parseInt(element[38]);
+        showData2[3] += parseInt(element[39]);
+        showData2[4] += parseInt(element[40]);
 
       }
       if (element[0] == "ISNOS") {
 
-          showData[2] += parseInt(element[20]);
+        showData3[0] += parseInt(element[36]);
+        showData3[1] += parseInt(element[37]);
+        showData3[2] += parseInt(element[38]);
+        showData3[3] += parseInt(element[39]);
+        showData3[4] += parseInt(element[40]);
 
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
+}, 0);
+
+sample+=showData2.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
+
+
+sample+=showData3.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
 }, 0);
 
   const data = {
@@ -453,17 +526,17 @@ function initialStateGraph6(info) {
     datasets: [
       {
         label: 'Agrado',
-        data: [145, 108, 79, 79, 78],
+        data: showData1,
         backgroundColor: '#003F63',
       },
       {
         label: 'Baraya',
-        data: [57, 40, 40, 134, 118],
+        data: showData2,
         backgroundColor: '#008892',
       },
       {
         label: 'Isnos',
-        data: [97, 117, 110, 32, 41],
+        data: showData3,
         backgroundColor: '#FF6766',
       },
     ]
@@ -496,30 +569,49 @@ function initialStateGraph7(info){
 
   //Falta traer la info
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0, 0];
+  let showData2 = [0, 0, 0, 0 ];
+  let showData3 = [0, 0, 0, 0 ];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
       if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+          showData1[0] += parseInt(element[41]);
+          showData1[1] += parseInt(element[42]);
+          showData1[2] += parseInt(element[43]);
+          showData1[3] += parseInt(element[44]);
 
       }
       if (element[0] == "BARAYA") {
 
-          showData[1] += parseInt(element[20]);
+        showData2[0] += parseInt(element[41]);
+        showData2[1] += parseInt(element[42]);
+        showData2[2] += parseInt(element[43]);
+        showData2[3] += parseInt(element[44]);
 
       }
       if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
+        showData3[0] += parseInt(element[41]);
+        showData3[1] += parseInt(element[42]);
+        showData3[2] += parseInt(element[43]);
+        showData3[3] += parseInt(element[44]);
 
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
+}, 0);
+
+sample+=showData2.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
+
+
+sample+=showData3.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
 }, 0);
 
 const data = {
@@ -527,17 +619,17 @@ const data = {
   datasets: [
     {
       label: 'Agrado',
-      data: [7, 8, 8, 8],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
       label: 'Baraya',
-      data: [3, 0, 0, 0],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
       label: 'Isnos',
-      data: [3, 5, 0, 0],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -570,31 +662,44 @@ alternationdisplayGraph7.canvas.parentNode.style.width = '700px';
 function initialStateGraph8(info){
 
   //Falta traer la info
-
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0];
+  let showData2 = [0, 0];
+  let showData3 = [0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
       if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+          showData1[0] += parseInt(element[45]);
+          showData1[1] += parseInt(element[46]);
+        
 
       }
       if (element[0] == "BARAYA") {
 
-          showData[1] += parseInt(element[20]);
+        showData2[0] += parseInt(element[45]);
+        showData2[1] += parseInt(element[46]);
 
       }
       if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
+        showData3[0] += parseInt(element[45]);
+        showData3[1] += parseInt(element[46]);
 
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
+}, 0);
+
+sample+=showData2.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
+
+
+sample+=showData3.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
 }, 0);
 
 const data = {
@@ -602,17 +707,17 @@ const data = {
   datasets: [
     {
       label: 'Agrado',
-      data: [7, 6],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
       label: 'Baraya',
-      data: [0, 0],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
       label: 'Isnos',
-      data: [1, 1],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -644,33 +749,46 @@ alternationdisplayGraph8.canvas.parentNode.style.width = '700px';
 
 function initialStateGraph9(info){
 
-    //Falta traer la info
+  let showData1 = [0, 0, 0];
+  let showData2 = [0, 0, 0];
+  let showData3 = [0, 0, 0];
 
-    let showData = [0, 0, 0];
+  for (let index = 0; index < info.data.length; index++) {
 
-    for (let index = 0; index < info.data.length; index++) {
-  
-        const element = info.data[index];
-        if (element[0] == "AGRADO") {
-  
-            showData[0] += parseInt(element[20]);
-  
-        }
-        if (element[0] == "BARAYA") {
-  
-            showData[1] += parseInt(element[20]);
-  
-        }
-        if (element[0] == "ISNOS") {
-  
-            showData[2] += parseInt(element[20]);
-  
-        }
-    }
-  
-    let sample = showData.reduce(function (a, b) {
-      return parseInt(a) + parseInt(b);
-  }, 0);
+      const element = info.data[index];
+      if (element[0] == "AGRADO") {
+
+          showData1[0] += parseInt(element[32]);
+          showData1[1] += parseInt(element[33]);
+          showData1[2] += parseInt(element[34]);
+
+      }
+      if (element[0] == "BARAYA") {
+        showData2[0] += parseInt(element[32]);
+        showData2[1] += parseInt(element[33]);
+        showData2[2] += parseInt(element[34]);
+
+      }
+      if (element[0] == "ISNOS") {
+        showData3[0] += parseInt(element[32]);
+        showData3[1] += parseInt(element[33]);
+        showData3[2] += parseInt(element[34]);
+
+      }
+  }
+
+  let sample = showData1.reduce(function (a, b) {
+    return parseInt(a) + parseInt(b);
+}, 0);
+
+sample+=showData2.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
+
+
+sample+=showData3.reduce(function (a, b) {
+  return parseInt(a) + parseInt(b);
+}, 0);
 
 
 const data = {
@@ -678,17 +796,17 @@ const data = {
   datasets: [
     {
       label: 'Agrado',
-      data: [23, 67, 56],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
       label: 'Baraya',
-      data: [7, 44, 12],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
       label: 'Isnos',
-      data: [1, 60, 28],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -751,37 +869,48 @@ function municipalityGraph1(info, municipality) {
   /**
    * Toman los datos
    */
-  let showData = [0, 0, 0];
+   let filteredData = [];
+   let labelNames = []
+   let showData = [0];
 
-  for (let index = 0; index < info.data.length; index++) {
+   for (let index = 0; index < info.data.length; index++) {
+       const element = info.data[index];
+       if (element[0] == municipality) {
+           filteredData.push(element);
+       }
+   }
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+   for (let index = 0; index < filteredData.length; index++) {
+       if (index == 0) {
+           labelNames.push(filteredData[index][1]);
+       } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+           labelNames.push(filteredData[index][1]);
+       }
+   }
 
-      }
-      if (element[0] == "BARAYA") {
+   for (let index = 0; index < filteredData.length; index++) {
+       const element = filteredData[index];
+       if (element[1] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+           showData.push(0);
+       }
+       if (element[1] == labelNames[showData.length - 1]) {
+          
+            showData[showData.length - 1] += parseInt(element[20]);
+          
+       }
+   }
 
-          showData[1] += parseInt(element[20]);
 
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
-      }
-  }
-
-  let sample = showData.reduce(function (a, b) {
-      return parseInt(a) + parseInt(b);
-  }, 0);
+   let sample = showData.reduce(function (a, b) {
+       return parseInt(a) + parseInt(b);
+   }, 0);
 
 
 
 // Se crea el grrafico
 const data = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: labelNames,
   datasets: [
     {
       label: 'Preescolar',
@@ -799,10 +928,11 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,
-          text: 'Número de estudiantes de preescolar en alternancia por municipio'
+          text: 'Número de estudiantes de preescolar en alternancia del municipio por instituciones educativas'
         }
       }
     },
@@ -816,51 +946,86 @@ const config = {
 }
 
 function municipalityGraph2(info, municipality){
+  let filteredData=[];
+    let labelNames=[];
 
-  //Falta traer la info
+    let showData1 = [0, 0, 0, 0,0];
+    let showData2 = [0, 0, 0, 0,0];
+    let showData3 = [0, 0, 0, 0,0];
 
-  let showData = [0, 0, 0];
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
 
-  for (let index = 0; index < info.data.length; index++) {
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
 
-          showData[0] += parseInt(element[20]);
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] == labelNames[0]) {    
+          showData1[0] += parseInt(element[21]);
+          showData1[1] += parseInt(element[22]);
+          showData1[2] += parseInt(element[23]);
+          showData1[3] += parseInt(element[24]);
+          showData1[4] += parseInt(element[25]);
+        }
+        if (element[1] == labelNames[1]) {    
+          showData2[0] += parseInt(element[21]);
+          showData2[1] += parseInt(element[22]);
+          showData2[2] += parseInt(element[23]);
+          showData2[3] += parseInt(element[24]);
+          showData2[4] += parseInt(element[25]);
+        }
 
-      }
-      if (element[0] == "BARAYA") {
+        if (element[1] == labelNames[2]) {    
+          showData3[0] += parseInt(element[21]);
+          showData3[1] += parseInt(element[22]);
+          showData3[2] += parseInt(element[23]);
+          showData3[3] += parseInt(element[24]);
+          showData3[4] += parseInt(element[25]);
+        }
 
-          showData[1] += parseInt(element[20]);
+    }
 
-      }
-      if (element[0] == "ISNOS") {
+    
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
-          showData[2] += parseInt(element[20]);
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
-      }
-  }
-
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+    
 
 const data = {
   labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
   datasets: [
     {
-      label: 'Agrado',
-      data: [145, 108, 79, 79, 78],
+      label: labelNames[0],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
-      label: 'Baraya',
-      data: [57, 40, 40 ,134, 118],
+      label:  labelNames[1],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
-      label: 'Isnos',
-      data: [97, 117, 110, 32, 41],
+      label:  labelNames[2],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -877,7 +1042,7 @@ const config = {
         },
         title: {
           display: true,
-          text: 'Número de estudiantes de primaria en alternancia por municipio'
+          text: 'Número de estudiantes de primaria en alternancia del municipio por instituciones educativas'
         }
       }
     },
@@ -892,50 +1057,82 @@ alternationdisplayGraph2.canvas.parentNode.style.width = '700px';
 
 function municipalityGraph3(info, municipality){
 
-  //Falta traer la info
+  let filteredData=[];
+    let labelNames=[];
 
-  let showData = [0, 0, 0];
+    let showData1 = [0, 0, 0, 0];
+    let showData2 = [0, 0, 0, 0];
+    let showData3 = [0, 0, 0, 0];
 
-  for (let index = 0; index < info.data.length; index++) {
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
 
-      }
-      if (element[0] == "BARAYA") {
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] == labelNames[0]) {    
+          showData1[0] += parseInt(element[26]);
+          showData1[1] += parseInt(element[27]);
+          showData1[2] += parseInt(element[28]);
+          showData1[3] += parseInt(element[29]);
+        }
+        if (element[1] == labelNames[1]) {    
+          showData2[0] += parseInt(element[26]);
+          showData2[1] += parseInt(element[27]);
+          showData2[2] += parseInt(element[28]);
+          showData2[3] += parseInt(element[29]);
+        }
 
-          showData[1] += parseInt(element[20]);
+        if (element[1] == labelNames[2]) {    
+          showData3[0] += parseInt(element[26]);
+          showData3[1] += parseInt(element[27]);
+          showData3[2] += parseInt(element[28]);
+          showData3[3] += parseInt(element[29]);
+        }
 
-      }
-      if (element[0] == "ISNOS") {
+    }
 
-          showData[2] += parseInt(element[20]);
+    
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
-      }
-  }
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
 const data = {
   labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno'],
   datasets: [
     {
-      label: 'Agrado',
-      data: [147, 164, 154, 142],
+      label: labelNames[0],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
-      label: 'Baraya',
-      data: [40, 0, 0, 0],
+      label: labelNames[1],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
-      label: 'Isnos',
-      data: [44, 65, 0, 0],
+      label: labelNames[2],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -952,7 +1149,7 @@ const config = {
         },
         title: {
           display: true,
-          text: 'Número de estudiantes de secundaria en alternancia por municipio'
+          text: 'Número de estudiantes de secundaria en alternancia del municipio por instituciones educativas'
         }
       }
     },
@@ -966,48 +1163,76 @@ alternationdisplayGraph3.canvas.parentNode.style.width = '700px';
 }
 
 function municipalityGraph4(info, municipality){
-  let showData = [0, 0, 0];
+  let filteredData=[];
+  let labelNames=[];
+
+  let showData1 = [0, 0];
+  let showData2 = [0, 0];
+  let showData3 = [0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[0] == municipality) {
+          filteredData.push(element);
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][1]);
+      } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][1]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[1] == labelNames[0]) {    
+        showData1[0] += parseInt(element[30]);
+        showData1[1] += parseInt(element[31]);
+      }
+      if (element[1] == labelNames[1]) {    
+        showData2[0] += parseInt(element[30]);
+        showData2[1] += parseInt(element[31]);
+      }
+
+      if (element[1] == labelNames[2]) {    
+        showData3[0] += parseInt(element[30]);
+        showData3[1] += parseInt(element[31]);
+      }
+
+  }
+
+  
+  let sample = showData1.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData2.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData3.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
 
 const data = {
   labels: ['Decimo', 'Once'],
   datasets: [
     {
-      label: 'Agrado',
-      data: [146, 132],
+      label: labelNames[0],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
-      label: 'Baraya',
-      data: [0, 0],
+      label: labelNames[1],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
-      label: 'Isnos',
-      data: [8, 8],
+      label: labelNames[2],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -1024,7 +1249,7 @@ const config = {
         },
         title: {
           display: true,
-          text: 'Número de estudiantes de media en alternancia por municipio'
+          text: 'Número de estudiantes de media en alternancia del municipio por instituciones educativas'
         }
       }
     },
@@ -1039,38 +1264,49 @@ alternationdisplayGraph4.canvas.parentNode.style.width = '700px';
 function municipalityGraph5(info, municipality){
   //Falta traer la info
 
-  let showData = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[0] == municipality) {
+          filteredData.push(element);
       }
   }
 
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][1]);
+      } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][1]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[1] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+          showData.push(0);
+      }
+      if (element[1] == labelNames[showData.length - 1]) {
+         
+           showData[showData.length - 1] += parseInt(element[35]);
+         
+      }
+  }
+
+
   let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+      return parseInt(a) + parseInt(b);
+  }, 0);
 
 const data = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: labelNames,
   datasets: [
     {
       label: 'Preescolar',
-      data: [8, 7, 1],
+      data: showData,
       backgroundColor: ['#003F63', '#008892', '#FF6766'],
     },
   ]
@@ -1084,10 +1320,11 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display:false,
         },
         title: {
           display: true,
-          text: 'Número de grupos de preescolar en alternancia por municipio'
+          text: 'Número de grupos de preescolar en alternancia del municipio por instituciones educativas'
         }
       }
     },
@@ -1101,50 +1338,85 @@ alternationdisplayGraph5.canvas.parentNode.style.width = '700px';
 
 function municipalityGraph6(info, municipality) {
 
-  //Falta traer la info
+  let filteredData=[];
+    let labelNames=[];
 
-  let showData = [0, 0, 0];
+    let showData1 = [0, 0, 0, 0,0];
+    let showData2 = [0, 0, 0, 0,0];
+    let showData3 = [0, 0, 0, 0,0];
 
-  for (let index = 0; index < info.data.length; index++) {
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
 
-      }
-      if (element[0] == "BARAYA") {
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] == labelNames[0]) {    
+          showData1[0] += parseInt(element[36]);
+          showData1[1] += parseInt(element[37]);
+          showData1[2] += parseInt(element[38]);
+          showData1[3] += parseInt(element[39]);
+          showData1[4] += parseInt(element[40]);
+        }
+        if (element[1] == labelNames[1]) {    
+          showData2[0] += parseInt(element[36]);
+          showData2[1] += parseInt(element[37]);
+          showData2[2] += parseInt(element[38]);
+          showData2[3] += parseInt(element[39]);
+          showData2[4] += parseInt(element[40]);
+        }
 
-          showData[1] += parseInt(element[20]);
+        if (element[1] == labelNames[2]) {    
+          showData3[0] += parseInt(element[36]);
+          showData3[1] += parseInt(element[37]);
+          showData3[2] += parseInt(element[38]);
+          showData3[3] += parseInt(element[39]);
+          showData3[4] += parseInt(element[40]);
 
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
-      }
+    }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+    
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
   const data = {
     labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
     datasets: [
       {
-        label: 'Agrado',
-        data: [145, 108, 79, 79, 78],
+        label: labelNames[0],
+        data: showData1,
         backgroundColor: '#003F63',
       },
       {
-        label: 'Baraya',
-        data: [57, 40, 40, 134, 118],
+        label: labelNames[1],
+        data: showData2,
         backgroundColor: '#008892',
       },
       {
-        label: 'Isnos',
-        data: [97, 117, 110, 32, 41],
+        label: labelNames[2],
+        data: showData3,
         backgroundColor: '#FF6766',
       },
     ]
@@ -1161,7 +1433,7 @@ function municipalityGraph6(info, municipality) {
           },
           title: {
             display: true,
-            text: 'Número de grupos de primaria en alternancia por municipio'
+            text: 'Número de grupos de primaria en alternancia  del municipio por instituciones educativas'
           }
         }
       },
@@ -1175,50 +1447,82 @@ function municipalityGraph6(info, municipality) {
 
 function municipalityGraph7(info, municipality){
 
-  //Falta traer la info
+  let filteredData=[];
+    let labelNames=[];
 
-  let showData = [0, 0, 0];
+    let showData1 = [0, 0, 0, 0];
+    let showData2 = [0, 0, 0, 0];
+    let showData3 = [0, 0, 0, 0];
 
-  for (let index = 0; index < info.data.length; index++) {
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[0] == municipality) {
+            filteredData.push(element);
+        }
+    }
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
 
-          showData[0] += parseInt(element[20]);
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
+        }
+    }
 
-      }
-      if (element[0] == "BARAYA") {
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] == labelNames[0]) {    
+          showData1[0] += parseInt(element[41]);
+          showData1[1] += parseInt(element[42]);
+          showData1[2] += parseInt(element[43]);
+          showData1[3] += parseInt(element[44]);
+        }
+        if (element[1] == labelNames[1]) {    
+          showData2[0] += parseInt(element[41]);
+        showData2[1] += parseInt(element[42]);
+        showData2[2] += parseInt(element[43]);
+        showData2[3] += parseInt(element[44]);
+        }
 
-          showData[1] += parseInt(element[20]);
+        if (element[1] == labelNames[2]) {    
+          showData3[0] += parseInt(element[41]);
+          showData3[1] += parseInt(element[42]);
+          showData3[2] += parseInt(element[43]);
+          showData3[3] += parseInt(element[44]);
+        }
 
-      }
-      if (element[0] == "ISNOS") {
+    }
 
-          showData[2] += parseInt(element[20]);
+    
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
-      }
-  }
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
 
 const data = {
   labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno'],
   datasets: [
     {
-      label: 'Agrado',
-      data: [7, 8, 8, 8],
+      label: labelNames[0],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
-      label: 'Baraya',
-      data: [3, 0, 0, 0],
+      label: labelNames[1],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
-      label: 'Isnos',
-      data: [3, 5, 0, 0],
+      label: labelNames[2],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -1235,7 +1539,7 @@ const config = {
         },
         title: {
           display: true,
-          text: 'Número de grupos de secundaria en alternancia por municipio'
+          text: 'Número de grupos de secundaria en alternancia del municipio por instituciones educativas'
         }
       }
     },
@@ -1250,50 +1554,76 @@ alternationdisplayGraph7.canvas.parentNode.style.width = '700px';
 
 function municipalityGraph8(info, municipality){
 
-  //Falta traer la info
+  let filteredData=[];
+  let labelNames=[];
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0];
+  let showData2 = [0, 0];
+  let showData3 = [0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[0] == municipality) {
+          filteredData.push(element);
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][1]);
+      } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][1]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[1] == labelNames[0]) {    
+        showData1[0] += parseInt(element[45]);
+        showData1[1] += parseInt(element[46]);
+      }
+      if (element[1] == labelNames[1]) {    
+        showData2[0] += parseInt(element[45]);
+        showData2[1] += parseInt(element[46]);
+      }
+
+      if (element[1] == labelNames[2]) {    
+        showData3[0] += parseInt(element[45]);
+        showData3[1] += parseInt(element[46]);
+      }
+
+  }
+
+  
+  let sample = showData1.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData2.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData3.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
 
 const data = {
   labels: ['Decimo', 'Once',],
   datasets: [
     {
-      label: 'Agrado',
-      data: [7, 6],
+      label: labelNames[0],
+      data: showData1,
       backgroundColor: '#003F63',
     },
     {
-      label: 'Baraya',
-      data: [0, 0],
+      label: labelNames[1],
+      data: showData2,
       backgroundColor: '#008892',
     },
     {
-      label: 'Isnos',
-      data: [1, 1],
+      label: labelNames[2],
+      data: showData3,
       backgroundColor: '#FF6766',
     },
   ]
@@ -1310,7 +1640,7 @@ const config = {
         },
         title: {
           display: true,
-          text: 'Número de grupos de media en alternancia por municipio'
+          text: 'Número de grupos de media en alternancia del municipio por instituciones educativas'
         }
       }
     },
@@ -1325,51 +1655,80 @@ alternationdisplayGraph8.canvas.parentNode.style.width = '700px';
 
 function municipalityGraph9(info, municipality){
 
-  //Falta traer la info
+  let filteredData=[];
+  let labelNames=[];
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0];
+  let showData2 = [0, 0, 0];
+  let showData3 = [0, 0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[0] == municipality) {
+          filteredData.push(element);
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][1]);
+      } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][1]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[1] == labelNames[0]) {    
+        showData1[0] += parseInt(element[32]);
+          showData1[1] += parseInt(element[33]);
+          showData1[2] += parseInt(element[34]);
+      }
+      if (element[1] == labelNames[1]) {    
+        showData2[0] += parseInt(element[32]);
+        showData2[1] += parseInt(element[33]);
+        showData2[2] += parseInt(element[34]);
+      }
+
+      if (element[1] == labelNames[2]) {    
+        showData3[0] += parseInt(element[32]);
+        showData3[1] += parseInt(element[33]);
+        showData3[2] += parseInt(element[34]);
+      }
+
+  }
+
+  
+  let sample = showData1.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData2.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData3.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
 
 
 const data = {
 labels: ['Preescolar', 'Primaria', 'Secundaria y Media'],
 datasets: [
   {
-    label: 'Agrado',
-    data: [23, 67, 56],
+    label: labelNames[0],
+    data: showData1,
     backgroundColor: '#003F63',
   },
   {
-    label: 'Baraya',
-    data: [7, 44, 12],
+    label: labelNames[1],
+    data: showData2,
     backgroundColor: '#008892',
   },
   {
-    label: 'Isnos',
-    data: [1, 60, 28],
+    label: labelNames[2],
+    data: showData3,
     backgroundColor: '#FF6766',
   },
 ]
@@ -1386,7 +1745,7 @@ const config = {
       },
       title: {
         display: true,
-        text: 'Número de docentes en alternancia por nivel escolar por municipio'
+        text: 'Número de docentes en alternancia por nivel escolar del municipio por instituciones educativas'
       }
     }
   },
