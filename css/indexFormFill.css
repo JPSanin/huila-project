@@ -21,9 +21,22 @@ body{
     width: 100%;
     height: 96px;
     background-color: var(--green);
+
+}
+
+#rightImages
+{
+    width: 100%;
+    margin-top: -75px;
+    background-color: var(--green);
     display:flex;
     flex-direction: row-reverse;
     align-items: center;
+}
+
+.dataFormFormat
+{
+    float: right;
 }
 
 .numInput
@@ -42,6 +55,15 @@ body{
     box-decoration-break: none;
 }
 
+
+.img4
+{
+    margin-left: 30px;
+    padding-left: 20px;
+    padding-top: 20px;
+    margin: 10px;
+}
+
 .img1{
     margin: 10px;
 }
@@ -55,17 +77,12 @@ body{
    margin-right: 30px;
 }
 
-.img4
-{
-    margin-left: 30px;
-    margin: 10px;
-}
-
 .all{
     width: 100%;
     height: 100vh;
     display:flex;
     flex-direction: row;
+    position:absolute;
 }
 
 .navLeft{
@@ -81,6 +98,34 @@ body{
       align-items: center;
       margin-top: 50px;
       margin-bottom: 30px;
+  }
+
+  .firstClasif{
+    background-color: var(--white);
+    width: 200px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  .clasif{
+      background-color: var(--white);
+      width: 200px;
+      height: 53px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+  }
+
+  .selectedClasif{
+    background-color: var(--gray);
+    width: 200px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
   }
 
 
