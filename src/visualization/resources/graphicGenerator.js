@@ -13,7 +13,6 @@ let graph2 = document.getElementById("graph2");
 let sampleGraph2 = document.getElementById("sampleGraph2");
 let displayGraph2;
 
-
 let graph3 = document.getElementById("graph3");
 let sampleGraph3 = document.getElementById("sampleGraph3");
 let displayGraph3;
@@ -117,7 +116,7 @@ function initialStateGraph1(info) {
         },
     };
 
-    let displayGraph1 = new Chart(graph1, configGraph1);
+    displayGraph1 = new Chart(graph1, configGraph1);
     sampleGraph1.innerHTML = "Total Muestra: " + sample;
     displayGraph1.canvas.parentNode.style.height = '300px';
     displayGraph1.canvas.parentNode.style.width = '700px';
@@ -150,9 +149,6 @@ function initialStateGraph2(info) {
         return parseInt(a) + parseInt(b);
     }, 0);
 
-
-
-
     const dataGraph2 = {
         labels: ["Agrado", "Baraya", "Isnos"],
         datasets: [{
@@ -181,7 +177,7 @@ function initialStateGraph2(info) {
         },
     };
 
-    let displayGraph2 = new Chart(graph2, configGraph2);
+    displayGraph2 = new Chart(graph2, configGraph2);
     sampleGraph2.innerHTML = "Total Muestra: " + sample2;
     displayGraph2.canvas.parentNode.style.height = '300px';
     displayGraph2.canvas.parentNode.style.width = '700px';
@@ -236,7 +232,7 @@ function initialStateGraph3(info) {
         },
       };
   
-      let displayGraph3 = new Chart(graph3, configGraph3);
+      displayGraph3 = new Chart(graph3, configGraph3);
       sampleGraph3.innerHTML="Total Muestra: "+ sample3; 
       displayGraph3.canvas.parentNode.style.height = '300px';
       displayGraph3.canvas.parentNode.style.width = '700px';
@@ -318,7 +314,7 @@ function initialStateGraph4(info) {
           }
         };
     
-        let displayGraph4 = new Chart(graph4, configGraph4);
+        displayGraph4 = new Chart(graph4, configGraph4);
         sampleGraph4.innerHTML="Total Muestra: "+ sample4; 
         displayGraph4.canvas.parentNode.style.height = '300px';
         displayGraph4.canvas.parentNode.style.width = '700px';
@@ -344,10 +340,6 @@ function initialStateGraph5(info) {
     let sample5 = showData.reduce(function (a, b) {
         return parseInt(a) + parseInt(b);
     }, 0);
-  
-
-
-
 
     const dataGraph5 = {
         labels: ['Estudiantes que han recibido Sim-card ', 
@@ -379,7 +371,7 @@ function initialStateGraph5(info) {
           },
         };
     
-        let displayGraph5 = new Chart(graph5, configGraph5);
+        displayGraph5 = new Chart(graph5, configGraph5);
         sampleGraph5.innerHTML="Total Muestra: "+ sample5; 
         displayGraph5.canvas.parentNode.style.height = '250px';
         displayGraph5.canvas.parentNode.style.width = '350px';
@@ -464,7 +456,7 @@ function initialStateGraph6(info) {
           }
         };
     
-        let displayGraph6 = new Chart(graph6, configGraph6);
+        displayGraph6 = new Chart(graph6, configGraph6);
         sampleGraph6.innerHTML="Total Muestra; "+ sample6; 
         displayGraph6.canvas.parentNode.style.height = '300px';
         displayGraph6.canvas.parentNode.style.width = '700px';
@@ -526,12 +518,11 @@ function initialStateGraph7(info) {
         };
     
         
-    let displayGraph7 = new Chart(graph7, configGraph7);
+    displayGraph7 = new Chart(graph7, configGraph7);
     sampleGraph7.innerHTML="Total Muestra: "+ sample7; 
     displayGraph7.canvas.parentNode.style.height = '250px';
     displayGraph7.canvas.parentNode.style.width = '350px';
 }
-
 
 function initialStateGraph8(info) {
     let showData1 = [0, 0, 0];
@@ -612,9 +603,30 @@ function initialStateGraph8(info) {
           }
         };
     
-    let displayGraph8 = new Chart(graph8, configGraph8);
+    displayGraph8 = new Chart(graph8, configGraph8);
     sampleGraph8.innerHTML="Total Muestra: "+ sample8; 
     displayGraph8.canvas.parentNode.style.height = '300px';
     displayGraph8.canvas.parentNode.style.width = '700px'
 }
 
+municipalitySelectGenMethods.addEventListener("change", function () {
+  if (municipalitySelectGenMethods.value == "MUNICIPIO") {
+      destroyGraphs();
+      initializeGraphs();
+      showGraphs();
+  } else {
+      destroyGraphs();
+      createMunicipalityGraphs(municipalitySelectGenMethods.value);
+  }
+});
+
+function destroyGraphs() {
+  displayGraph1.destroy();
+  displayGraph2.destroy();
+  displayGraph3.destroy();
+  displayGraph4.destroy();
+  displayGraph5.destroy();
+  displayGraph6.destroy();
+  displayGraph7.destroy();
+  displayGraph8.destroy();
+}
