@@ -120,8 +120,7 @@ function formulario2() {
         </x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]-->
         </head><body><table>${str}</table></body></html>`;
       // Descargar plantilla
-      window.location.href = uri + base64(template)
-
+      window.location.href = uri + base64(template);
             alert("Respuestas enviadas con éxito");
             }
 
@@ -250,20 +249,22 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
         && document.getElementById("num48").value != "" && document.getElementById("num49").value != "")
         {
 
-             var hogT = $('#num34').val();
-              var h1 = $('#num35').val();
-              var h2 = $('#num36').val();
-              var h3 = $('#num37').val();
-              var h4 = $('#num38').val();
-              var h5 = $('#num39').val();
-              var h6 = $('#num40').val();
-              var h7 = $('#num41').val();
-              var periT = $('#num42').val();
-              var peripres = $('#num43').val();
-              var pe1 = $('#num44').val();
-              var pe2 = $('#num45').val();
-              var pe3 = $('#num46').val();
-              var pe4 = $('#num47').val();
+             var hogT = parseInt($('#num34').val());
+              var h1 = parseInt($('#num35').val());
+              var h2 = parseInt($('#num36').val());
+              var h3 = parseInt($('#num37').val());
+              var h4 = parseInt($('#num38').val());
+              var h5 = parseInt($('#num39').val());
+              var h6 = parseInt($('#num40').val());
+              var h7 = parseInt($('#num41').val());
+              var periT = parseInt($('#num42').val());
+              var peripres = parseInt($('#num43').val());
+              var pe1 = parseInt($('#num44').val());
+              var pe2 = parseInt($('#num45').val());
+              var pe3 = parseInt($('#num46').val());
+              var pe4 = parseInt($('#num47').val());
+              console.log(hogT);
+              console.log(peripres);
               if((h1+h2+h3+h4+h5+h6+h7)!=hogT){
                 alert("la suma de los hogares no es igual al total")
               } 
@@ -272,10 +273,10 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
                 alert("la catidad de perifericos prestados no puede superar a la cantidad total");
               }
 
-              if(pe1+pe2+pe3+pe4!=peripres){
+              if((pe1+pe2+pe3+pe4)!=peripres){
                 alert("la suma de todos los perifericos prestados no es igual al total")
               }
-              if(pe1+pe2+pe3+pe4==peripres&&periT>=peripres&&h1+h2+h3+h4+h5+h6+h7==hogT){
+              if((pe1+pe2+pe3+pe4)==peripres&&periT>=peripres&&(h1+h2+h3+h4+h5+h6+h7)==hogT){
 
             //guardar la informacion en una variable
             var num34 = $('#num34').val();  var num35 = $('#num35').val();
@@ -351,19 +352,11 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
             Frp.push(num50, num51, num52, num53, num54, num55, num56, 
                 num57, num58, num59, num60, num61, num62, num63, num64, num65,
                 num66, num67, num68,num69,num70, num71, num72, num73, num74,num75, num76, num77);
+            console.log(Frp);
             
             alert("Respuestas enviadas con éxito");
-            
-        }
-    
-        else
-        {  
-            alert("Por favor responda todas las preguntas");
-        }
- }
 
- function exito(){
-// Datos Json que se exportarán
+            // Datos Json que se exportarán
       const jsonData = [
         {pregunta:'1',respuesta:Frp[0]},
         {pregunta:'2',respuesta:Frp[1]},
@@ -476,8 +469,15 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
         </head><body><table>${str}</table></body></html>`;
       // Descargar plantilla
       window.location.href = uri + base64(template)
-
-
+            
+        }
+    
+        else
+        {  
+            alert("Por favor responda todas las preguntas");
+        }
  }
 // Codificación base64 de salida
-    function base64 (s) { return window.btoa(unescape(encodeURIComponent(s))) }
+    function base64 (s) { 
+    return window.btoa(unescape(encodeURIComponent(s)));
+        }
