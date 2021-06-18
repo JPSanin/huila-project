@@ -2040,6 +2040,8 @@ function campusGraph4(info, campus) {
 
 
 
+
+
 function hideGraphs(){
 
 document.getElementById("container__docFisicos1").style.display= "none";

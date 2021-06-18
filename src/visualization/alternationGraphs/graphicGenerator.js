@@ -1384,7 +1384,6 @@ function municipalityGraph6(info, municipality) {
           showData3[2] += parseInt(element[38]);
           showData3[3] += parseInt(element[39]);
           showData3[4] += parseInt(element[40]);
-
     }
   }
 
@@ -1764,6 +1763,7 @@ institutionSelectGenMethods.addEventListener("change", function () {
       showGraphs();
   } else {
       destroyGraphs();
+      hideGraphs1();
       createInstitutionGraphs(institutionSelectGenMethods.value);
   }
 });
@@ -1781,37 +1781,44 @@ function createInstitutionGraphs(institution) {
       institutionGraph5(data, institution);
       institutionGraph6(data,institution);
       institutionGraph7(data,institution);
-      institutionGraph8(data,institution);
       institutionGraph9(data,institution);
   });
 
 }
 
 function institutionGraph1(info, institution) {
-  /**
-   * Toman los datos
-   */
-  let showData = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[1] == institution) {
+          filteredData.push(element);
       }
   }
+
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][3]);
+      } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][3]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[3] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+          showData.push(0);
+      }
+      if (element[3] == labelNames[showData.length - 1]) {
+         
+           showData[showData.length - 1] += parseInt(element[20]);
+         
+      }
+  }
+
 
   let sample = showData.reduce(function (a, b) {
       return parseInt(a) + parseInt(b);
@@ -1821,7 +1828,7 @@ function institutionGraph1(info, institution) {
 
 // Se crea el grrafico
 const data = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels:labelNames,
   datasets: [
     {
       label: 'Preescolar',
@@ -1839,10 +1846,11 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,
-          text: 'Número de estudiantes de preescolar en alternancia por institución'
+          text: 'Número de estudiantes de preescolar en alternancia en la institución educativa por sede'
         }
       }
     },
@@ -1857,73 +1865,175 @@ const config = {
 
 function institutionGraph2(info, institution){
 
-  //Falta traer la info
+    let data;
+    let config;
+    let filteredData=[];
+    let labelNames=[];
 
-  let showData = [0, 0, 0];
+    let showData1 = [0, 0, 0, 0,0];
+    let showData2 = [0, 0, 0, 0,0];
+    let showData3 = [0, 0, 0, 0,0];
+    let showData4 = [0, 0, 0, 0,0];
 
-  for (let index = 0; index < info.data.length; index++) {
-
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
-      }
-  }
-
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
-
-const data = {
-  labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
-  datasets: [
-    {
-      label: 'Agrado',
-      data: [145, 108, 79, 79, 78],
-      backgroundColor: '#003F63',
-    },
-    {
-      label: 'Baraya',
-      data: [57, 40, 40 ,134, 118],
-      backgroundColor: '#008892',
-    },
-    {
-      label: 'Isnos',
-      data: [97, 117, 110, 32, 41],
-      backgroundColor: '#FF6766',
-    },
-  ]
-};
-
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Número de estudiantes de primaria en alternancia por institución'
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[1] == institution) {
+            filteredData.push(element);
         }
-      }
-    },
-  };
+    }
 
-let alternationdisplayGraph2 = new Chart(alternationgraph2, config);
+
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][3]);
+        } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][3]);
+        }
+    }
+
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[3] == labelNames[0]) {    
+          showData1[0] += parseInt(element[21]);
+          showData1[1] += parseInt(element[22]);
+          showData1[2] += parseInt(element[23]);
+          showData1[3] += parseInt(element[24]);
+          showData1[4] += parseInt(element[25]);
+        }
+        if (element[3] == labelNames[1]) {    
+          showData2[0] += parseInt(element[21]);
+          showData2[1] += parseInt(element[22]);
+          showData2[2] += parseInt(element[23]);
+          showData2[3] += parseInt(element[24]);
+          showData2[4] += parseInt(element[25]);
+        }
+
+        if (element[3] == labelNames[2]) {    
+          showData3[0] += parseInt(element[21]);
+          showData3[1] += parseInt(element[22]);
+          showData3[2] += parseInt(element[23]);
+          showData3[3] += parseInt(element[24]);
+          showData3[4] += parseInt(element[25]);
+        }
+
+        if (labelNames.length==4 && element[3] == labelNames[3]) {    
+          showData4[0] += parseInt(element[21]);
+          showData4[1] += parseInt(element[22]);
+          showData4[2] += parseInt(element[23]);
+          showData4[3] += parseInt(element[24]);
+          showData4[4] += parseInt(element[25]);
+      }
+
+
+    }
+
+    
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    if (labelNames.length==4){
+      sample += showData4.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+
+    data = {
+      labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
+      datasets: [
+        {
+          label: labelNames[0],
+          data: showData1,
+          backgroundColor: '#003F63',
+        },
+        {
+          label:  labelNames[1],
+          data: showData2,
+          backgroundColor: '#008892',
+        },
+        {
+          label:  labelNames[2],
+          data: showData3,
+          backgroundColor: '#FF6766',
+        },
+        {
+          label:  labelNames[3],
+          data: showData4,
+          backgroundColor: '#FDC967',
+        },
+      ]
+    };
+    
+    config = {
+        type: 'bar',
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Número de estudiantes de primaria en alternancia en la institución educativa por sede'
+            }
+          }
+        },
+      };
+
+
+    }else{
+      data = {
+        labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
+        datasets: [
+          {
+            label: labelNames[0],
+            data: showData1,
+            backgroundColor: '#003F63',
+          },
+          {
+            label:  labelNames[1],
+            data: showData2,
+            backgroundColor: '#008892',
+          },
+          {
+            label:  labelNames[2],
+            data: showData3,
+            backgroundColor: '#FF6766',
+          },
+        ]
+      };
+      
+      config = {
+          type: 'bar',
+          data: data,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Número de estudiantes de primaria en alternancia en la institución educativa por sede'
+              }
+            }
+          },
+        };
+    }
+
+
+
+
+alternationdisplayGraph2 = new Chart(alternationgraph2, config);
 alternationsampleGraph2.innerHTML = "Total Muestra: " + sample;
 alternationdisplayGraph2.canvas.parentNode.style.height = '300px';
 alternationdisplayGraph2.canvas.parentNode.style.width = '700px';
@@ -1931,72 +2041,164 @@ alternationdisplayGraph2.canvas.parentNode.style.width = '700px';
 }
 
 function institutionGraph3(info, institution){
+    let data;
+    let config;
+    let filteredData=[];
+    let labelNames=[];
 
-  //Falta traer la info
+    let showData1 = [0, 0, 0, 0];
+    let showData2 = [0, 0, 0, 0];
+    let showData3 = [0, 0, 0, 0];
+    let showData4 = [0, 0, 0, 0];
 
-  let showData = [0, 0, 0];
-
-  for (let index = 0; index < info.data.length; index++) {
-
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+    for (let index = 0; index < info.data.length; index++) {
+        const element = info.data[index];
+        if (element[1] == institution) {
+            filteredData.push(element);
+        }
+    }
+    for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][3]);
+      } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][3]);
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
-
-const data = {
-  labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno'],
-  datasets: [
-    {
-      label: 'Agrado',
-      data: [147, 164, 154, 142],
-      backgroundColor: '#003F63',
-    },
-    {
-      label: 'Baraya',
-      data: [40, 0, 0, 0],
-      backgroundColor: '#008892',
-    },
-    {
-      label: 'Isnos',
-      data: [44, 65, 0, 0],
-      backgroundColor: '#FF6766',
-    },
-  ]
-};
-
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Número de estudiantes de secundaria en alternancia por institución'
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[3] == labelNames[0]) {    
+          showData1[0] += parseInt(element[26]);
+          showData1[1] += parseInt(element[27]);
+          showData1[2] += parseInt(element[28]);
+          showData1[3] += parseInt(element[29]);
         }
+        if (element[3] == labelNames[1]) {    
+          showData2[0] += parseInt(element[26]);
+          showData2[1] += parseInt(element[27]);
+          showData2[2] += parseInt(element[28]);
+          showData2[3] += parseInt(element[29]);
+        }
+
+        if (element[3] == labelNames[2]) {    
+          showData3[0] += parseInt(element[26]);
+          showData3[1] += parseInt(element[27]);
+          showData3[2] += parseInt(element[28]);
+          showData3[3] += parseInt(element[29]);
+        }
+
+        if (labelNames.length==4 && element[3] == labelNames[3]) {    
+          showData4[0] += parseInt(element[26]);
+          showData4[1] += parseInt(element[27]);
+          showData4[2] += parseInt(element[28]);
+          showData4[3] += parseInt(element[29]);
+
       }
-    },
-  };
+
+    }
+
+    
+    let sample = showData1.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData2.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    sample += showData3.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    if (labelNames.length==4){
+      sample += showData4.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    data = {
+      labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno'],
+      datasets: [
+        {
+          label: labelNames[0],
+          data: showData1,
+          backgroundColor: '#003F63',
+        },
+        {
+          label: labelNames[1],
+          data: showData2,
+          backgroundColor: '#008892',
+        },
+        {
+          label: labelNames[2],
+          data: showData3,
+          backgroundColor: '#FF6766',
+        },
+        {
+          label:  labelNames[3],
+          data: showData4,
+          backgroundColor: '#FDC967',
+        },
+      ]
+    };
+    
+     config = {
+        type: 'bar',
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Número de estudiantes de secundaria en alternancia en la institución educativa por sede'
+            }
+          }
+        },
+      };
+
+  }else{
+    data = {
+      labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno'],
+      datasets: [
+        {
+          label: labelNames[0],
+          data: showData1,
+          backgroundColor: '#003F63',
+        },
+        {
+          label: labelNames[1],
+          data: showData2,
+          backgroundColor: '#008892',
+        },
+        {
+          label: labelNames[2],
+          data: showData3,
+          backgroundColor: '#FF6766',
+        },
+      ]
+    };
+    
+     config = {
+        type: 'bar',
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Número de estudiantes de secundaria en alternancia en la institución educativa por sede'
+            }
+          }
+        },
+      };
+  }
+
+
 
 alternationdisplayGraph3 = new Chart(alternationgraph3, config);
 alternationsampleGraph3.innerHTML = "Total Muestra: " + sample;
@@ -2006,69 +2208,158 @@ alternationdisplayGraph3.canvas.parentNode.style.width = '700px';
 }
 
 function institutionGraph4(info, institution){
-  let showData = [0, 0, 0];
+  let data;
+  let config;
+  
+  let filteredData=[];
+  let labelNames=[];
+
+  let showData1 = [0, 0];
+  let showData2 = [0, 0];
+  let showData3 = [0, 0];
+  let showData4 = [0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[1] == institution) {
+          filteredData.push(element);
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
 
-const data = {
-  labels: ['Decimo', 'Once'],
-  datasets: [
-    {
-      label: 'Agrado',
-      data: [146, 132],
-      backgroundColor: '#003F63',
-    },
-    {
-      label: 'Baraya',
-      data: [0, 0],
-      backgroundColor: '#008892',
-    },
-    {
-      label: 'Isnos',
-      data: [8, 8],
-      backgroundColor: '#FF6766',
-    },
-  ]
-};
+  for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
 
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Número de estudiantes de media en alternancia por institución'
-        }
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[3] == labelNames[0]) {    
+        showData1[0] += parseInt(element[30]);
+        showData1[1] += parseInt(element[31]);
       }
-    },
+      if (element[3] == labelNames[1]) {    
+        showData2[0] += parseInt(element[30]);
+        showData2[1] += parseInt(element[31]);
+      }
+
+      if (element[3] == labelNames[2]) {    
+        showData3[0] += parseInt(element[30]);
+        showData3[1] += parseInt(element[31]);
+      }
+
+      if (labelNames.length==4 && element[3] == labelNames[3]){    
+        showData4[0] += parseInt(element[30]);
+        showData4[1] += parseInt(element[31]);
+    }
+
+  }
+
+  
+  let sample = showData1.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData2.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData3.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  if (labelNames.length==4){
+    sample += showData4.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  data = {
+    labels: ['Decimo', 'Once'],
+    datasets: [
+      {
+        label: labelNames[0],
+        data: showData1,
+        backgroundColor: '#003F63',
+      },
+      {
+        label: labelNames[1],
+        data: showData2,
+        backgroundColor: '#008892',
+      },
+      {
+        label: labelNames[2],
+        data: showData3,
+        backgroundColor: '#FF6766',
+      },
+      {
+        label:  labelNames[3],
+        data: showData4,
+        backgroundColor: '#FDC967',
+      },
+    ]
   };
+  
+  config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de estudiantes de media en alternancia en la institución educativa por sede'
+          }
+        }
+      },
+    };
+
+}else{
+  data = {
+    labels: ['Decimo', 'Once'],
+    datasets: [
+      {
+        label: labelNames[0],
+        data: showData1,
+        backgroundColor: '#003F63',
+      },
+      {
+        label: labelNames[1],
+        data: showData2,
+        backgroundColor: '#008892',
+      },
+      {
+        label: labelNames[2],
+        data: showData3,
+        backgroundColor: '#FF6766',
+      },
+    ]
+  };
+  
+  config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de estudiantes de media en alternancia en la institución educativa por sede'
+          }
+        }
+      },
+    };
+}
+
+
 
 alternationdisplayGraph4 = new Chart(alternationgraph4, config);
 alternationsampleGraph4.innerHTML = "Total Muestra: " + sample;
@@ -2078,39 +2369,49 @@ alternationdisplayGraph4.canvas.parentNode.style.width = '700px';
 
 function institutionGraph5(info, institution){
   //Falta traer la info
-
-  let showData = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[1] == institution) {
+          filteredData.push(element);
       }
   }
 
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][3]);
+      } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][3]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[3] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+          showData.push(0);
+      }
+      if (element[3] == labelNames[showData.length - 1]) {
+         
+           showData[showData.length - 1] += parseInt(element[35]);
+         
+      }
+  }
+
+
   let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+      return parseInt(a) + parseInt(b);
+  }, 0);
 
 const data = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: labelNames,
   datasets: [
     {
       label: 'Preescolar',
-      data: [8, 7, 1],
+      data: showData,
       backgroundColor: ['#003F63', '#008892', '#FF6766'],
     },
   ]
@@ -2124,10 +2425,11 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,
-          text: 'Número de grupos de preescolar en alternancia por institución'
+          text: 'Número de grupos de preescolar en alternancia en la institución educativa por sede'
         }
       }
     },
@@ -2141,56 +2443,113 @@ alternationdisplayGraph5.canvas.parentNode.style.width = '700px';
 
 function institutionGraph6(info, institution) {
 
-  //Falta traer la info
+  let data;
+  let config;
+  let filteredData=[];
+  let labelNames=[];
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0, 0,0];
+  let showData2 = [0, 0, 0, 0,0];
+  let showData3 = [0, 0, 0, 0,0];
+  let showData4 = [0, 0, 0, 0,0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[1] == institution) {
+          filteredData.push(element);
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
 
-  const data = {
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][3]);
+      } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][3]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[3] == labelNames[0]) {    
+        showData1[0] += parseInt(element[36]);
+          showData1[1] += parseInt(element[37]);
+          showData1[2] += parseInt(element[38]);
+          showData1[3] += parseInt(element[39]);
+          showData1[4] += parseInt(element[40]);
+      }
+      if (element[3] == labelNames[1]) {    
+        showData2[0] += parseInt(element[36]);
+        showData2[1] += parseInt(element[37]);
+        showData2[2] += parseInt(element[38]);
+        showData2[3] += parseInt(element[39]);
+        showData2[4] += parseInt(element[40]);
+      }
+
+      if (element[3] == labelNames[2]) {    
+        showData3[0] += parseInt(element[36]);
+        showData3[1] += parseInt(element[37]);
+        showData3[2] += parseInt(element[38]);
+        showData3[3] += parseInt(element[39]);
+        showData3[4] += parseInt(element[40]);
+      }
+
+      if (labelNames.length==4 && element[3] == labelNames[3]) {    
+        showData4[0] += parseInt(element[36]);
+        showData4[1] += parseInt(element[37]);
+        showData4[2] += parseInt(element[38]);
+        showData4[3] += parseInt(element[39]);
+        showData4[4] += parseInt(element[40]);
+    }
+
+
+  }
+
+  
+  let sample = showData1.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData2.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData3.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  if (labelNames.length==4){
+    sample += showData4.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  data = {
     labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
     datasets: [
       {
-        label: 'Agrado',
-        data: [145, 108, 79, 79, 78],
+        label: labelNames[0],
+        data: showData1,
         backgroundColor: '#003F63',
       },
       {
-        label: 'Baraya',
-        data: [57, 40, 40, 134, 118],
+        label:  labelNames[1],
+        data: showData2,
         backgroundColor: '#008892',
       },
       {
-        label: 'Isnos',
-        data: [97, 117, 110, 32, 41],
+        label:  labelNames[2],
+        data: showData3,
         backgroundColor: '#FF6766',
+      },
+      {
+        label:  labelNames[3],
+        data: showData4,
+        backgroundColor: '#FDC967',
       },
     ]
   };
   
-  const config = {
+  config = {
       type: 'bar',
       data: data,
       options: {
@@ -2201,11 +2560,56 @@ function institutionGraph6(info, institution) {
           },
           title: {
             display: true,
-            text: 'Número de grupos de primaria en alternancia por institución'
+            text: 'Número de grupos de primaria en alternancia en la institución educativa por sede'
           }
         }
       },
     };
+
+
+
+}else{
+  data = {
+    labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
+    datasets: [
+      {
+        label: labelNames[0],
+        data: showData1,
+        backgroundColor: '#003F63',
+      },
+      {
+        label:  labelNames[1],
+        data: showData2,
+        backgroundColor: '#008892',
+      },
+      {
+        label:  labelNames[2],
+        data: showData3,
+        backgroundColor: '#FF6766',
+      },
+    ]
+  };
+  
+  config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de grupos de primaria en alternancia en la institución educativa por sede'
+          }
+        }
+      },
+    };
+}
+
+
+
   
   alternationdisplayGraph6 = new Chart(alternationgraph6, config);
   alternationsampleGraph6.innerHTML = "Total Muestra: " + sample;
@@ -2214,72 +2618,177 @@ function institutionGraph6(info, institution) {
 }
 
 function institutionGraph7(info, institution){ //mezclaron secundaria y media
+  let data;
+  let config;
+  let filteredData=[];
+  let labelNames=[];
 
-  //Falta traer la info
-
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0, 0, 0, 0];
+  let showData2 = [0, 0, 0, 0, 0, 0];
+  let showData3 = [0, 0, 0, 0, 0, 0];
+  let showData4 = [0, 0, 0, 0, 0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[1] == institution) {
+          filteredData.push(element);
       }
   }
+  for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[3] == labelNames[0]) {    
+        showData1[0] += parseInt(element[41]);
+        showData1[1] += parseInt(element[42]);
+        showData1[2] += parseInt(element[43]);
+        showData1[3] += parseInt(element[44]);
 
-const data = {
-  labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno', 'Decimo', 'Once'],
-  datasets: [
-    {
-      label: 'Agrado',
-      data: [7, 8, 8, 8],
-      backgroundColor: '#003F63',
-    },
-    {
-      label: 'Baraya',
-      data: [3, 0, 0, 0],
-      backgroundColor: '#008892',
-    },
-    {
-      label: 'Isnos',
-      data: [3, 5, 0, 0],
-      backgroundColor: '#FF6766',
-    },
-  ]
-};
+        showData1[4] += parseInt(element[45]);
+        showData1[5] += parseInt(element[46]);
 
-const config = {
-    type: 'bar',
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        title: {
-          display: true,
-          text: 'Número de grupos de secundaria y media en alternancia por institucion'
-        }
       }
-    },
+      if (element[3] == labelNames[1]) {    
+        showData2[0] += parseInt(element[41]);
+        showData2[1] += parseInt(element[42]);
+        showData2[2] += parseInt(element[43]);
+        showData2[3] += parseInt(element[44]);
+
+        showData2[4] += parseInt(element[45]);
+        showData2[5] += parseInt(element[46]);
+      }
+
+      if (element[3] == labelNames[2]) {    
+        showData3[0] += parseInt(element[41]);
+        showData3[1] += parseInt(element[42]);
+        showData3[2] += parseInt(element[43]);
+        showData3[3] += parseInt(element[44]);
+
+        showData3[4] += parseInt(element[45]);
+        showData3[5] += parseInt(element[46]);
+      }
+
+      if (labelNames.length==4 && element[3] == labelNames[3]) {    
+        showData4[0] += parseInt(element[41]);
+        showData4[1] += parseInt(element[42]);
+        showData4[2] += parseInt(element[43]);
+        showData4[3] += parseInt(element[44]);
+
+        showData4[4] += parseInt(element[45]);
+        showData4[5] += parseInt(element[46]);
+
+    }
+
+  }
+
+  
+  let sample = showData1.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData2.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData3.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  if (labelNames.length==4){
+    sample += showData4.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+  data = {
+    labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno', 'Decimo', 'Once'],
+    datasets: [
+        {
+          label: labelNames[0],
+          data: showData1,
+          backgroundColor: '#003F63',
+        },
+        {
+          label:  labelNames[1],
+          data: showData2,
+          backgroundColor: '#008892',
+        },
+        {
+          label:  labelNames[2],
+          data: showData3,
+          backgroundColor: '#FF6766',
+        },
+        {
+          label:  labelNames[3],
+          data: showData4,
+          backgroundColor: '#FDC967',
+        },
+    ]
   };
+  
+  config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de grupos de secundaria y media en alternancia en la institución educativa por sede'
+          }
+        }
+      },
+    };
+
+}else{
+  data = {
+    labels: ['Sexto', 'Septimo', 'Octavo', 'Noveno', 'Decimo', 'Once'],
+    datasets: [
+        {
+          label: labelNames[0],
+          data: showData1,
+          backgroundColor: '#003F63',
+        },
+        {
+          label:  labelNames[1],
+          data: showData2,
+          backgroundColor: '#008892',
+        },
+        {
+          label:  labelNames[2],
+          data: showData3,
+          backgroundColor: '#FF6766',
+        },
+    ]
+  };
+  
+  config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de grupos de secundaria y media en alternancia en la institución educativa por sede'
+          }
+        }
+      },
+    };
+}
+
+
+ 
 
 alternationdisplayGraph7 = new Chart(alternationgraph7, config);
 alternationsampleGraph7.innerHTML = "Total Muestra: " + sample;
@@ -2288,74 +2797,164 @@ alternationdisplayGraph7.canvas.parentNode.style.width = '700px';
 
 }
 
+
+
 function institutionGraph9(info, institution){
 
-  //Falta traer la info
+  let data;
+  let config;
+  let filteredData=[];
+  let labelNames=[];
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0];
+  let showData2 = [0, 0, 0];
+  let showData3 = [0, 0, 0];
+  let showData4 = [0, 0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
+      if (element[1] == institution) {
+          filteredData.push(element);
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
-}, 0);
 
-
-const data = {
-labels: ['Preescolar', 'Primaria', 'Secundaria y Media'],
-datasets: [
-  {
-    label: 'Agrado',
-    data: [23, 67, 56],
-    backgroundColor: '#003F63',
-  },
-  {
-    label: 'Baraya',
-    data: [7, 44, 12],
-    backgroundColor: '#008892',
-  },
-  {
-    label: 'Isnos',
-    data: [1, 60, 28],
-    backgroundColor: '#FF6766',
-  },
-]
-};
-
-const config = {
-  type: 'bar',
-  data: data,
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Número de docentes en alternancia por nivel escolar por institución'
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][3]);
+      } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][3]);
       }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[3] == labelNames[0]) {    
+        showData1[0] += parseInt(element[32]);
+        showData1[1] += parseInt(element[33]);
+        showData1[2] += parseInt(element[34]);
+      }
+      if (element[3] == labelNames[1]) {    
+        showData2[0] += parseInt(element[32]);
+        showData2[1] += parseInt(element[33]);
+        showData2[2] += parseInt(element[34]);
+      }
+
+      if (element[3] == labelNames[2]) {    
+        showData3[0] += parseInt(element[32]);
+        showData3[1] += parseInt(element[33]);
+        showData3[2] += parseInt(element[34]);
+      }
+
+      if (labelNames.length==4 && element[3] == labelNames[3]) {    
+        showData4[0] += parseInt(element[32]);
+        showData4[1] += parseInt(element[33]);
+        showData4[2] += parseInt(element[34]);
     }
-  },
-};
+  }
+
+  
+  let sample = showData1.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData2.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  sample += showData3.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+if (labelNames.length==4){
+    sample += showData4.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  data = {
+    labels: ['Preescolar', 'Primaria', 'Secundaria y Media'],
+    datasets: [
+      {
+            label: labelNames[0],
+            data: showData1,
+            backgroundColor: '#003F63',
+          },
+          {
+            label:  labelNames[1],
+            data: showData2,
+            backgroundColor: '#008892',
+          },
+          {
+            label:  labelNames[2],
+            data: showData3,
+            backgroundColor: '#FF6766',
+          },
+          {
+            label:  labelNames[3],
+            data: showData4,
+            backgroundColor: '#FDC967',
+          },
+    ]
+    };
+    
+    config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de docentes en alternancia por nivel escolar en la institución educativa por sede'
+          }
+        }
+      },
+    };
+
+}else{
+
+  data = {
+    labels: ['Preescolar', 'Primaria', 'Secundaria y Media'],
+    datasets: [
+      {
+            label: labelNames[0],
+            data: showData1,
+            backgroundColor: '#003F63',
+          },
+          {
+            label:  labelNames[1],
+            data: showData2,
+            backgroundColor: '#008892',
+          },
+          {
+            label:  labelNames[2],
+            data: showData3,
+            backgroundColor: '#FF6766',
+          },
+    ]
+    };
+    
+    config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Número de docentes en alternancia por nivel escolar en la institución educativa por sede'
+          }
+        }
+      },
+    };
+}
+
 
 alternationdisplayGraph9 = new Chart(alternationgraph9, config);
 alternationsampleGraph9.innerHTML = "Total Muestra: " + sample;
@@ -2383,12 +2982,8 @@ function createCampusGraphs(campus) {
       let data = Papa.parse(rawData, configData);
       campusGraph1(data, campus);
       campusGraph2(data, campus);
-      campusGraph3(data, campus);
-      campusGraph4(data, campus);
       campusGraph5(data, campus);
       campusGraph6(data, campus);
-      campusGraph7(data, campus);
-      campusGraph8(data, campus);
       campusGraph9(data, campus);
   });
 }
@@ -2397,25 +2992,14 @@ function campusGraph1(info, campus) {
   /**
    * Toman los datos
    */
-  let showData = [0, 0, 0];
+  let showData = [0];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
+      if (element[3] == campus) {
 
           showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
       }
   }
 
@@ -2427,7 +3011,7 @@ function campusGraph1(info, campus) {
 
 // Se crea el grrafico
 const data = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Preescolar'],
   datasets: [
     {
       label: 'Preescolar',
@@ -2445,6 +3029,7 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display:false,
         },
         title: {
           display: true,
@@ -2462,32 +3047,24 @@ const config = {
 }
 
 function campusGraph2(info, campus){
-
-  //Falta traer la info
-
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0, 0, 0];
+  
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
+      if (element[3] == campus) {
 
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
+          showData1[0] += parseInt(element[21]);
+          showData1[1] += parseInt(element[22]);
+          showData1[2] += parseInt(element[23]);
+          showData1[3] += parseInt(element[24]);
+          showData1[4] += parseInt(element[25]);
 
       }
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
 }, 0);
 
@@ -2496,19 +3073,10 @@ const data = {
   datasets: [
     {
       label: 'Agrado',
-      data: [145, 108, 79, 79, 78],
+      data: showData1,
       backgroundColor: '#003F63',
     },
-    {
-      label: 'Baraya',
-      data: [57, 40, 40 ,134, 118],
-      backgroundColor: '#008892',
-    },
-    {
-      label: 'Isnos',
-      data: [97, 117, 110, 32, 41],
-      backgroundColor: '#FF6766',
-    },
+    
   ]
 };
 
@@ -2520,6 +3088,7 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,
@@ -2529,7 +3098,7 @@ const config = {
     },
   };
 
-let alternationdisplayGraph2 = new Chart(alternationgraph2, config);
+alternationdisplayGraph2 = new Chart(alternationgraph2, config);
 alternationsampleGraph2.innerHTML = "Total Muestra: " + sample;
 alternationdisplayGraph2.canvas.parentNode.style.height = '300px';
 alternationdisplayGraph2.canvas.parentNode.style.width = '700px';
@@ -2538,27 +3107,17 @@ alternationdisplayGraph2.canvas.parentNode.style.width = '700px';
 
 function campusGraph5(info, campus){
   //Falta traer la info
-
   let showData = [0, 0, 0];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
+      if (element[3] == campus) {
 
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
+          showData[0] += parseInt(element[35]);
 
       }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
-      }
+    
   }
 
   let sample = showData.reduce(function (a, b) {
@@ -2566,11 +3125,11 @@ function campusGraph5(info, campus){
 }, 0);
 
 const data = {
-  labels: ['Agrado', 'Baraya', 'Isnos'],
+  labels: ['Preescolar'],
   datasets: [
     {
       label: 'Preescolar',
-      data: [8, 7, 1],
+      data: showData,
       backgroundColor: ['#003F63', '#008892', '#FF6766'],
     },
   ]
@@ -2584,6 +3143,7 @@ const config = {
       plugins: {
         legend: {
           position: 'top',
+          display: false,
         },
         title: {
           display: true,
@@ -2603,50 +3163,39 @@ function campusGraph6(info, campus) {
 
   //Falta traer la info
 
-  let showData = [0, 0, 0];
+ //Falta traer la info
+ let showData1 = [0, 0, 0, 0, 0];
 
-  for (let index = 0; index < info.data.length; index++) {
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
+ for (let index = 0; index < info.data.length; index++) {
 
-          showData[0] += parseInt(element[20]);
+     const element = info.data[index];
+     if (element[3] == campus) {
 
-      }
-      if (element[0] == "BARAYA") {
+         showData1[0] += parseInt(element[36]);
+         showData1[1] += parseInt(element[37]);
+         showData1[2] += parseInt(element[38]);
+         showData1[3] += parseInt(element[39]);
+         showData1[4] += parseInt(element[40]);
 
-          showData[1] += parseInt(element[20]);
+     }
+  
+ }
 
-      }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
-      }
-  }
-
-  let sample = showData.reduce(function (a, b) {
-    return parseInt(a) + parseInt(b);
+ let sample = showData1.reduce(function (a, b) {
+   return parseInt(a) + parseInt(b);
 }, 0);
+
 
   const data = {
     labels: ['Primero', 'Segundo', 'Tercero', 'Cuarto', 'Quinto'],
     datasets: [
       {
         label: 'Agrado',
-        data: [145, 108, 79, 79, 78],
+        data: showData1,
         backgroundColor: '#003F63',
       },
-      {
-        label: 'Baraya',
-        data: [57, 40, 40, 134, 118],
-        backgroundColor: '#008892',
-      },
-      {
-        label: 'Isnos',
-        data: [97, 117, 110, 32, 41],
-        backgroundColor: '#FF6766',
-      },
+     
     ]
   };
   
@@ -2658,6 +3207,7 @@ function campusGraph6(info, campus) {
         plugins: {
           legend: {
             position: 'top',
+            display: false,
           },
           title: {
             display: true,
@@ -2677,29 +3227,23 @@ function campusGraph9(info, campus){
 
   //Falta traer la info
 
-  let showData = [0, 0, 0];
+  let showData1 = [0, 0, 0];
+  
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
+      if (element[3] == campus) {
 
-          showData[0] += parseInt(element[20]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData[1] += parseInt(element[20]);
+          showData1[0] += parseInt(element[32]);
+          showData1[1] += parseInt(element[33]);
+          showData1[2] += parseInt(element[34]);
 
       }
-      if (element[0] == "ISNOS") {
-
-          showData[2] += parseInt(element[20]);
-
-      }
+     
   }
 
-  let sample = showData.reduce(function (a, b) {
+  let sample = showData1.reduce(function (a, b) {
     return parseInt(a) + parseInt(b);
 }, 0);
 
@@ -2709,18 +3253,8 @@ labels: ['Preescolar', 'Primaria', 'Secundaria y Media'],
 datasets: [
   {
     label: 'Agrado',
-    data: [23, 67, 56],
-    backgroundColor: '#003F63',
-  },
-  {
-    label: 'Baraya',
-    data: [7, 44, 12],
-    backgroundColor: '#008892',
-  },
-  {
-    label: 'Isnos',
-    data: [1, 60, 28],
-    backgroundColor: '#FF6766',
+    data: showData1,
+    backgroundColor: colors,
   },
 ]
 };
@@ -2733,6 +3267,7 @@ const config = {
     plugins: {
       legend: {
         position: 'top',
+        display: false,
       },
       title: {
         display: true,
@@ -2753,6 +3288,10 @@ function hideGraphs(){
   document.getElementById("container__graph3").style.display= "none";
   document.getElementById("container__graph4").style.display= "none";
   document.getElementById("container__graph7").style.display= "none";
+  document.getElementById("container__graph8").style.display= "none";
+}
+
+function hideGraphs1(){
   document.getElementById("container__graph8").style.display= "none";
   }
   
