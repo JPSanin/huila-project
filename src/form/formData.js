@@ -92,7 +92,6 @@ function formulario2() {
         {pregunta:'9',respuesta:Frp[8]},
         {pregunta:'10',respuesta:Frp[9]},
         {pregunta:'11',respuesta:Frp[10]},
-        {pregunta:'12',respuesta:Frp[11]},
 
       ]
       //Encabezado de la columna
@@ -124,13 +123,14 @@ function formulario2() {
             alert("Respuestas enviadas con éxito");
             }
 
-        if(modelo !="Presencialidad Completa")
+        if(modelo !="Presencialidad Completa"){
             //animacion esconder y mostrar
              console.log(Frp);
              $(".dataForm2").hide();
              $("#nextBtn").hide();
              $("#label2").hide();
              $(".dataForm3").show();}
+        }
         }
     
         else
@@ -440,7 +440,6 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
         {pregunta:'80',respuesta:Frp[79]},
         {pregunta:'81',respuesta:Frp[80]},
         {pregunta:'82',respuesta:Frp[81]},
-        {pregunta:'83',respuesta:Frp[82]},
 
       ]
       //Encabezado de la columna
