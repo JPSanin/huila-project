@@ -423,12 +423,12 @@ function initialStateGraph6(info) {
         datasets: [
           {
             label: 'Estudiantes que no han recibido sim-card',
-            data: showData1,
+            data: showData2,
             backgroundColor:'#033F62',
           },
           {
             label: 'Estudiantes que han recibido sim-card',
-            data: showData2,
+            data: showData1,
             backgroundColor: '#60B5BB',
           },
         ]
@@ -457,7 +457,7 @@ function initialStateGraph6(info) {
         };
     
         displayGraph6 = new Chart(graph6, configGraph6);
-        sampleGraph6.innerHTML="Total Muestra; "+ sample6; 
+        sampleGraph6.innerHTML="Total Muestra: "+ sample6; 
         displayGraph6.canvas.parentNode.style.height = '300px';
         displayGraph6.canvas.parentNode.style.width = '700px';
 }
@@ -569,12 +569,12 @@ function initialStateGraph8(info) {
         labels: ["Agrado", "Baraya" , "Isnos"],
         datasets: [
           {
-            label: 'No requieren pago',
+            label: 'Requieren pago',
             data: showData1,
             backgroundColor:'#033F62',
           },
           {
-            label: 'Requieren pago',
+            label: 'No Requieren pago',
             data: showData2,
             backgroundColor: '#60B5BB',
           },
@@ -643,7 +643,7 @@ function municipalityGraph1(info, municipality){
 
   for (let index = 2; index < 36; index++) {
       const element = info.data[index];
-
+      if(element[0]==municipality){
       showData[0] += parseInt(element[48]);
       showData[1] += parseInt(element[49]);
       showData[2] += parseInt(element[50]);
@@ -651,6 +651,9 @@ function municipalityGraph1(info, municipality){
       showData[4] += parseInt(element[52]);
       showData[5] += parseInt(element[53]);
       showData[6] += parseInt(element[54]);
+      }
+
+      
 
   }
   let sample = showData.reduce(function (a, b) {
@@ -700,25 +703,33 @@ function municipalityGraph1(info, municipality){
 }
 
 function municipalityGraph2(info, municipality){
-  let showData = [0, 0, 0];
+  let filteredData = [];
+    let labelNames = []
+    let showData = [0];
 
     for (let index = 0; index < info.data.length; index++) {
-
         const element = info.data[index];
-        if (element[0] == "AGRADO") {
-
-            showData[0] += parseInt(element[47]);
-
+        if (element[0] == municipality) {
+            filteredData.push(element);
         }
-        if (element[0] == "BARAYA") {
+    }
 
-            showData[1] += parseInt(element[47]);
 
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][1]);
+        } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][1]);
         }
-        if (element[0] == "ISNOS") {
+    }
 
-            showData[2] += parseInt(element[47]);
-
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[1] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+            showData.push(0);
+        }
+        if (element[1] == labelNames[showData.length - 1]) {
+            showData[showData.length - 1] += parseInt(element[47]);
         }
     }
 
@@ -727,7 +738,7 @@ function municipalityGraph2(info, municipality){
     }, 0);
 
     const dataGraph2 = {
-        labels: ["Agrado", "Baraya", "Isnos"],
+        labels: labelNames,
         datasets: [{
             label: 'Dataset 1',
             data: showData,
@@ -766,10 +777,13 @@ function municipalityGraph3(info, municipality){
     for (let index = 2; index < 36; index++) {
 
         const element = info.data[index];
+        if(element[0]==municipality){
         showData[0] += parseInt(element[57]);
         showData[1] += parseInt(element[58]);
         showData[2] += parseInt(element[59]);
         showData[3] += parseInt(element[60]);
+        }
+        
 
     }
 
@@ -815,31 +829,40 @@ function municipalityGraph3(info, municipality){
 }
 
 function municipalityGraph4(info, municipality){
-  let showData1 = [0, 0, 0];
-  let showData2 = [0, 0, 0];
+
+  let filteredData = [];
+  let labelNames = []
+  let showData1 = [0];
+  let showData2 = [0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-
-          showData1[0] += parseInt(element[56]);
-          showData2[0] += parseInt(element[55]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData1[1] += parseInt(element[56]);
-          showData2[1] += parseInt(element[55]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData1[2] += parseInt(element[56]);
-          showData2[2] += parseInt(element[55]);
-
+      if (element[0] == municipality) {
+          filteredData.push(element);
       }
   }
+
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][1]);
+      } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][1]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[1] != labelNames[showData1.length - 1] && showData1.length < labelNames.length) {
+        showData1.push(0);
+        showData2.push(0);
+      }
+      if (element[1] == labelNames[showData1.length - 1]) {
+          showData1[showData1.length - 1] += parseInt(element[56]);
+          showData2[showData2.length - 1] += parseInt(element[55]);
+      }
+  }
+
 
   for (let i = 0; i < showData2.length; i++) {
       showData2[i]= showData2[i]-showData1[i];
@@ -853,7 +876,7 @@ function municipalityGraph4(info, municipality){
 
 
   const dataGraph4 = {
-      labels: ["Agrado", "Baraya" , "Isnos"],
+      labels:labelNames,
       datasets: [
         {
           label: 'Prestados',
@@ -903,10 +926,13 @@ function municipalityGraph5(info, municipality) {
   for (let index = 2; index < 36; index++) {
 
       const element = info.data[index];
-      showData[0] += parseInt(element[62]);
+      if(element[0]==municipality){
+        showData[0] += parseInt(element[62]);
       if(element[7]=='Alternancia' || element[7]=='Remoto'){
       showData[1] += parseInt(element[12]);
       }
+      }
+      
       
 
   }
@@ -954,38 +980,45 @@ function municipalityGraph5(info, municipality) {
 }
 
 function municipalityGraph6(info, municipality) {
-  let showData1 = [0, 0, 0];
-  let showData2 = [0, 0, 0];
+
+  let filteredData = [];
+  let labelNames = []
+  let showData1 = [0];
+  let showData2 = [0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-          showData1[0] += parseInt(element[62]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[0]  += parseInt(element[12]);
-          }
-      }
-      if (element[0] == "BARAYA") {
-          showData1[1] += parseInt(element[62]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[1]  += parseInt(element[12]);
-          }
-
-      }
-      if (element[0] == "ISNOS") {
-          showData1[2] += parseInt(element[62]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[2]  += parseInt(element[12]);
-          }
-
+      if (element[0] == municipality) {
+          filteredData.push(element);
       }
   }
- 
+
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][1]);
+      } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][1]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[1] != labelNames[showData1.length - 1] && showData1.length < labelNames.length) {
+        showData1.push(0);
+        showData2.push(0);
+      }
+      if (element[1] == labelNames[showData1.length - 1]) {
+        showData1[showData1.length - 1] += parseInt(element[62]);
+        if(element[7]=='Alternancia' || element[7]=='Remoto'){
+            showData2[showData1.length - 1]  += parseInt(element[12]);
+        }
+      }
+  }
+
   for (let i = 0; i < showData2.length; i++) {
       showData2[i]= showData2[i]-showData1[i];
   }
-
   let sample6 = showData1.reduce(function (a, b) {
       return parseInt(a) + parseInt(b);
   }, 0);
@@ -994,17 +1027,19 @@ function municipalityGraph6(info, municipality) {
   }, 0);
 
 
+
+
   const dataGraph6 = {
-      labels: ["Agrado", "Baraya" , "Isnos"],
+      labels: labelNames,
       datasets: [
         {
           label: 'Estudiantes que no han recibido sim-card',
-          data: showData1,
+          data: showData2,
           backgroundColor:'#033F62',
         },
         {
           label: 'Estudiantes que han recibido sim-card',
-          data: showData2,
+          data: showData1,
           backgroundColor: '#60B5BB',
         },
       ]
@@ -1033,7 +1068,7 @@ function municipalityGraph6(info, municipality) {
       };
   
       displayGraph6 = new Chart(graph6, configGraph6);
-      sampleGraph6.innerHTML="Total Muestra; "+ sample6; 
+      sampleGraph6.innerHTML="Total Muestra: "+ sample6; 
       displayGraph6.canvas.parentNode.style.height = '300px';
       displayGraph6.canvas.parentNode.style.width = '700px';
 }
@@ -1045,10 +1080,14 @@ function municipalityGraph7(info, municipality) {
   for (let index = 2; index < 36; index++) {
 
       const element = info.data[index];
-      showData[0] += parseInt(element[61]);
-      if(element[7]=='Alternancia' || element[7]=='Remoto'){
-      showData[1] += parseInt(element[12]);
+
+      if (element[0] == municipality) {
+        showData[0] += parseInt(element[61]);
+        if(element[7]=='Alternancia' || element[7]=='Remoto'){
+        showData[1] += parseInt(element[12]);
+        }
       }
+     
       
 
   }
@@ -1097,34 +1136,41 @@ function municipalityGraph7(info, municipality) {
 }
 
 function municipalityGraph8(info, municipality) {
-  let showData1 = [0, 0, 0];
-  let showData2 = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData1 = [0];
+  let showData2 = [0];
 
   for (let index = 0; index < info.data.length; index++) {
-
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
-          showData1[0] += parseInt(element[61]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[0]  += parseInt(element[12]);
-          }
-      }
-      if (element[0] == "BARAYA") {
-          showData1[1] += parseInt(element[61]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[1]  += parseInt(element[12]);
-          }
-
-      }
-      if (element[0] == "ISNOS") {
-          showData1[2] += parseInt(element[61]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[2]  += parseInt(element[12]);
-          }
-
+      if (element[0] == municipality) {
+          filteredData.push(element);
       }
   }
- 
+
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][1]);
+      } else if (filteredData[index][1] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][1]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[1] != labelNames[showData1.length - 1] && showData1.length < labelNames.length) {
+        showData1.push(0);
+        showData2.push(0);
+      }
+      if (element[1] == labelNames[showData1.length - 1]) {
+        showData1[showData1.length - 1] += parseInt(element[61]);
+        if(element[7]=='Alternancia' || element[7]=='Remoto'){
+            showData2[showData1.length - 1]  += parseInt(element[12]);
+        }
+      }
+  }
+
   for (let i = 0; i < showData2.length; i++) {
       showData2[i]= showData2[i]-showData1[i];
   }
@@ -1138,15 +1184,15 @@ function municipalityGraph8(info, municipality) {
 
 
   const dataGraph8 = {
-      labels: ["Agrado", "Baraya" , "Isnos"],
+      labels: labelNames,
       datasets: [
         {
-          label: 'No requieren pago',
+          label: 'Requieren pago',
           data: showData1,
           backgroundColor:'#033F62',
         },
         {
-          label: 'Requieren pago',
+          label: 'No requieren pago',
           data: showData2,
           backgroundColor: '#60B5BB',
         },
@@ -1215,7 +1261,7 @@ function institutionGraph1(info, institution){
 
   for (let index = 2; index < 36; index++) {
       const element = info.data[index];
-
+    if(element[1]==institution){
       showData[0] += parseInt(element[48]);
       showData[1] += parseInt(element[49]);
       showData[2] += parseInt(element[50]);
@@ -1223,6 +1269,8 @@ function institutionGraph1(info, institution){
       showData[4] += parseInt(element[52]);
       showData[5] += parseInt(element[53]);
       showData[6] += parseInt(element[54]);
+    }
+      
 
   }
   let sample = showData.reduce(function (a, b) {
@@ -1272,34 +1320,41 @@ function institutionGraph1(info, institution){
 }
 
 function institutionGraph2(info, institution){
-  let showData = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
 
     for (let index = 0; index < info.data.length; index++) {
-
         const element = info.data[index];
-        if (element[0] == "AGRADO") {
-
-            showData[0] += parseInt(element[47]);
-
-        }
-        if (element[0] == "BARAYA") {
-
-            showData[1] += parseInt(element[47]);
-
-        }
-        if (element[0] == "ISNOS") {
-
-            showData[2] += parseInt(element[47]);
-
+        if (element[1] == institution) {
+            filteredData.push(element);
         }
     }
 
-    let sample2 = showData.reduce(function (a, b) {
-        return parseInt(a) + parseInt(b);
-    }, 0);
+    for (let index = 0; index < filteredData.length; index++) {
+        if (index == 0) {
+            labelNames.push(filteredData[index][3]);
+        } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+            labelNames.push(filteredData[index][3]);
+        }
+    }
+
+    for (let index = 0; index < filteredData.length; index++) {
+        const element = filteredData[index];
+        if (element[3] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+            showData.push(0);
+        }
+        if (element[3] == labelNames[showData.length - 1]) {
+            showData[showData.length - 1] += parseInt(element[47]);
+        }
+    }
+
+  let sample2 = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
 
     const dataGraph2 = {
-        labels: ["Agrado", "Baraya", "Isnos"],
+        labels: labelNames,
         datasets: [{
             label: 'Dataset 1',
             data: showData,
@@ -1336,12 +1391,14 @@ function institutionGraph3(info, institution){
   let showData = [0, 0, 0, 0];
 
     for (let index = 2; index < 36; index++) {
-
-        const element = info.data[index];
+      const element = info.data[index];
+      if(element[1]==institution){
         showData[0] += parseInt(element[57]);
         showData[1] += parseInt(element[58]);
         showData[2] += parseInt(element[59]);
         showData[3] += parseInt(element[60]);
+      }
+       
 
     }
 
@@ -1387,31 +1444,39 @@ function institutionGraph3(info, institution){
 }
 
 function institutionGraph4(info, institution){
-  let showData1 = [0, 0, 0];
-  let showData2 = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData1 = [0];
+  let showData2 = [0];
+
 
   for (let index = 0; index < info.data.length; index++) {
+    const element = info.data[index];
+    if (element[1] == institution) {
+        filteredData.push(element);
+    }
+}
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
 
-          showData1[0] += parseInt(element[56]);
-          showData2[0] += parseInt(element[55]);
+for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
 
-      }
-      if (element[0] == "BARAYA") {
-
-          showData1[1] += parseInt(element[56]);
-          showData2[1] += parseInt(element[55]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData1[2] += parseInt(element[56]);
-          showData2[2] += parseInt(element[55]);
-
-      }
-  }
+for (let index = 0; index < filteredData.length; index++) {
+    const element = filteredData[index];
+    if (element[3] != labelNames[showData1.length - 1] && showData1.length < labelNames.length) {
+        showData1.push(0);
+        showData2.push(0);
+    }
+    if (element[3] == labelNames[showData1.length - 1]) {
+      showData1[showData1.length - 1] += parseInt(element[56]);
+      showData2[showData2.length - 1] += parseInt(element[55]);
+    }
+}
 
   for (let i = 0; i < showData2.length; i++) {
       showData2[i]= showData2[i]-showData1[i];
@@ -1423,9 +1488,8 @@ function institutionGraph4(info, institution){
       return parseInt(a) + parseInt(b);
   }, 0);
 
-
   const dataGraph4 = {
-      labels: ["Agrado", "Baraya" , "Isnos"],
+      labels: labelNames,
       datasets: [
         {
           label: 'Prestados',
@@ -1475,10 +1539,12 @@ function institutionGraph5(info, institution) {
   for (let index = 2; index < 36; index++) {
 
       const element = info.data[index];
+      if(element[1]==institution){
       showData[0] += parseInt(element[62]);
       if(element[7]=='Alternancia' || element[7]=='Remoto'){
       showData[1] += parseInt(element[12]);
       }
+    }
       
 
   }
@@ -1526,34 +1592,42 @@ function institutionGraph5(info, institution) {
 }
 
 function institutionGraph6(info, institution) {
-  let showData1 = [0, 0, 0];
-  let showData2 = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData1 = [0];
+  let showData2 = [0];
+
 
   for (let index = 0; index < info.data.length; index++) {
+    const element = info.data[index];
+    if (element[1] == institution) {
+        filteredData.push(element);
+    }
+}
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
-          showData1[0] += parseInt(element[62]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[0]  += parseInt(element[12]);
-          }
-      }
-      if (element[0] == "BARAYA") {
-          showData1[1] += parseInt(element[62]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[1]  += parseInt(element[12]);
-          }
 
-      }
-      if (element[0] == "ISNOS") {
-          showData1[2] += parseInt(element[62]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[2]  += parseInt(element[12]);
-          }
+for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
 
+for (let index = 0; index < filteredData.length; index++) {
+    const element = filteredData[index];
+    if (element[3] != labelNames[showData1.length - 1] && showData1.length < labelNames.length) {
+        showData1.push(0);
+        showData2.push(0);
+    }
+    if (element[3] == labelNames[showData1.length - 1]) {
+      showData1[showData1.length - 1] += parseInt(element[62]);
+      if(element[7]=='Alternancia' || element[7]=='Remoto'){
+          showData2[showData2.length - 1]  += parseInt(element[12]);
       }
-  }
- 
+    }
+}
+
   for (let i = 0; i < showData2.length; i++) {
       showData2[i]= showData2[i]-showData1[i];
   }
@@ -1567,16 +1641,16 @@ function institutionGraph6(info, institution) {
 
 
   const dataGraph6 = {
-      labels: ["Agrado", "Baraya" , "Isnos"],
+      labels: labelNames,
       datasets: [
         {
           label: 'Estudiantes que no han recibido sim-card',
-          data: showData1,
+          data: showData2,
           backgroundColor:'#033F62',
         },
         {
           label: 'Estudiantes que han recibido sim-card',
-          data: showData2,
+          data: showData1,
           backgroundColor: '#60B5BB',
         },
       ]
@@ -1605,7 +1679,7 @@ function institutionGraph6(info, institution) {
       };
   
       displayGraph6 = new Chart(graph6, configGraph6);
-      sampleGraph6.innerHTML="Total Muestra; "+ sample6; 
+      sampleGraph6.innerHTML="Total Muestra: "+ sample6; 
       displayGraph6.canvas.parentNode.style.height = '300px';
       displayGraph6.canvas.parentNode.style.width = '700px';
 }
@@ -1617,10 +1691,12 @@ function institutionGraph7(info, institution) {
   for (let index = 2; index < 36; index++) {
 
       const element = info.data[index];
+      if(element[1]==institution){
       showData[0] += parseInt(element[61]);
       if(element[7]=='Alternancia' || element[7]=='Remoto'){
       showData[1] += parseInt(element[12]);
       }
+    }
       
 
   }
@@ -1669,34 +1745,42 @@ function institutionGraph7(info, institution) {
 }
 
 function institutionGraph8(info, institution) {
-  let showData1 = [0, 0, 0];
-  let showData2 = [0, 0, 0];
+  let filteredData = [];
+  let labelNames = []
+  let showData1 = [0];
+  let showData2 = [0];
+
 
   for (let index = 0; index < info.data.length; index++) {
+    const element = info.data[index];
+    if (element[1] == institution) {
+        filteredData.push(element);
+    }
+}
 
-      const element = info.data[index];
-      if (element[0] == "AGRADO") {
-          showData1[0] += parseInt(element[61]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[0]  += parseInt(element[12]);
-          }
-      }
-      if (element[0] == "BARAYA") {
-          showData1[1] += parseInt(element[61]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[1]  += parseInt(element[12]);
-          }
 
-      }
-      if (element[0] == "ISNOS") {
-          showData1[2] += parseInt(element[61]);
-          if(element[7]=='Alternancia' || element[7]=='Remoto'){
-              showData2[2]  += parseInt(element[12]);
-          }
+for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
 
+for (let index = 0; index < filteredData.length; index++) {
+    const element = filteredData[index];
+    if (element[3] != labelNames[showData1.length - 1] && showData1.length < labelNames.length) {
+        showData1.push(0);
+        showData2.push(0);
+    }
+    if (element[3] == labelNames[showData1.length - 1]) {
+      showData1[showData1.length - 1] += parseInt(element[61]);
+      if(element[7]=='Alternancia' || element[7]=='Remoto'){
+          showData2[showData2.length - 1]  += parseInt(element[12]);
       }
-  }
- 
+    }
+}
+
   for (let i = 0; i < showData2.length; i++) {
       showData2[i]= showData2[i]-showData1[i];
   }
@@ -1710,15 +1794,15 @@ function institutionGraph8(info, institution) {
 
 
   const dataGraph8 = {
-      labels: ["Agrado", "Baraya" , "Isnos"],
+      labels: labelNames,
       datasets: [
         {
-          label: 'No requieren pago',
+          label: 'Requieren pago',
           data: showData1,
           backgroundColor:'#033F62',
         },
         {
-          label: 'Requieren pago',
+          label: 'No Requieren pago',
           data: showData2,
           backgroundColor: '#60B5BB',
         },
@@ -1785,7 +1869,7 @@ function campusGraph1(info, campus){
 
   for (let index = 2; index < 36; index++) {
       const element = info.data[index];
-
+    if(element[3]== campus){
       showData[0] += parseInt(element[48]);
       showData[1] += parseInt(element[49]);
       showData[2] += parseInt(element[50]);
@@ -1793,6 +1877,8 @@ function campusGraph1(info, campus){
       showData[4] += parseInt(element[52]);
       showData[5] += parseInt(element[53]);
       showData[6] += parseInt(element[54]);
+    }
+      
 
   }
   let sample = showData.reduce(function (a, b) {
@@ -1845,12 +1931,14 @@ function campusGraph2(info, campus){
   let showData = [0, 0, 0, 0];
 
     for (let index = 2; index < 36; index++) {
-
-        const element = info.data[index];
+      const element = info.data[index];
+      if(element[3]==campus){
+        
         showData[0] += parseInt(element[57]);
         showData[1] += parseInt(element[58]);
         showData[2] += parseInt(element[59]);
         showData[3] += parseInt(element[60]);
+      }
 
     }
 
@@ -1861,7 +1949,6 @@ function campusGraph2(info, campus){
     const dataGraph3 = {
         labels: ["Preescolar", "Primaria", "Secundaria", "Media"],
         datasets: [
-
             {
                 label: 'Estudiantes',
                 data: showData,
@@ -1896,28 +1983,16 @@ function campusGraph2(info, campus){
 } 
 
 function campusGraph3(info, campus){
-  let showData1 = [0, 0, 0];
-  let showData2 = [0, 0, 0];
+  let showData1 = [0];
+  let showData2 = [0];
 
   for (let index = 0; index < info.data.length; index++) {
 
       const element = info.data[index];
-      if (element[0] == "AGRADO") {
+      if (element[3] == campus) {
 
           showData1[0] += parseInt(element[56]);
           showData2[0] += parseInt(element[55]);
-
-      }
-      if (element[0] == "BARAYA") {
-
-          showData1[1] += parseInt(element[56]);
-          showData2[1] += parseInt(element[55]);
-
-      }
-      if (element[0] == "ISNOS") {
-
-          showData1[2] += parseInt(element[56]);
-          showData2[2] += parseInt(element[55]);
 
       }
   }
@@ -1925,6 +2000,7 @@ function campusGraph3(info, campus){
   for (let i = 0; i < showData2.length; i++) {
       showData2[i]= showData2[i]-showData1[i];
   }
+
   let sample4 = showData1.reduce(function (a, b) {
       return parseInt(a) + parseInt(b);
   }, 0);
@@ -1934,7 +2010,7 @@ function campusGraph3(info, campus){
 
 
   const dataGraph4 = {
-      labels: ["Agrado", "Baraya" , "Isnos"],
+      labels: ['Cantidad'],
       datasets: [
         {
           label: 'Prestados',
@@ -1984,10 +2060,12 @@ function campusGraph4(info, campus) {
   for (let index = 2; index < 36; index++) {
 
       const element = info.data[index];
+      if(element[3]==campus){
       showData[0] += parseInt(element[62]);
       if(element[7]=='Alternancia' || element[7]=='Remoto'){
       showData[1] += parseInt(element[12]);
       }
+    }
       
 
   }
@@ -2041,10 +2119,12 @@ function campusGraph5(info, campus) {
   for (let index = 2; index < 36; index++) {
 
       const element = info.data[index];
+      if(element[3]==campus){
       showData[0] += parseInt(element[61]);
       if(element[7]=='Alternancia' || element[7]=='Remoto'){
       showData[1] += parseInt(element[12]);
       }
+    }
       
 
   }

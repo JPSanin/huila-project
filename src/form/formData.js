@@ -188,7 +188,7 @@ function formulario3() {
             var g11 = parseInt($('#num33').val());
 
            if((p1+p2+p3+p4+p5+p6+p7+p8+p9+p10+p11+p12)!=cantidadpr)
-            {alert("la suma de todos los estudiantes no es igual a la catidad total");}
+            {alert("la suma de todos los estudiantes no es igual a la cantidad total");}
             if(d1+d2+d3!=cantidadDocentes)
             {alert("la suma de todos los docentes de los grupos no es igual al total de docentes");}
             if((g1+g2+g3+g4+g5+g6+g7+g8+g9+g10+g11!=cantidadgrupos)){
@@ -266,11 +266,11 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
               } 
 
               if(periT<peripres){
-                alert("la catidad de perifericos prestados no puede superar a la cantidad total");
+                alert("la cantidad de periféricos prestados no puede superar a la cantidad total");
               }
 
               if(pe1+pe2+pe3+pe4!=peripres){
-                alert("la suma de todos los perifericos prestados no es igual al total")
+                alert("la suma de todos los periféricos prestados no es igual al total")
               }
               if(pe1+pe2+pe3+pe4==peripres&&periT>=peripres&&h1+h2+h3+h4+h5+h6+h7==hogT){
 
