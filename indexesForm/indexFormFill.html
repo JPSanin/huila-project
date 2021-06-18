@@ -6,78 +6,549 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/indexFormFill.css">
+   
     <title>Formulario</title>
 </head>
 <body>
-
     <div class="container">
         <img class="img4" src="../images/logo.png" alt="">
-        <img class="img3" src="../images/profile.png" alt="">
-        <img class="img2" src="../images/bell.png" alt="">
-        <img class="img1" src="../images/search.png" alt="">
+        <div id = "rightImages">
+            <img class="img3" src="../images/profile.png" alt="">
+            <img class="img2" src="../images/bell.png" alt="">
+            <img class="img1" src="../images/search.png" alt="">
+        </div>
     </div>
+<!--
+        <div class="all">
+            <div class="navLeft">
+                <div id= "campusData">
+                    <a class="links" id= "campusDataLink" href="./indexCampusData.html"> Datos de la Sede</a>
+                </div>
+                <div class="clasif">
+                    <a class="links" href="./indexCapacity.html"> Aforo</a>
+                </div>
+                <div class="clasif">
+                    <a class="links" href="./indexAlternation.html"> Datos de Alternancia</a>
+                </div>
+                <div class="clasif">
+                    <a class="links" href="./indexResources.html"> Recursos Educativos</a>
+                </div>
+                <div class="clasif">
+                    <a class="links" href=""> Métodos Educativos</a>
+                </div>
+            </div>
 
-    <div id = "dataFormFormat">
-        <h1 id = "formTitle">
-            Encuesta sobre el programa de alternancia en sedes educativas del departamento de Huila
-        </h1>
+            </div>-->
+            
 
-        <form id = "dataForm">
+
+    </div>
+    
+	    <div id = "dataFormFormat">
+	        <h1 id = "formTitle">
+	            Encuesta sobre el programa de alternancia en sedes educativas del departamento de Huila
+	        </h1>
+	     <!-- FORMULARIO UNO -->
+	    <form id = "dataForm1" class="dataForm1">
+			        <div id = "whiteQuestion">
+			            <h3>Modalidad en que se encuentra la sede educativa</h3>
+			            
+
+			            <select id = "dropdownList" class="quest1">
+			                <p><option >Alternancia</option></p>
+			                <p><option >Presencialidad Completa</option></p>
+			                <p><option >Remoto</option></p>
+			            </select>
+			        </div>
+
+			        <div id = "grayQuestion">
+			            <h3>La sede educativa, ¿cuenta con Diagnóstico de Bioseguridad?</h3>
+			           <!-- <p><input type = "radio">Sí</p>
+			            <p><input type = "radio">No</p>-->
+
+			            <select id = "dropdownList" class = "quest2">
+			                <p><option>Si</option></p>
+			                <p><option>No</option></p>
+			            </select>
+			        </div>
+
+			        <div id = "whiteQuestion">
+			            <h3>¿Revisó y ajustó los protocolos de bioseguridad de acuerdo a la resolución 1721 de 2020?</h3>
+			            <!--<p><input type = "radio">Sí</p>
+			            <p><input type = "radio">No</p>-->
+
+			            <select id = "dropdownList" class = "quest3">
+			                <p><option>Si</option></p>
+			                <p><option>No</option></p>
+			            </select>
+			        </div>
+
+			        <div id = "grayQuestion">
+			            <h3>Cantidad de días en la semana de presencialidad (Responder numéricamente)</h3>
+			            <p><input type = "number" class = "numInput" id = "numInput"></p>
+			        </div>
+
+			        <div id = "whiteQuestion">  
+			            <h3>Fecha estimada de inicio</h3>
+			            <p><input type = "date" id = "calendarInput"></p>
+			        </div>
+			       
+			    </div>
+		     
+		    <div style="overflow:auto;">
+		        <div style="float:right;">
+		          
+		          <button type="button" id="nextBtn" onclick="formulario1()">Continuar</button>
+		        </div>
+		      </div>
+      </form>
+      <!--FORMULARIO DOS  -->
+      <form id = "dataForm" class="dataForm2" style="display: none">
+	        <div id = "whiteQuestion">
+	            <h3>Número de estudiantes Matriculados en la sede Educativa (Responder numéricamente)</h3>
+	            <p><input type = "number" id = "num1" class = "numInput"></p>
+	        </div>
+
+	        <div id = "grayQuestion">
+	            <h3>Número de grupos en alternancia o presencialidad completa en la sede (Responder numéricamente)</h3>
+	            <p><input type = "number" id = "num2" class = "numInput"></p>
+	        </div>
+
+	        <div id = "whiteQuestion">
+	            <h3>Número de estudiantes en modelos de presencialidad completa o alternancia (Responder numéricamente)</h3>
+	            <p><input type = "number" id = "num3" class = "numInput"></p>
+	        </div>
+
+	        <div id = "grayQuestion">
+	            <h3>Número de Docentes directivos en modelos de presencialidad completa o alternancia (Responder numéricamente)</h3>
+	            <p><input type = "number" id = "num4" class = "numInput"></p>
+	        </div>
+
+	        <div id = "whiteQuestion">
+	            <h3>Número de Administrativos diferentes al personal de aseo en modelos de presencialidad completa o alternancia (Responder numéricamente)</h3>
+	            <p><input type = "number" id = "num5" class = "numInput"></p>
+	        </div>
+
+	        <div id = "grayQuestion">
+	            <h3>Número de Personal Administrativo de Aseo en modelos de presencialidad completa o alternancia (Responder numéricamente)</h3>
+	            <p><input type = "number" id = "num6" class = "numInput"></p>
+	        </div>
+	        
+	    </div>
+
+	    <div style="overflow:auto;">
+	        <div style="float:right;">
+	            <a href = "#"><button type="button" id="prevBtn">Atrás</button></a>
+	            <button type="button" id="nextBtn2" onclick="formulario2()">Continuar</button>
+	        </div>
+	      </div>
+
+    </form>
+    <!--FORMULARIO TRES  -->
+
+        <form id = "dataForm" class="dataForm3" style="display: none">
+                <div id = "whiteQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado preescolar (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num7"></p>
+                </div>
+                
+                <div id = "grayQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado primero (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num8"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado segundo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num9"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado tercero (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num10"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado cuarto (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num11"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado quinto (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num12"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado sexto (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num13"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado septimo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num14"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado octavo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num15"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado noveno (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num16"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado décimo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num17"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de estudiantes en alternancia en el grado once (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num18"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de docentes en alternancia para preescolar (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num19"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de docentes en alternancia para primaria (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num20"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de docentes en alternancia para secundaria y media (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num21"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de grupos en alternancia para el grado preescolar (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num22"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de grupos en alternancia para el grado primero (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num23"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de grupos en alternancia para el grado segundo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num24"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de grupos en alternancia para el grado tercero (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num25"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de grupos en alternancia para el grado cuarto (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num26"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de grupos en alternancia para el grado quinto (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num27"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de grupos en alternancia para el grado sexto (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num28"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de grupos en alternancia para el grado septimo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num29"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de grupos en alternancia para el grado octavo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num30"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de grupos en alternancia para el grado noveno (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num31"></p>
+                </div>
+
+                <div id = "grayQuestion">
+                    <h3>Número de grupos en alternancia para el grado décimo (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num32"></p>
+                </div>
+
+                <div id = "whiteQuestion">
+                    <h3>Número de grupos en alternancia para el grado once (Responder numéricamente)</h3>
+                    <p><input type = "number" class = "numInput" id = "num33"></p>
+                </div>
+                
+            </div>
+
+            <div style="overflow:auto;">
+                <div style="float:right;">
+                    <a href = "indexFormFillPage2.html"><button type="button" id="prevBtn">Atrás</button></a>
+                    <button type="button" id="nextBtn3" onclick="formulario3()">Continuar</button>
+                </div>
+              </div>
+    </form>
+     <!--FORMULARIO CUATRO  -->
+
+     <form id = "dataForm" class="dataForm4" style="display: none">
+        <div id = "whiteQuestion">   
+            <h3>Número total de hogares sin servicio de internet (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num34"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Número de hogares sin internet con más de seis (6) estudiantes (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num35"></p>
+        </div>
+
         <div id = "whiteQuestion">
-            <h3>Modalidad en que se encuentra la sede educativa</h3>
-            <!--<p><input type = "radio">Alternancia</p>
-            <p><input type = "radio">Presencialidad Completa</p>
-            <p><input type = "radio">Remoto</p>-->
-
-            <select id = "dropdownList" id = "quest1">
-                <p><option>Alternancia</option></p>
-                <p><option>Presencialidad Completa</option></p>
-                <p><option>Remoto</option></p>
-            </select>
+            <h3>Número de hogares sin internet con seis (6) estudiantes (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num36"></p>
         </div>
 
         <div id = "grayQuestion">
-            <h3>La sede educativa, ¿cuenta con Diagnóstico de Bioseguridad?</h3>
-           <!-- <p><input type = "radio">Sí</p>
-            <p><input type = "radio">No</p>-->
-
-            <select id = "dropdownList" id = "quest2">
-                <p><option>Sí</option></p>
-                <p><option>No</option></p>
-            </select>
+            <h3>Número de hogares sin internet con cinco (5) estudiantes (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num37"></p>
         </div>
 
         <div id = "whiteQuestion">
-            <h3>¿Revisó y ajustó los protocolos de bioseguridad de acuerdo a la resolución 1721 de 2020?</h3>
-            <!--<p><input type = "radio">Sí</p>
-            <p><input type = "radio">No</p>-->
-
-            <select id = "dropdownList" id = "quest3">
-                <p><option>Sí</option></p>
-                <p><option>No</option></p>
-            </select>
+            <h3>Número de hogares sin internet con cuatro (4) estudiantes (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num38"></p>
         </div>
 
         <div id = "grayQuestion">
-            <h3>Cantidad de días en la semana de presencialidad (Responder numéricamente)</h3>
-            <p><input type = "number" class = "numInput" id = "numInput"></p>
+            <h3>Número de hogares sin internet con tres (3) estudiantes (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num39"></p>
         </div>
 
-        <div id = "whiteQuestion">  
-            <h3>Fecha estimada de inicio</h3>
-            <p><input type = "date" id = "calendarInput"></p>
+        <div id = "whiteQuestion">
+            <h3>Número de hogares sin internet con dos (2) estudiantes (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num40"></p>
         </div>
-        </form>
+
+        <div id = "grayQuestion">
+            <h3>Número de hogares sin internet con un (1) estudiante (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num41"></p>
+        </div>
+
+        <div id = "whiteQuestion">
+            <h3>Cantidad de Periféricos (PC, Tablet o Portátiles) que tiene la sede (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num42"></p>
+        </div>
+
+        <div id = "grayQuestion">
+            <h3>Cantidad de Periféricos (PC, Tablet o Portátiles) que la sede ha prestado (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num43"></p>
+        </div>
+            
+        <div id = "whiteQuestion">
+            <h3>Número de estudiantes con periféricos (PC, Tablet, Portátil o Smartphone) prestados para preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num44"></p>
+        </div>
+
+        <div id = "grayQuestion">
+            <h3>Número de estudiantes con periféricos (PC, Tablet, Portátil o Smartphone) prestados para primaria (responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num45"></p>
+        </div>
+
+        <div id = "whiteQuestion">
+            <h3>Número de estudiantes con periféricos (PC, Tablet, Portátil o Smartphone) prestados para secundaria (responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num46"></p>
+        </div>
+
+        <div id = "grayQuestion">
+            <h3>Número de estudiantes con periféricos (PC, Tablet, Portátil o Smartphone) prestados para media (responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num47"></p>
+        </div>
+
+        <div id = "whiteQuestion">
+            <h3>Número de estudiantes que requieren pago de envío de materiales educativos en la sede (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num48"></p>
+        </div>
+
+        <div id = "grayQuestion">
+            <h3>Número de estudiantes que han recibido Sim-card con plan de datos para conectividad en la sede (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num49"></p>
+        </div>
+        
     </div>
 
     <div style="overflow:auto;">
         <div style="float:right;">
-          
-          <button type="button" id="nextBtn">Continuar</button>
+            <!---<a href = "indexFormFillPage3.html"><button type="button" id="prevBtn">Atrás</button></a>
+            <button type="button" id="nextBtn4" onclick="formulario4()">Continuar</button>-->
+                    <a href = "#"><button type="button" id="prevBtn">Atrás</button></a>
+	            <button type="button" id="nextBtn4" onclick="formulario4()">Continuar</button>
         </div>
       </div>
 
-    <script src="../src/form/formData.js"></script>
 
+      </form>
+
+<!--FORMULARIO CINCO  -->
+      <form id = "dataForm" class="dataForm5" style="display: none">
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados con documentos en medio físico (Guías, textos, talleres, fotocopias) en preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num50"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados con documentos en medio físico (Guías, textos, talleres, fotocopias) en primaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num51"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados con documentos en medio físico (Guías, textos, talleres, fotocopias) en secundaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num52"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados con documentos en medio físico (Guías, textos, talleres, fotocopias) en media (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num53"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados con documentos en medio digital o virtual (Guías digitalizadas, talleres digitalizados, talleres-fotocopia escaneados) en preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num54"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados con documentos en medio digital o virtual (Guías digitalizadas, talleres digitalizados, talleres-fotocopia escaneados) en primaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num55"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados con documentos en medio digital o virtual (Guías digitalizadas, talleres digitalizados, talleres-fotocopia escaneados) en secundaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num56"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados con documentos en medio digital o virtual (Guías digitalizadas, talleres digitalizados, talleres-fotocopia escaneados) en media (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num57"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes atendidos con otras estrategias remotas o virtuales (Team, Zoom, Webex, Meet, Skype, Youtube) para recibir sus clases u orientaciones en preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num58"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes atendidos con otras estrategias remotas o virtuales (Team, Zoom, Webex, Meet, Skype, Youtube) para recibir sus clases u orientaciones en primaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num59"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes atendidos con otras estrategias remotas o virtuales (Team, Zoom, Webex, Meet, Skype, Youtube) para recibir sus clases u orientaciones en secundaria(Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num60"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes atendidos con otras estrategias remotas o virtuales (Team, Zoom, Webex, Meet, Skype, Youtube) para recibir sus clases u orientaciones en media (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num61"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante Visitas domiciliarias en preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num62"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante Visitas domiciliarias en primaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num63"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante Visitas domiciliarias en secundaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num64"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante Visitas domiciliarias en media (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num65"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante programas de TV comuntaria en Preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num66"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante programas de TV comuntaria en primaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num67"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante programas de TV comuntaria en secundaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num68"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante programas de TV comuntaria en media (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num69"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante programas de radiales en preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num70"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante programas de radiales en primaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num71"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante programas de radiales en secundaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num72"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante programas de radiales en media (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num73"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante comunicación telefónica en preescolar (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num74"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante comunicación telefónica en primaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num75"></p>
+        </div>
+
+        <div id = "whiteQuestion">   
+            <h3>Estudiantes acompañados mediante comunicación telefónica en secundaria (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num76"></p>
+        </div>
+
+        <div id = "grayQuestion"> 
+            <h3>Estudiantes acompañados mediante comunicación telefónica en media (Responder numéricamente)</h3>
+            <p><input type = "number" class = "numInput" id = "num77"></p>
+        </div>
+        
+    </div>
+
+    <div style="overflow:auto;">
+        <div style="float:right;">
+            <a href = "indexFormFillPage4.html"><button type="button" id="prevBtn">Atrás</button></a>
+            <button type="button" id="nextBtn4" onclick="exito()">Continuar</button>
+        </div>
+      </div>
+      </form>
+
+<!-- EXITO  -->
+<div class="exito" style="display: none;">
+	<h1>EXITO</h1>
+	<div id="tabla"></div>
+</div>
+
+
+
+    <script src="../src/form/formData.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>

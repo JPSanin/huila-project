@@ -1091,6 +1091,7 @@ function municipalityGraph7(info, municipality) {
     metodosAlternosDisplay.canvas.parentNode.style.width = '700px';
 }
 
+
 institutionSelectGenMethods.addEventListener("change", function () {
     if (institutionSelectGenMethods.value == "INSTITUCIÓN") {
         destroyGraphs();

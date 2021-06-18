@@ -103,7 +103,7 @@ function initialStateGraph1(info) {
                 },
                 title: {
                     display: true,
-                    text: 'Estudiantes matriculados por municipio'
+                    text: 'Estudiantes matriculados en el departamento por municipio'
                 }
             }
         },
@@ -155,7 +155,7 @@ function initialStateGraph2(info) {
               },
               title: {
                 display: true,
-                text: 'Estudiantes matriculados de acuerdo a la modalidad'
+                text: 'Estudiantes matriculados en el departamento de acuerdo a la modalidad'
               }
             }
           },
@@ -217,7 +217,7 @@ function initialStateGraph3(info) {
             },
             title: {
               display: true,
-              text: 'Estudiantes matriculados en presencialidad/alternancia por municipio'
+              text: 'Estudiantes matriculados en presencialidad/alternancia por municipios'
             }
           }
         },
@@ -283,7 +283,7 @@ function initialStateGraph4(info) {
               },
               title: {
                 display: true,
-                text: 'Número de grupos en alternancia/presencialidad por municipios'
+                text: 'Número de grupos en alternancia/presencialidad del departamento por municipios'
               }
             }
           },
@@ -508,7 +508,6 @@ function municipalityGraph1(info, municipality) {
       return parseInt(a) + parseInt(b);
   }, 0);
 
-  //**** */
   const data = {
       labels: labelNames,
       datasets: [
@@ -657,7 +656,7 @@ function municipalityGraph3(info, municipality) {
         },
         title: {
           display: true,
-          text: 'Estudiantes matriculados en presencialidad/alternancia por municipio'
+          text: 'Estudiantes matriculados en presencialidad/alternancia por instituciones educativas'
         }
       }
     },
@@ -737,7 +736,7 @@ function municipalityGraph4(info, municipality) {
           },
           title: {
             display: true,
-            text: 'Número de grupos en alternancia/presencialidad en el municipio por sedes'
+            text: 'Número de grupos en alternancia/presencialidad en el municipio por instituciones educativas'
           }
         }
       },
@@ -900,6 +899,676 @@ capacitydisplayGraph6.canvas.parentNode.style.height = '300px';
 capacitydisplayGraph6.canvas.parentNode.style.width = '700px';
 }
 
+
+institutionSelectGenMethods.addEventListener("change", function () {
+  if (institutionSelectGenMethods.value == "INSTITUCIÓN") {
+      destroyGraphs();
+      createMunicipalityGraphs(municipalitySelectGenMethods.value);
+      showGraphs();
+  } else {
+      destroyGraphs();
+      createInstitutionGraphs(institutionSelectGenMethods.value);
+  }
+});
+
+function createInstitutionGraphs(institution) {
+  let rawData = "";
+
+  $.ajax(dataBase).done(function (result) {
+      rawData = result;
+      let data = Papa.parse(rawData, configData);
+      institutionGraph1(data, institution);
+      institutionGraph2(data, institution);
+      institutionGraph3(data, institution);
+      institutionGraph4(data, institution);
+      institutionGraph5(data, institution);
+      institutionGraph6(data,institution);
+  });
+}
+
+function institutionGraph1(info, institution) {
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
+
+  for (let index = 0; index < info.data.length; index++) {
+      const element = info.data[index];
+      if (element[1] == institution) {
+          filteredData.push(element);
+      }
+  }
+
+
+  for (let index = 0; index < filteredData.length; index++) {
+      if (index == 0) {
+          labelNames.push(filteredData[index][3]);
+      } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+          labelNames.push(filteredData[index][3]);
+      }
+  }
+
+  for (let index = 0; index < filteredData.length; index++) {
+      const element = filteredData[index];
+      if (element[3] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+          showData.push(0);
+      }
+      if (element[3] == labelNames[showData.length - 1]) {
+          
+          showData[showData.length - 1] += parseInt(element[12]);
+          
+      }
+
+
+  }
+
+
+
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  const data = {
+      labels: labelNames,
+      datasets: [
+
+          {
+              label: 'Estudiantes',
+              data: showData,
+              backgroundColor: colors,
+          }
+      ]
+  };
+
+  const config = {
+      type: 'bar',
+      data: data,
+      options: {
+          responsive: true,
+          plugins: {
+              legend: {
+                  position: 'top',
+                  display: false,
+              },
+              title: {
+                  display: true,
+                  text: 'Estudiantes matriculados en la institucion educativa por sedes'
+              }
+          }
+      },
+  };
+  capacitydisplayGraph1 = new Chart(capacitygraph1, config);
+  capacitysampleGraph1.innerHTML = "Total Muestra: " + sample;
+  capacitydisplayGraph1.canvas.parentNode.style.height = '350px';
+  capacitydisplayGraph1.canvas.parentNode.style.width = '700px';
+}
+
+function institutionGraph2(info, institution) {
+
+  let showData = [0, 0];
+
+  for (let index = 2; index < 36; index++) {
+
+      const element = info.data[index];
+      if(element[1]==institution){
+        showData[0] += parseInt(element[12]);
+        showData[1] += parseInt(element[15]);
+      }
+  }
+
+  showData[0]=showData[0]-showData[1]; 
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  const data = {
+    labels: ['Remoto', 'Alternancia/Presencialidad'],
+    datasets: [
+      {
+        label: 'Dataset',
+        data: showData,
+        backgroundColor: colors,
+      },
+    ]
+  };
+  
+  const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Estudiantes matriculados de acuerdo a la modalidad en el municipio'
+          }
+        }
+      },
+    };
+
+capacitydisplayGraph2 = new Chart(capacitygraph2, config);
+capacitysampleGraph2.innerHTML = "Total Muestra: " + sample;
+capacitydisplayGraph2.canvas.parentNode.style.height = '300px';
+capacitydisplayGraph2.canvas.parentNode.style.width = '700px';
+}
+
+function institutionGraph3(info, institution) {
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
+
+  for (let index = 0; index < info.data.length; index++) {
+    const element = info.data[index];
+    if (element[1] == institution) {
+        filteredData.push(element);
+    }
+}
+
+
+for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
+
+for (let index = 0; index < filteredData.length; index++) {
+  const element = filteredData[index];
+  if (element[3] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+      showData.push(0);
+  }
+  if (element[3] == labelNames[showData.length - 1]) {
+      
+      showData[showData.length - 1] += parseInt(element[15]);
+      
+  }
+
+
+}
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  const data= {
+    labels: labelNames,
+    datasets: [{
+      label: 'My First Dataset',
+      data: showData,
+      backgroundColor: ['#FF6766','#FDC967','#003F63', '#008892'],
+      hoverOffset: 4
+    }]
+  };
+
+  const config = {
+    type: 'doughnut',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+        },
+        title: {
+          display: true,
+          text: 'Estudiantes matriculados en presencialidad/alternancia por sedes'
+        }
+      }
+    },
+  };
+
+  capacitydisplayGraph3 = new Chart(capacitygraph3, config);
+  capacitysampleGraph3.innerHTML = "Total Muestra: " + sample;
+  capacitydisplayGraph3.canvas.parentNode.style.height = '250px';
+  capacitydisplayGraph3.canvas.parentNode.style.width = '350px';
+
+
+}
+
+function institutionGraph4(info, institution) {
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
+
+  for (let index = 0; index < info.data.length; index++) {
+    const element = info.data[index];
+    if (element[1] == institution) {
+        filteredData.push(element);
+    }
+}
+
+
+for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
+
+for (let index = 0; index < filteredData.length; index++) {
+  const element = filteredData[index];
+  if (element[3] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+      showData.push(0);
+  }
+  if (element[3] == labelNames[showData.length - 1]) {
+      
+    showData[showData.length - 1] += parseInt(element[13]);
+      
+  }
+}
+
+
+
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+
+
+  const data = {
+    labels: labelNames,
+    datasets: [
+      {
+        label: 'Dataset',
+        data: showData,
+        backgroundColor: colors,
+      },
+    ]
+  };
+  
+  const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Número de grupos en alternancia/presencialidad en la institución educativa por sedes'
+          }
+        }
+      },
+    };
+
+capacitydisplayGraph4 = new Chart(capacitygraph4, config);
+capacitysampleGraph4.innerHTML = "Total Muestra: " + sample;
+capacitydisplayGraph4.canvas.parentNode.style.height = '300px';
+capacitydisplayGraph4.canvas.parentNode.style.width = '700px';
+}
+
+function institutionGraph5(info, institution) {
+  let filteredData = [];
+  let labelNames = []
+  let showData = [0];
+
+  for (let index = 0; index < info.data.length; index++) {
+    const element = info.data[index];
+    if (element[1] == institution) {
+        filteredData.push(element);
+    }
+}
+
+
+for (let index = 0; index < filteredData.length; index++) {
+    if (index == 0) {
+        labelNames.push(filteredData[index][3]);
+    } else if (filteredData[index][3] != labelNames[labelNames.length - 1]) {
+        labelNames.push(filteredData[index][3]);
+    }
+}
+
+for (let index = 0; index < filteredData.length; index++) {
+  const element = filteredData[index];
+  if (element[3] != labelNames[showData.length - 1] && showData.length < labelNames.length) {
+      showData.push(0);
+  }
+  if (element[3] == labelNames[showData.length - 1]) {
+      
+    showData[showData.length - 1] += parseInt(element[14]);
+      
+  }
+}
+
+
+
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  const data= {
+      labels: labelNames,
+      datasets: [
+        {
+          label: 'Dataset',
+          data: showData,
+          backgroundColor: colors,
+        },
+      ]
+    };
+    
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        indexAxis: 'y',
+        elements: {
+          bar: {
+            borderWidth: 2,
+          }
+        },
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'right',
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Cantidad de personas asistiendo en modalidad completa o alternancia en la institución educativa por sedes'
+          }
+        }
+      },
+    };
+    
+      
+
+  capacitydisplayGraph5 = new Chart(capacitygraph5, config);
+  capacitysampleGraph5.innerHTML = "Total Muestra: " + sample;
+  capacitydisplayGraph5.canvas.parentNode.style.height = '300px';
+  capacitydisplayGraph5.canvas.parentNode.style.width = '700px';
+}
+
+function institutionGraph6(info, institution) {
+  let showData = [0, 0, 0, 0, 0];
+
+  for (let index = 2; index <36; index++) {
+      const element = info.data[index];
+      if(element[1]==institution){
+        showData[0] += parseInt(element[19]);
+        showData[1] += parseInt(element[18]);
+        showData[2] += parseInt(element[17]);
+        showData[3] += parseInt(element[16]);
+        showData[4] += parseInt(element[15]);
+      } 
+  }
+
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  const data= {
+    labels: ['Personal administrativo de aseo', 'Personal administrativo', 'Docentes',
+            'Directivos', 'Estudiantes'],
+    datasets: [
+      {
+        label: 'Dataset',
+        data: showData,
+        backgroundColor: [
+            '#83B8D7',
+            '#008892',
+            '#003F63', 
+            '#FF6766',
+            '#FDC967', 
+            '#C5C789', 
+          ],
+      },
+    ]
+  };
+  
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      indexAxis: 'y',
+      elements: {
+        bar: {
+          borderWidth: 2,
+        }
+      },
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Cantidad de personas asistiendo en modalidad completa o alternancia de acuerdo al perfil dentro de la institución educativa'
+        }
+      }
+    },
+  };
+  
+capacitydisplayGraph6 = new Chart(capacitygraph6, config);
+capacitysampleGraph6.innerHTML = "Total Muestra: " + sample;
+capacitydisplayGraph6.canvas.parentNode.style.height = '300px';
+capacitydisplayGraph6.canvas.parentNode.style.width = '700px';
+}
+
+
+campusSelectGenMethods.addEventListener("change", function () {
+  if (campusSelectGenMethods.value == "SEDE") {
+      destroyGraphs();
+      createInstitutionGraphs(institutionSelectGenMethods.value);
+      showGraphs();
+  } else {
+      destroyGraphs();
+      hideGraphs();
+      createCampusGraphs(campusSelectGenMethods.value);
+  }
+});
+
+
+function createCampusGraphs(campus) {
+  let rawData = "";
+
+  $.ajax(dataBase).done(function (result) {
+      rawData = result;
+      let data = Papa.parse(rawData, configData);
+      campusGraph1(data, campus);
+      campusGraph2(data, campus);
+      campusGraph3(data, campus);
+  });
+}
+
+
+function campusGraph1(info, campus) {
+
+  let showData = [0, 0];
+
+  for (let index = 2; index < 36; index++) {
+
+      const element = info.data[index];
+      if(element[3]==campus){
+        showData[0] += parseInt(element[12]);
+        showData[1] += parseInt(element[15]);
+      }
+  }
+
+  showData[0]=showData[0]-showData[1]; 
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  const data = {
+    labels: ['Remoto', 'Alternancia/Presencialidad'],
+    datasets: [
+      {
+        label: 'Dataset',
+        data: showData,
+        backgroundColor: colors,
+      },
+    ]
+  };
+  
+  const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Estudiantes matriculados de acuerdo a la modalidad en la sede'
+          }
+        }
+      },
+    };
+
+capacitydisplayGraph2 = new Chart(capacitygraph2, config);
+capacitysampleGraph2.innerHTML = "Total Muestra: " + sample;
+capacitydisplayGraph2.canvas.parentNode.style.height = '300px';
+capacitydisplayGraph2.canvas.parentNode.style.width = '700px';
+}
+
+function campusGraph2(info, campus) {
+  let filteredData = [];
+  
+  let showData = [0];
+
+  for (let index = 0; index < info.data.length; index++) {
+    const element = info.data[index];
+    if (element[3] == campus) {
+      showData[0] += parseInt(element[13]);
+    }
+}
+
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+
+
+  const data = {
+    labels: ['Grupos'],
+    datasets: [
+      {
+        label: 'Dataset',
+        data: showData,
+        backgroundColor: colors,
+      },
+    ]
+  };
+  
+  const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+            display: false,
+          },
+          title: {
+            display: true,
+            text: 'Número de grupos en alternancia/presencialidad en la sede'
+          }
+        }
+      },
+    };
+
+capacitydisplayGraph4 = new Chart(capacitygraph4, config);
+capacitysampleGraph4.innerHTML = "Total Muestra: " + sample;
+capacitydisplayGraph4.canvas.parentNode.style.height = '300px';
+capacitydisplayGraph4.canvas.parentNode.style.width = '700px';
+}
+
+function campusGraph3(info, campus) {
+  let showData = [0, 0, 0, 0, 0];
+
+  for (let index = 2; index <36; index++) {
+      const element = info.data[index];
+      if(element[3]==campus){
+        showData[0] += parseInt(element[19]);
+        showData[1] += parseInt(element[18]);
+        showData[2] += parseInt(element[17]);
+        showData[3] += parseInt(element[16]);
+        showData[4] += parseInt(element[15]);
+      } 
+  }
+
+  let sample = showData.reduce(function (a, b) {
+      return parseInt(a) + parseInt(b);
+  }, 0);
+
+  const data= {
+    labels: ['Personal administrativo de aseo', 'Personal administrativo', 'Docentes',
+            'Directivos', 'Estudiantes'],
+    datasets: [
+      {
+        label: 'Dataset',
+        data: showData,
+        backgroundColor: [
+            '#83B8D7',
+            '#008892',
+            '#003F63', 
+            '#FF6766',
+            '#FDC967', 
+            '#C5C789', 
+          ],
+      },
+    ]
+  };
+  
+  const config = {
+    type: 'bar',
+    data: data,
+    options: {
+      indexAxis: 'y',
+      elements: {
+        bar: {
+          borderWidth: 2,
+        }
+      },
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+          display: false,
+        },
+        title: {
+          display: true,
+          text: 'Cantidad de personas asistiendo en modalidad completa o alternancia de acuerdo al perfil dentro de la sede'
+        }
+      }
+    },
+  };
+  
+capacitydisplayGraph6 = new Chart(capacitygraph6, config);
+capacitysampleGraph6.innerHTML = "Total Muestra: " + sample;
+capacitydisplayGraph6.canvas.parentNode.style.height = '300px';
+capacitydisplayGraph6.canvas.parentNode.style.width = '700px';
+}
+
+
+
+
+function hideGraphs(){
+
+  document.getElementById("container__graph1").style.display= "none";
+  document.getElementById("container__graph3").style.display= "none";
+  document.getElementById("container__graph5").style.display= "none";
+  
+  }
+  
+  function showGraphs(){
+  document.getElementById("container__graph1").style.display= "flex";
+  document.getElementById("container__graph3").style.display= "flex";
+  document.getElementById("container__graph5").style.display= "flex";
+  }
 
 function destroyGraphs() {
   capacitydisplayGraph1.destroy();
