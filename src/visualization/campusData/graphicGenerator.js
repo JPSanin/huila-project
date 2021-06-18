@@ -104,7 +104,7 @@ function initialStateGraph1(info) {
     };
 
 
-    let campusdisplayGraph1 = new Chart(campusgraph1, config);
+    campusdisplayGraph1 = new Chart(campusgraph1, config);
     campussampleGraph1.innerHTML = "Total Muestra: " + sample;
     campusdisplayGraph1.canvas.parentNode.style.height = '420px';
     campusdisplayGraph1.canvas.parentNode.style.width = '420px';
@@ -169,7 +169,7 @@ function initialStateGraph2(info) {
     };
 
 
-    let campusdisplayGraph2 = new Chart(campusgraph2, config);
+    campusdisplayGraph2 = new Chart(campusgraph2, config);
     campussampleGraph2.innerHTML = "Total Muestra: " + sample;
     campusdisplayGraph2.canvas.parentNode.style.height = '420px';
     campusdisplayGraph2.canvas.parentNode.style.width = '420px';
@@ -223,7 +223,7 @@ function initialStateGraph3(info) {
     };
 
 
-    let campusdisplayGraph3 = new Chart(campusgraph3, config);
+    campusdisplayGraph3 = new Chart(campusgraph3, config);
     campussampleGraph3.innerHTML = "Total Muestra: " + sample;
     campusdisplayGraph3.canvas.parentNode.style.height = '420px';
     campusdisplayGraph3.canvas.parentNode.style.width = '420px';
@@ -277,7 +277,7 @@ function initialStateGraph4(info) {
       };
 
 
-    let campusdisplayGraph4= new Chart(campusgraph4, config);
+    campusdisplayGraph4= new Chart(campusgraph4, config);
     campussampleGraph4.innerHTML = "Total Muestra: " + sample;
     campusdisplayGraph4.canvas.parentNode.style.height = '420px';
     campusdisplayGraph4.canvas.parentNode.style.width = '420px';
@@ -346,9 +346,107 @@ const data = {
   };
 
 
-    let campusdisplayGraph5= new Chart(campusgraph5, config);
+    campusdisplayGraph5= new Chart(campusgraph5, config);
     campussampleGraph5.innerHTML = "Total Muestra: " + sample;
     campusdisplayGraph5.canvas.parentNode.style.height = '420px';
     campusdisplayGraph5.canvas.parentNode.style.width = '420px';
 }
 
+municipalitySelectGenMethods.addEventListener("change", function () {
+    if (municipalitySelectGenMethods.value == "MUNICIPIO") {
+        destroyGraphs();
+        initializeGraphs();
+        showGraphs();
+    } else {
+        destroyGraphs();
+        createMunicipalityGraphs(municipalitySelectGenMethods.value);
+    }
+});
+
+function createMunicipalityGraphs(municipality) {
+    let rawData = "";
+
+    $.ajax(dataBase).done(function (result) {
+        rawData = result;
+        let data = Papa.parse(rawData, configData);
+        municipalityGraph1(data, municipality);
+       /* municipalityGraph2(data, municipality);
+        municipalityGraph3(data, municipality);
+        municipalityGraph4(data, municipality);
+        municipalityGraph5(data, municipality);*/
+ 
+    });
+
+}
+
+
+function municipalityGraph1(info, municipality) {
+    let showData = [0, 0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[7] == "Alternancia") {
+
+            showData[0] += 1;
+
+        }
+        if (element[7] == "Remoto") {
+
+            showData[1] += 1;
+
+        }
+        if (element[7] == "Presencialidad completa") {
+
+            showData[2] += 1;
+
+        }
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ['Alternancia', 'Remoto', 'Presencial'],
+        datasets: [{
+            label: 'My First Dataset',
+            data: showData,
+            backgroundColor: ['#003F63', '#008892', '#FF6766'],
+            hoverOffset: 4
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Modalidad de las sedes en el municipio'
+                }
+            }
+        },
+    };
+
+
+    let campusdisplayGraph1 = new Chart(campusgraph1, config);
+    campussampleGraph1.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph1.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph1.canvas.parentNode.style.width = '420px';
+}
+
+
+
+function destroyGraphs() {
+    campusdisplayGraph1.destroy();
+    campusdisplayGraph2.destroy();
+    campusdisplayGraph3.destroy();
+    campusdisplayGraph4.destroy();
+    campusdisplayGraph5.destroy();
+}

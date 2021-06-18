@@ -508,6 +508,7 @@ function municipalityGraph1(info, municipality) {
       return parseInt(a) + parseInt(b);
   }, 0);
 
+  //**** */
   const data = {
       labels: labelNames,
       datasets: [
@@ -900,10 +901,6 @@ capacitydisplayGraph6.canvas.parentNode.style.width = '700px';
 }
 
 
-
-  
-
-  
 function destroyGraphs() {
   capacitydisplayGraph1.destroy();
   capacitydisplayGraph2.destroy();
