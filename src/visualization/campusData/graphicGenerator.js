@@ -26,9 +26,16 @@ let campusgraph5 = document.getElementById("campusDataVersus");
 let campussampleGraph5 = document.getElementById("campusDataVersusSample");
 let campusdisplayGraph5;
 
-
+//Ficha elements
+let title= document.getElementById("tituloFicha");
+let status= document.getElementById("status");
+let diagnostics= document.getElementById("diagnostics");
+let protocol= document.getElementById("protocol");
+let days= document.getElementById("days");
+let date= document.getElementById("date");
 
 window.onload = function () {
+    hideFicha();
     initializeGraphs();
 };
 
@@ -357,9 +364,12 @@ municipalitySelectGenMethods.addEventListener("change", function () {
         destroyGraphs();
         initializeGraphs();
         showGraphs();
+        hideFicha();
     } else {
         destroyGraphs();
         createMunicipalityGraphs(municipalitySelectGenMethods.value);
+        showGraphs();
+        hideFicha();
     }
 });
 
@@ -386,21 +396,24 @@ function municipalityGraph1(info, municipality) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
-        if (element[7] == "Alternancia") {
+        if(element[0]==municipality){
+            if (element[7] == "Alternancia") {
 
-            showData[0] += 1;
-
+                showData[0] += 1;
+    
+            }
+            if (element[7] == "Remoto") {
+    
+                showData[1] += 1;
+    
+            }
+            if (element[7] == "Presencialidad completa") {
+    
+                showData[2] += 1;
+    
+            }
         }
-        if (element[7] == "Remoto") {
-
-            showData[1] += 1;
-
-        }
-        if (element[7] == "Presencialidad completa") {
-
-            showData[2] += 1;
-
-        }
+        
     }
 
     let sample = showData.reduce(function (a, b) {
@@ -435,7 +448,7 @@ function municipalityGraph1(info, municipality) {
     };
 
 
-    let campusdisplayGraph1 = new Chart(campusgraph1, config);
+    campusdisplayGraph1 = new Chart(campusgraph1, config);
     campussampleGraph1.innerHTML = "Total Muestra: " + sample;
     campusdisplayGraph1.canvas.parentNode.style.height = '420px';
     campusdisplayGraph1.canvas.parentNode.style.width = '420px';
@@ -447,23 +460,26 @@ function municipalityGraph2(info, municipality) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
-        if (element[7] == "Alternancia") {
-            if (element[10] == "1") {
-                showData[0] += 1;
-            }
-            if (element[10] == "2") {
-                showData[1] += 1;
-            }
-            if (element[10] == "3") {
-                showData[2] += 1;
-            }
-            if (element[10] == "4") {
-                showData[3] += 1;
-            }
-            if (element[10] == "5") {
-                showData[4] += 1;
+        if(element[0]==municipality){
+            if (element[7] == "Alternancia") {
+                if (element[10] == "1") {
+                    showData[0] += 1;
+                }
+                if (element[10] == "2") {
+                    showData[1] += 1;
+                }
+                if (element[10] == "3") {
+                    showData[2] += 1;
+                }
+                if (element[10] == "4") {
+                    showData[3] += 1;
+                }
+                if (element[10] == "5") {
+                    showData[4] += 1;
+                }
             }
         }
+      
 
 
     }
@@ -512,12 +528,15 @@ function municipalityGraph3(info, municipality) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
-        if (element[8] == "Sí") {
-            showData[0] += 1;
+        if(element[0]==municipality){
+            if (element[8] == "Sí") {
+                showData[0] += 1;
+            }
+            if (element[8] == "No") {
+                showData[1] += 1;
+            }
         }
-        if (element[8] == "No") {
-            showData[1] += 1;
-        }
+        
     }
 
     let sample = showData.reduce(function (a, b) {
@@ -530,7 +549,7 @@ function municipalityGraph3(info, municipality) {
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [19, 15],
+            data: showData,
             backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
             hoverOffset: 4
         }]
@@ -566,12 +585,14 @@ function municipalityGraph4(info, municipality) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
+        if(element[0]==municipality){
         if (element[9] == "Sí") {
             showData[0] += 1;
         }
         if (element[9] == "No") {
             showData[1] += 1;
         }
+    }
     }
 
     let sample = showData.reduce(function (a, b) {
@@ -584,7 +605,7 @@ function municipalityGraph4(info, municipality) {
           'No se realizó un ajuste de protocolos de bioseguridad'],
         datasets: [{
           label: 'My First Dataset',
-          data: [19, 15],
+          data: showData,
           backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
           hoverOffset: 4
         }]
@@ -620,23 +641,27 @@ function municipalityGraph5(info, municipality) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
+        if(element[0]==municipality){
+            if (element[7] == "Alternancia" || element[7] == "Presencialidad completa") {
+                if (element[9] == "Sí") {
+                    showData[0] += 1;
+                }
+                if (element[9] == "No") {
+                    showData[1] += 1;
+                }
+            }
+            if (element[7] == "Remoto") {
+                if (element[9] == "Sí") {
+                    showData[2] += 1;
+                }
+                if (element[9] == "No") {
+                    showData[3] += 1;
+                }
+            }
+        
+        }
 
-        if (element[7] == "Alternancia" || element[7] == "Presencialidad completa") {
-            if (element[9] == "Sí") {
-                showData[0] += 1;
-            }
-            if (element[9] == "No") {
-                showData[1] += 1;
-            }
-        }
-        if (element[7] == "Remoto") {
-            if (element[9] == "Sí") {
-                showData[2] += 1;
-            }
-            if (element[9] == "No") {
-                showData[3] += 1;
-            }
-        }
+        
        
     }
 
@@ -684,22 +709,17 @@ const data = {
 }
 
 
-function destroyGraphs() {
-    campusdisplayGraph1.destroy();
-    campusdisplayGraph2.destroy();
-    campusdisplayGraph3.destroy();
-    campusdisplayGraph4.destroy();
-    campusdisplayGraph5.destroy();
-}
-
 institutionSelectGenMethods.addEventListener("change", function () {
-    if (institutionSelectGenMethods.value == "INSTITUCION") {
+    if (institutionSelectGenMethods.value == "INSTITUCIÓN") {
         destroyGraphs();
-        initializeGraphs();
+        createMunicipalityGraphs(municipalitySelectGenMethods.value);
         showGraphs();
+        hideFicha();
     } else {
         destroyGraphs();
         createInstitutionGraphs(institutionSelectGenMethods.value);
+        showGraphs();
+        hideFicha();
     }
 });
 
@@ -709,11 +729,11 @@ function createInstitutionGraphs(institution) {
     $.ajax(dataBase).done(function (result) {
         rawData = result;
         let data = Papa.parse(rawData, configData);
-        institutionGraph1(info, institution);
-        institutionGraph2(info, institution);
-        institutionGraph3(info, institution);
-        institutionGraph4(info, institution);
-        institutionGraph5(info, institution);
+        institutionGraph1(data, institution);
+        institutionGraph2(data, institution);
+        institutionGraph3(data, institution);
+        institutionGraph4(data, institution);
+        institutionGraph5(data, institution);
  
     });
 
@@ -725,21 +745,24 @@ function institutionGraph1(info, institution) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
-        if (element[7] == "Alternancia") {
+        if(element[1]==institution){
+            if (element[7] == "Alternancia") {
 
-            showData[0] += 1;
-
+                showData[0] += 1;
+    
+            }
+            if (element[7] == "Remoto") {
+    
+                showData[1] += 1;
+    
+            }
+            if (element[7] == "Presencialidad completa") {
+    
+                showData[2] += 1;
+    
+            }
         }
-        if (element[7] == "Remoto") {
-
-            showData[1] += 1;
-
-        }
-        if (element[7] == "Presencialidad completa") {
-
-            showData[2] += 1;
-
-        }
+        
     }
 
     let sample = showData.reduce(function (a, b) {
@@ -774,7 +797,7 @@ function institutionGraph1(info, institution) {
     };
 
 
-    let campusdisplayGraph1 = new Chart(campusgraph1, config);
+    campusdisplayGraph1 = new Chart(campusgraph1, config);
     campussampleGraph1.innerHTML = "Total Muestra: " + sample;
     campusdisplayGraph1.canvas.parentNode.style.height = '420px';
     campusdisplayGraph1.canvas.parentNode.style.width = '420px';
@@ -786,23 +809,26 @@ function institutionGraph2(info, institution) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
-        if (element[7] == "Alternancia") {
-            if (element[10] == "1") {
-                showData[0] += 1;
-            }
-            if (element[10] == "2") {
-                showData[1] += 1;
-            }
-            if (element[10] == "3") {
-                showData[2] += 1;
-            }
-            if (element[10] == "4") {
-                showData[3] += 1;
-            }
-            if (element[10] == "5") {
-                showData[4] += 1;
+        if(element[1]==institution){
+            if (element[7] == "Alternancia") {
+                if (element[10] == "1") {
+                    showData[0] += 1;
+                }
+                if (element[10] == "2") {
+                    showData[1] += 1;
+                }
+                if (element[10] == "3") {
+                    showData[2] += 1;
+                }
+                if (element[10] == "4") {
+                    showData[3] += 1;
+                }
+                if (element[10] == "5") {
+                    showData[4] += 1;
+                }
             }
         }
+       
 
 
     }
@@ -851,12 +877,15 @@ function institutionGraph3(info, institution) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
-        if (element[8] == "Sí") {
-            showData[0] += 1;
+        if(element[1]==institution){
+            if (element[8] == "Sí") {
+                showData[0] += 1;
+            }
+            if (element[8] == "No") {
+                showData[1] += 1;
+            }
         }
-        if (element[8] == "No") {
-            showData[1] += 1;
-        }
+       
     }
 
     let sample = showData.reduce(function (a, b) {
@@ -869,7 +898,7 @@ function institutionGraph3(info, institution) {
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [19, 15],
+            data: showData,
             backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
             hoverOffset: 4
         }]
@@ -905,12 +934,14 @@ function institutionGraph4(info, institution) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
+        if(element[1]==institution){
         if (element[9] == "Sí") {
             showData[0] += 1;
         }
         if (element[9] == "No") {
             showData[1] += 1;
         }
+    }
     }
 
     let sample = showData.reduce(function (a, b) {
@@ -923,7 +954,7 @@ function institutionGraph4(info, institution) {
           'No se realizó un ajuste de protocolos de bioseguridad'],
         datasets: [{
           label: 'My First Dataset',
-          data: [19, 15],
+          data: showData,
           backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
           hoverOffset: 4
         }]
@@ -959,7 +990,7 @@ function institutionGraph5(info, institution) {
     for (let index = 0; index < info.data.length; index++) {
 
         const element = info.data[index];
-
+        if(element[1]==institution){
         if (element[7] == "Alternancia" || element[7] == "Presencialidad completa") {
             if (element[9] == "Sí") {
                 showData[0] += 1;
@@ -976,6 +1007,7 @@ function institutionGraph5(info, institution) {
                 showData[3] += 1;
             }
         }
+    }
        
     }
 
@@ -1022,6 +1054,70 @@ const data = {
     campusdisplayGraph5.canvas.parentNode.style.width = '420px';
 }
 
+
+
+
+campusSelectGenMethods.addEventListener("change", function () {
+    if (campusSelectGenMethods.value == "SEDE") {
+        destroyGraphs();
+        createInstitutionGraphs(institutionSelectGenMethods.value);
+        showGraphs();
+        hideFicha();
+    } else {
+        destroyGraphs();
+        createFicha(campusSelectGenMethods.value);
+        hideGraphs();
+       
+    }
+  });
+
+  function createFicha(campus) {
+    let rawData = "";
+
+    $.ajax(dataBase).done(function (result) {
+        rawData = result;
+        let data = Papa.parse(rawData, configData);
+
+        for (let index = 0; index < data.data.length; index++) {
+
+            const element = data.data[index];
+            if(element[3]==campus){
+                title.innerHTML= "SEDE "+ campus;
+                status.innerHTML= element[7];
+                diagnostics.innerHTML=element[8];
+                protocol.innerHTML=element[9];
+                days.innerHTML=element[10];
+                date.innerHTML=element[11];
+            }
+        }
+        document.getElementById("fichaTecnica").style.display= "flex";
+ 
+    });
+
+}
+
+
+function hideFicha(){
+    document.getElementById("fichaTecnica").style.display= "none";
+}
+
+function showGraphs(){
+
+    document.getElementById("container__Modality").style.display= "flex";
+    document.getElementById("container__Attendance").style.display= "flex";
+    document.getElementById("container__Biosegurity").style.display= "flex";
+    document.getElementById("container__Protocol").style.display= "flex";
+    document.getElementById("container__Versus").style.display= "flex";
+}
+function hideGraphs(){
+
+        document.getElementById("container__Modality").style.display= "none";
+        document.getElementById("container__Attendance").style.display= "none";
+        document.getElementById("container__Biosegurity").style.display= "none";
+        document.getElementById("container__Protocol").style.display= "none";
+        document.getElementById("container__Versus").style.display= "none";
+}
+
 function destroyGraphs() {
     campusdisplayGraph1.destroy();
     campusdisplayGraph2.destroy();
@@ -1029,31 +1125,6 @@ function destroyGraphs() {
     campusdisplayGraph4.destroy();
     campusdisplayGraph5.destroy();
 }
-
-
-
-    campusSelectGenMethods.addEventListener("change", function () {
-        if (campusSelectGenMethods.value == "SEDE") {
-            destroyGraphs();
-            hideGraphs()
-            initializeGraphs();
-            dataSede();
-            showGraphs();
-        } else {
-            destroyGraphs();
-            hideGraphs()
-            
-        }
-    });
-
-    function hideGraphs(){
-
-        document.getElementById("container__Modality").style.display= "none";
-        document.getElementById("container__Attendance").style.display= "none";
-        document.getElementById("container__Biosegurity").style.display= "none";
-        document.getElementById("container__Protocol").style.display= "none";
-        document.getElementById("container__Versus").style.display= "none";
-        }
 
 
 
