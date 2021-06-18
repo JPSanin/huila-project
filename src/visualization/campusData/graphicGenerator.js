@@ -370,10 +370,10 @@ function createMunicipalityGraphs(municipality) {
         rawData = result;
         let data = Papa.parse(rawData, configData);
         municipalityGraph1(data, municipality);
-       /* municipalityGraph2(data, municipality);
+        municipalityGraph2(data, municipality);
         municipalityGraph3(data, municipality);
         municipalityGraph4(data, municipality);
-        municipalityGraph5(data, municipality);*/
+        municipalityGraph5(data, municipality);
  
     });
 
@@ -441,6 +441,247 @@ function municipalityGraph1(info, municipality) {
     campusdisplayGraph1.canvas.parentNode.style.width = '420px';
 }
 
+function municipalityGraph2(info, municipality) {
+    let showData = [0, 0, 0, 0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[7] == "Alternancia") {
+            if (element[10] == "1") {
+                showData[0] += 1;
+            }
+            if (element[10] == "2") {
+                showData[1] += 1;
+            }
+            if (element[10] == "3") {
+                showData[2] += 1;
+            }
+            if (element[10] == "4") {
+                showData[3] += 1;
+            }
+            if (element[10] == "5") {
+                showData[4] += 1;
+            }
+        }
+
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ['1 Dia', '2 Dias', '3 Dias', '4 Dias', '5 Dias'],
+        datasets: [{
+            label: 'My First Dataset',
+            data: showData,
+            backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+            hoverOffset: 4
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Cantidad de días asistiendo a las sedes para aquellos que están en alternacia'
+                }
+            }
+        },
+    };
+
+
+    campusdisplayGraph2 = new Chart(campusgraph2, config);
+    campussampleGraph2.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph2.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph2.canvas.parentNode.style.width = '420px';
+}
+
+function municipalityGraph3(info, municipality) {
+    let showData = [0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[8] == "Sí") {
+            showData[0] += 1;
+        }
+        if (element[8] == "No") {
+            showData[1] += 1;
+        }
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ['Sí hay un diagnóstico de bioseguridad',
+            'No hay un diagnóstico de bioseguridad'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [19, 15],
+            backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+            hoverOffset: 4
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Diagnósticos de bioseguridad en todas las sedes'
+                }
+            }
+        },
+    };
+
+
+    campusdisplayGraph3 = new Chart(campusgraph3, config);
+    campussampleGraph3.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph3.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph3.canvas.parentNode.style.width = '420px';
+}
+
+function municipalityGraph4(info, municipality) {
+    let showData = [0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[9] == "Sí") {
+            showData[0] += 1;
+        }
+        if (element[9] == "No") {
+            showData[1] += 1;
+        }
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: [
+          'Si se realizó un ajuste de protocolos de bioseguridad',
+          'No se realizó un ajuste de protocolos de bioseguridad'],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [19, 15],
+          backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+          hoverOffset: 4
+        }]
+      };
+    
+      const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Revisión y ajuste de los protocolos de bioseguridad'
+            }
+          }
+        },
+      };
+
+
+    campusdisplayGraph4= new Chart(campusgraph4, config);
+    campussampleGraph4.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph4.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph4.canvas.parentNode.style.width = '420px';
+}
+
+function municipalityGraph5(info, municipality) {
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+
+        if (element[7] == "Alternancia" || element[7] == "Presencialidad completa") {
+            if (element[9] == "Sí") {
+                showData[0] += 1;
+            }
+            if (element[9] == "No") {
+                showData[1] += 1;
+            }
+        }
+        if (element[7] == "Remoto") {
+            if (element[9] == "Sí") {
+                showData[2] += 1;
+            }
+            if (element[9] == "No") {
+                showData[3] += 1;
+            }
+        }
+       
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+ 
+const data = {
+    labels: [
+      'Alternancia/Presencialidad y Ajuste de protocolos',
+      'Alternancia/Presencialidad y No ajuste de protocolos',
+      'Remoto y No ajuste de protocolos',
+      'Remoto y Si ajuste de protocolos'],
+    datasets: [{
+      label: 'My First Dataset',
+      data: showData,
+      backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+      hoverOffset: 4
+    }]
+  };
+
+  const config = {
+    type: 'doughnut',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Modalidad de las sedes Vs protocolos de bioseguridad'
+        }
+      }
+    },
+  };
+
+
+    campusdisplayGraph5= new Chart(campusgraph5, config);
+    campussampleGraph5.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph5.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph5.canvas.parentNode.style.width = '420px';
+}
 
 
 function destroyGraphs() {
@@ -450,3 +691,375 @@ function destroyGraphs() {
     campusdisplayGraph4.destroy();
     campusdisplayGraph5.destroy();
 }
+
+institutionSelectGenMethods.addEventListener("change", function () {
+    if (institutionSelectGenMethods.value == "INSTITUCION") {
+        destroyGraphs();
+        initializeGraphs();
+        showGraphs();
+    } else {
+        destroyGraphs();
+        createInstitutionGraphs(institutionSelectGenMethods.value);
+    }
+});
+
+function createInstitutionGraphs(institution) {
+    let rawData = "";
+
+    $.ajax(dataBase).done(function (result) {
+        rawData = result;
+        let data = Papa.parse(rawData, configData);
+        institutionGraph1(info, institution);
+        institutionGraph2(info, institution);
+        institutionGraph3(info, institution);
+        institutionGraph4(info, institution);
+        institutionGraph5(info, institution);
+ 
+    });
+
+}
+
+function institutionGraph1(info, institution) {
+    let showData = [0, 0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[7] == "Alternancia") {
+
+            showData[0] += 1;
+
+        }
+        if (element[7] == "Remoto") {
+
+            showData[1] += 1;
+
+        }
+        if (element[7] == "Presencialidad completa") {
+
+            showData[2] += 1;
+
+        }
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ['Alternancia', 'Remoto', 'Presencial'],
+        datasets: [{
+            label: 'My First Dataset',
+            data: showData,
+            backgroundColor: ['#003F63', '#008892', '#FF6766'],
+            hoverOffset: 4
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Modalidad de las sedes en la institucion'
+                }
+            }
+        },
+    };
+
+
+    let campusdisplayGraph1 = new Chart(campusgraph1, config);
+    campussampleGraph1.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph1.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph1.canvas.parentNode.style.width = '420px';
+}
+
+function institutionGraph2(info, institution) {
+    let showData = [0, 0, 0, 0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[7] == "Alternancia") {
+            if (element[10] == "1") {
+                showData[0] += 1;
+            }
+            if (element[10] == "2") {
+                showData[1] += 1;
+            }
+            if (element[10] == "3") {
+                showData[2] += 1;
+            }
+            if (element[10] == "4") {
+                showData[3] += 1;
+            }
+            if (element[10] == "5") {
+                showData[4] += 1;
+            }
+        }
+
+
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ['1 Dia', '2 Dias', '3 Dias', '4 Dias', '5 Dias'],
+        datasets: [{
+            label: 'My First Dataset',
+            data: showData,
+            backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+            hoverOffset: 4
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Cantidad de días asistiendo a las sedes para aquellos que están en alternacia en la institucion'
+                }
+            }
+        },
+    };
+
+
+    campusdisplayGraph2 = new Chart(campusgraph2, config);
+    campussampleGraph2.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph2.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph2.canvas.parentNode.style.width = '420px';
+}
+
+function institutionGraph3(info, institution) {
+    let showData = [0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[8] == "Sí") {
+            showData[0] += 1;
+        }
+        if (element[8] == "No") {
+            showData[1] += 1;
+        }
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: ['Sí hay un diagnóstico de bioseguridad',
+            'No hay un diagnóstico de bioseguridad'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [19, 15],
+            backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+            hoverOffset: 4
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Diagnósticos de bioseguridad en las sedes'
+                }
+            }
+        },
+    };
+
+
+    campusdisplayGraph3 = new Chart(campusgraph3, config);
+    campussampleGraph3.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph3.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph3.canvas.parentNode.style.width = '420px';
+}
+
+function institutionGraph4(info, institution) {
+    let showData = [0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+        if (element[9] == "Sí") {
+            showData[0] += 1;
+        }
+        if (element[9] == "No") {
+            showData[1] += 1;
+        }
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+    const data = {
+        labels: [
+          'Si se realizó un ajuste de protocolos de bioseguridad',
+          'No se realizó un ajuste de protocolos de bioseguridad'],
+        datasets: [{
+          label: 'My First Dataset',
+          data: [19, 15],
+          backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+          hoverOffset: 4
+        }]
+      };
+    
+      const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Revisión y ajuste de los protocolos de bioseguridad '
+            }
+          }
+        },
+      };
+
+
+    campusdisplayGraph4= new Chart(campusgraph4, config);
+    campussampleGraph4.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph4.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph4.canvas.parentNode.style.width = '420px';
+}
+
+function institutionGraph5(info, institution) {
+    let showData = [0, 0, 0, 0];
+
+    for (let index = 0; index < info.data.length; index++) {
+
+        const element = info.data[index];
+
+        if (element[7] == "Alternancia" || element[7] == "Presencialidad completa") {
+            if (element[9] == "Sí") {
+                showData[0] += 1;
+            }
+            if (element[9] == "No") {
+                showData[1] += 1;
+            }
+        }
+        if (element[7] == "Remoto") {
+            if (element[9] == "Sí") {
+                showData[2] += 1;
+            }
+            if (element[9] == "No") {
+                showData[3] += 1;
+            }
+        }
+       
+    }
+
+    let sample = showData.reduce(function (a, b) {
+        return parseInt(a) + parseInt(b);
+    }, 0);
+
+ 
+const data = {
+    labels: [
+      'Alternancia/Presencialidad y Ajuste de protocolos',
+      'Alternancia/Presencialidad y No ajuste de protocolos',
+      'Remoto y No ajuste de protocolos',
+      'Remoto y Si ajuste de protocolos'],
+    datasets: [{
+      label: 'My First Dataset',
+      data: showData,
+      backgroundColor: ['#003F63', '#008892', '#FF6766', '#FDC967', '#C5C789', '#83B8D7'],
+      hoverOffset: 4
+    }]
+  };
+
+  const config = {
+    type: 'doughnut',
+    data: data,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Modalidad de las sedes Vs protocolos de bioseguridad'
+        }
+      }
+    },
+  };
+
+
+    campusdisplayGraph5= new Chart(campusgraph5, config);
+    campussampleGraph5.innerHTML = "Total Muestra: " + sample;
+    campusdisplayGraph5.canvas.parentNode.style.height = '420px';
+    campusdisplayGraph5.canvas.parentNode.style.width = '420px';
+}
+
+function destroyGraphs() {
+    campusdisplayGraph1.destroy();
+    campusdisplayGraph2.destroy();
+    campusdisplayGraph3.destroy();
+    campusdisplayGraph4.destroy();
+    campusdisplayGraph5.destroy();
+}
+
+
+
+    campusSelectGenMethods.addEventListener("change", function () {
+        if (campusSelectGenMethods.value == "SEDE") {
+            destroyGraphs();
+            hideGraphs()
+            initializeGraphs();
+            dataSede();
+            showGraphs();
+        } else {
+            destroyGraphs();
+            hideGraphs()
+            
+        }
+    });
+
+    function hideGraphs(){
+
+        document.getElementById("container__Modality").style.display= "none";
+        document.getElementById("container__Attendance").style.display= "none";
+        document.getElementById("container__Biosegurity").style.display= "none";
+        document.getElementById("container__Protocol").style.display= "none";
+        document.getElementById("container__Versus").style.display= "none";
+        }
+
+
+
+
+
+
+
+
+
