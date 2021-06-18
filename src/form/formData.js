@@ -31,6 +31,7 @@ function formulario1(){
            //animacion esconder y mostrar
            $(".dataForm1").hide();
            $("#nextBtn").hide();
+           $("#label1").hide();
            $(".dataForm2").show();}
 
            else
@@ -129,6 +130,7 @@ function formulario2() {
              console.log(Frp);
              $(".dataForm2").hide();
              $("#nextBtn").hide();
+             $("#label2").hide();
              $(".dataForm3").show();}
         }
     
@@ -225,6 +227,7 @@ function formulario3() {
             console.log(Frp);
             $(".dataForm3").hide();
             $("#nextBtn").hide();
+            $("#label3").hide();
              $(".dataForm4").show();
         }}
     
@@ -293,6 +296,7 @@ if(document.getElementById("num34").value != "" && document.getElementById("num3
             console.log(Frp);
             $(".dataForm4").hide();
             $("#nextBtn").hide();
+            $("#label4").hide();
              $(".dataForm5").show();
 
         }}
